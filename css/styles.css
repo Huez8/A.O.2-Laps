@@ -1,0 +1,438 @@
+:root {
+    --color-primary: #FF0000;
+    --color-secondary: #0D1328;
+    --color-light: #FFFFFF;
+    --color-dark: #1a1a1a;
+    --color-gray: #6c757d;
+    --transition-speed: 0.3s;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-dark);
+    overflow-x: hidden;
+    background-color: var(--color-light);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.navbar {
+    padding: 1.5rem 0;
+    transition: all var(--transition-speed) ease;
+    z-index: 1000;
+}
+
+.navbar-transparent {
+    background-color: rgba(13, 19, 40, 0) !important;
+}
+
+.navbar-solid {
+    background-color: var(--color-secondary) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.brand-text {
+    color: var(--color-light);
+    position: relative;
+}
+
+.brand-text::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background-color: var(--color-primary);
+}
+
+.nav-link {
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem !important;
+    color: var(--color-light) !important;
+    transition: all var(--transition-speed) ease;
+    position: relative;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: width var(--transition-speed) ease;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    width: 80%;
+}
+
+.nav-link:hover {
+    color: var(--color-primary) !important;
+}
+
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 0, 0.3));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--color-light);
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 1s ease;
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+    animation: fadeInUp 1s ease 0.2s backwards;
+}
+
+.btn-hero {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    transition: all var(--transition-speed) ease;
+    animation: fadeInUp 1s ease 0.4s backwards;
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+}
+
+.btn-hero:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
+    background-color: #cc0000;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.services-section {
+    background-color: #f8f9fa;
+}
+
+.portfolio-section {
+    background-color: var(--color-light);
+}
+
+.team-section {
+    background-color: #f8f9fa;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.title-underline {
+    width: 100px;
+    height: 4px;
+    background-color: var(--color-primary);
+    margin: 0 auto;
+}
+
+.service-card {
+    background-color: var(--color-light);
+    padding: 2.5rem 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: all var(--transition-speed) ease;
+    height: 100%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), #cc0000);
+    border-radius: 50%;
+    color: var(--color-light);
+    font-size: 2rem;
+    transition: all var(--transition-speed) ease;
+}
+
+.service-card:hover .service-icon {
+    transform: rotateY(360deg);
+}
+
+.service-title {
+    font-size: 1.3rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.service-description {
+    font-size: 0.95rem;
+    color: var(--color-gray);
+    line-height: 1.7;
+}
+
+.portfolio-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 350px;
+}
+
+.portfolio-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease;
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(13, 19, 40, 0.95), rgba(255, 0, 0, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.portfolio-card:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-card:hover img {
+    transform: scale(1.1);
+}
+
+.portfolio-content {
+    text-align: center;
+    color: var(--color-light);
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.portfolio-card:hover .portfolio-content {
+    transform: translateY(0);
+}
+
+.portfolio-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-category {
+    font-size: 0.9rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+}
+
+.team-card {
+    background-color: var(--color-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-speed) ease;
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+}
+
+.team-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+.team-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.team-name {
+    font-size: 1.3rem;
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.team-role {
+    font-size: 0.9rem;
+    color: var(--color-primary);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+}
+
+.team-bio {
+    font-size: 0.9rem;
+    color: var(--color-gray);
+    line-height: 1.6;
+}
+
+.footer {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    padding: 2rem 0;
+}
+
+.footer p {
+    font-size: 0.9rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    justify-content: flex-end;
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-light);
+    border-radius: 50%;
+    transition: all var(--transition-speed) ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    transform: translateY(-3px);
+}
+
+@media (max-width: 991px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .social-icons {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .btn-hero {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .portfolio-card {
+        height: 280px;
+    }
+    
+    .team-card img {
+        height: 250px;
+    }
+}
