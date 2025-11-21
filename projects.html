@@ -49,6 +49,14 @@
         .portfolio-grid-item {
             display: none; /* Mặc định ẩn, sẽ hiển thị bằng JS */
         }
+        /* Style cho dự án chưa có nội dung chi tiết */
+        .is-placeholder .portfolio-title {
+            color: var(--color-primary);
+        }
+        .is-placeholder .portfolio-card:hover {
+            box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); /* Thay bóng đổ đỏ thành màu khác để phân biệt */
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -94,46 +102,47 @@
                 </div>
             </div>
         </section>
+        
         <section id="portfolio-grid" class="portfolio-section py-5">
             <div class="container">
                 
                 <div class="row g-4" id="project-list">
                     
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item design">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item web is-ready">
                         <a href="project-details/project-1.html" style="text-decoration: none;">
                             <div class="portfolio-card">
-                                <img src="https://images.unsplash.com/photo-1510511977934-2e99a4c8a2cc?w=800&h=600&fit=crop" alt="Dự án Brand Identity">
+                                <img src="https://images.unsplash.com/photo-1547394765-1856e409b30c?w=800&h=600&fit=crop" alt="Dự án FTP Server">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">Brand Identity: Quán Trà Chanh "Nắng"</h3>
-                                        <p class="portfolio-category">Đồ Họa & In Ấn</p>
+                                        <h3 class="portfolio-title">Dịch Vụ Vận Chuyển File FTP (Kỹ Thuật)</h3>
+                                        <p class="portfolio-category">Kỹ Thuật Server & Mạng</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
                     
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item uiux">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item uiux is-ready">
                         <a href="project-details/project-2.html" style="text-decoration: none;">
                             <div class="portfolio-card">
-                                <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?w=800&h=600&fit=crop" alt="Dự án Mobile App UI">
+                                <img src="https://images.unsplash.com/photo-1627398242478-f78a7f722a84?w=800&h=600&fit=crop" alt="Dự án Mobile App MIT App Inventor">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">Mobile App Redesign: Nền Tảng Booking TIX</h3>
-                                        <p class="portfolio-category">UI/UX Design</p>
+                                        <h3 class="portfolio-title">Mobile App: Ứng Dụng Với MIT App Inventor</h3>
+                                        <p class="portfolio-category">UI/UX Design & Lập Trình Cơ Bản</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
                     
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item web">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item web is-placeholder">
                         <a href="project-details/project-3.html" style="text-decoration: none;">
                             <div class="portfolio-card">
                                 <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&h=600&fit=crop" alt="Dự án Web Corporate">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">Landing Page: Khóa Học AI - FutureMind</h3>
+                                        <h3 class="portfolio-title">Landing Page: [CHƯA CÓ NỘI DUNG CHI TIẾT]</h3>
                                         <p class="portfolio-category">Front-end Web</p>
                                     </div>
                                 </div>
@@ -141,13 +150,13 @@
                         </a>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item motion">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item motion is-placeholder">
                         <a href="project-details/project-4.html" style="text-decoration: none;">
                             <div class="portfolio-card">
                                 <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=600&fit=crop" alt="Dự án Content Video">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">Series Motion Ads: Giới Thiệu Sản Phẩm Dọn Dẹp</h3>
+                                        <h3 class="portfolio-title">Series Motion Ads: [CHƯA CÓ NỘI DUNG CHI TIẾT]</h3>
                                         <p class="portfolio-category">Motion & Content</p>
                                     </div>
                                 </div>
@@ -155,13 +164,13 @@
                         </a>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item uiux">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item uiux is-placeholder">
                         <a href="project-details/project-5.html" style="text-decoration: none;">
                             <div class="portfolio-card">
                                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop" alt="Dự án Dashboard UI">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">UX/UI Dashboard: Hệ Thống Quản Lý Nội Bộ</h3>
+                                        <h3 class="portfolio-title">UX/UI Dashboard: [CHƯA CÓ NỘI DUNG CHI TIẾT]</h3>
                                         <p class="portfolio-category">UI/UX Design</p>
                                     </div>
                                 </div>
@@ -169,22 +178,23 @@
                         </a>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item design">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item design is-placeholder">
                         <a href="project-details/project-6.html" style="text-decoration: none;">
                             <div class="portfolio-card">
                                 <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop" alt="Dự án Ấn Phẩm">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">Ấn Phẩm Triển Lãm: Bộ Sưu Tập Nghệ Thuật</h3>
+                                        <h3 class="portfolio-title">Ấn Phẩm Triển Lãm: [CHƯA CÓ NỘI DUNG CHI TIẾT]</h3>
                                         <p class="portfolio-category">Đồ Họa & In Ấn</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                </div> </div>
+                </div> 
+            </div>
         </section>
-        </main>
+    </main>
 
     <footer class="footer" style="background-color: var(--color-secondary); color: var(--color-light);">
         <div class="container">
