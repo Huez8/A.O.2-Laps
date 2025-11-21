@@ -1,6 +1,6 @@
 # A.O.2 LAPS: TÀI LIỆU KỸ THUẬT DỰ ÁN
 
-## 1. MỤC TIÊU HỆ THỐNG
+## 1. MỤC TIÊU HỆ THỐNG ❤️
 
 Tài liệu này xác định các thành phần và chức năng của Portfolio Web Tĩnh do nhóm **A.O.2 LAPS** phát triển.
 
@@ -12,7 +12,7 @@ Tài liệu này xác định các thành phần và chức năng của Portfoli
 
 ---
 
-## 2. KIẾN TRÚC VÀ CÔNG NGHỆ
+## 2. KIẾN TRÚC VÀ CÔNG NGHỆ ❤️
 
 ### 2.1. Công nghệ nền tảng
 
@@ -32,7 +32,7 @@ Các tài nguyên được tổ chức theo tiêu chuẩn như sau:
 
 ---
 
-## 3. THÀNH PHẦN CHÍNH (MODULE)
+## 3. THÀNH PHẦN CHÍNH (MODULE) ❤️
 
 Các module chính được đặt ở cấp thư mục gốc:
 
@@ -47,7 +47,7 @@ Các module chính được đặt ở cấp thư mục gốc:
 
 ---
 
-## 4. QUY TRÌNH VẬN HÀNH VÀ BẢO TRÌ
+## 4. QUY TRÌNH VẬN HÀNH VÀ BẢO TRÌ ❤️
 
 ### 4.1. Vận hành
 
@@ -61,11 +61,11 @@ Ví dụ: Các trang trong `/project-details` phải sử dụng đường dẫn
 
 ---
 
-## 5. THÔNG TIN PHÁT TRIỂN
+## 5. THÔNG TIN PHÁT TRIỂN ❤️
 
 * **Kiểm soát Phiên bản:** Git / GitHub.
 * **Nhân sự:**
-    * Võ Đức Huy
+    * Võ Đức Huy (Leader)
     * Lê Thị Phương Linh
     * Lê Thị Thùy Hường
     * Bùi Đoàn Quốc Huy
