@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Dịch vụ Thiết Kế & Phát Triển của A.O.2 LAPS - Đà Điểu Châu Phi">
-    <title>Dịch Vụ Thiết Kế & Phát Triển | A.O.2 LAPS</title>
+    <meta name="description" content="Các Dịch vụ Thiết Kế, UI/UX, Content và Phát triển Front-end Web của A.O.2 LAPS - Đà Điểu Châu Phi.">
+    <title>Dịch Vụ Cốt Lõi | A.O.2 LAPS</title>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -14,22 +14,56 @@
     <link rel="stylesheet" href="css/styles.css"> 
 
     <style>
-        /* CSS Tùy chỉnh cho trang Dịch Vụ - Đảm bảo màu sắc theo CSS gốc */
+        /* CSS Tùy chỉnh nhỏ để tối ưu hiển thị */
         .primary-red-text { color: var(--color-primary); }
-        .bg-light-section { background-color: var(--color-light); }
+        .bg-light-section { background-color: #f8f9fa; } /* Dùng màu xám nhạt để phân biệt */
         .bg-dark-section { background-color: var(--color-secondary); color: var(--color-light); }
         .service-list li { margin-bottom: 10px; font-weight: 500; }
-        .timeline-item { position: relative; padding-bottom: 2rem; }
-        .timeline-item::before { content: ''; position: absolute; top: 0; left: 50%; width: 2px; height: 100%; background-color: var(--color-gray); transform: translateX(-50%); }
-        .timeline-item:last-child::before { height: 50%; } /* Cắt đường kẻ ở cuối */
-        .timeline-icon { background-color: var(--color-primary); color: var(--color-light); border-radius: 50%; padding: 1rem; font-size: 2rem; position: relative; z-index: 1; margin-bottom: 1rem; }
-        .small-hero { height: 60vh; min-height: 400px; background-position: top center; }
-        .small-hero .hero-content { padding-top: 100px; } /* Đẩy nội dung xuống dưới Navbar Fixed */
-        
-        @media (max-width: 768px) {
-            .timeline-item::before { left: 5%; }
-            .timeline-icon { margin: 0 auto 1rem 0; }
-            .timeline-item { text-align: left; padding-left: 20%; }
+        .small-hero { 
+            height: 60vh; 
+            min-height: 400px; 
+            background-image: url('https://images.unsplash.com/photo-1510511977934-2e99a4c8a2cc?w=1920&h=1080&fit=crop'); /* Ảnh banner mới cho Services */
+            background-attachment: scroll; /* Bỏ fixed để mượt hơn trên di động */
+        }
+        .small-hero .hero-content { padding-top: 120px; } 
+
+        .service-detail-card {
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .service-detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+        }
+        .detail-icon {
+            color: var(--color-primary);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        .detail-title {
+            color: var(--color-secondary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .step-item {
+            border-left: 3px solid var(--color-primary);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .step-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-primary);
+            line-height: 1;
+        }
+        .step-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-secondary);
+            margin-top: -5px;
         }
     </style>
 </head>
@@ -62,118 +96,94 @@
         </div>
     </nav>
     <main>
-        <section id="services-hero" class="hero-section small-hero py-5">
+        <section id="services-hero" class="hero-section small-hero">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="hero-title">Thiết Kế Không Giới Hạn, Phát Triển Vượt Trội.</h1>
-                <p class="hero-subtitle">Tất cả những gì bạn cần để tạo ra dấu ấn trên môi trường số và vật lý.</p>
-                <a href="#design-services" class="btn btn-primary btn-hero">Khám phá Dịch Vụ</a>
+                <h1 class="hero-title">Giải Pháp Sáng Tạo & Kỹ Thuật Độc Đáo.</h1>
+                <p class="hero-subtitle">5 lĩnh vực cốt lõi định hình nên năng lực vượt trội của Đà Điểu Châu Phi.</p>
+                <a href="#core-services" class="btn btn-primary btn-hero">Khám Phá Chi Tiết</a>
             </div>
         </section>
-        <section id="design-services" class="py-5 bg-light-section">
+        <section id="core-services" class="py-5 services-section">
             <div class="container">
                 <div class="section-header text-center mb-5">
-                    <h2 class="section-title" style="color: var(--color-secondary);">DỊCH VỤ THIẾT KẾ: TƯ DUY SÁNG TẠO</h2>
-                    <div class="title-underline" style="background-color: var(--color-primary);"></div>
+                    <h2 class="section-title">NĂM LĨNH VỰC CỐT LÕI</h2>
+                    <div class="title-underline"></div>
                 </div>
                 
-                <div class="row align-items-center mb-5 pb-5 border-bottom border-gray">
-                    <div class="col-md-6 order-md-1">
-                        <h3 class="fw-bold mb-3 primary-red-text">1. Thiết Kế Sản Phẩm & Ấn Phẩm Đồ Họa</h3>
-                        <p class="lead" style="color: var(--color-gray);">Chúng tôi biến ý tưởng thành những sản phẩm trực quan, đẹp mắt và tối ưu hóa hiệu quả sử dụng.</p>
-                        <ul class="list-unstyled service-list">
-                            <li><i class="fas fa-magic me-2 primary-red-text"></i> **Thiết Kế UI/UX:** Giao diện website/app thân thiện, tối ưu trải nghiệm.</li>
-                            <li><i class="fas fa-print me-2 primary-red-text"></i> **Ấn phẩm Đồ họa (Photoshop Products):** Logo, Brochure, Poster, Banner, và các sản phẩm sẵn sàng in ấn.</li>
-                            <li><i class="fas fa-drafting-compass me-2 primary-red-text"></i> **Brand Identity:** Xây dựng hệ thống nhận diện thương hiệu nhất quán.</li>
-                        </ul>
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-detail-card bg-white">
+                            <div class="detail-icon"><i class="fas fa-print"></i></div>
+                            <h3 class="detail-title">1. Đồ Họa & Ấn Phẩm</h3>
+                            <p style="color: var(--color-gray);">Tạo ra các sản phẩm đồ họa và ấn phẩm thương hiệu sẵn sàng để in ấn và sử dụng. Đảm bảo chất lượng cao nhất cho mọi sản phẩm vật lý và kỹ thuật số.</p>
+                            <ul class="list-unstyled service-list small">
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Brand Identity, Logo, Guidelines</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Brochure, Catalogue, Poster, Banner</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Sản phẩm đồ họa vector/raster</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-md-6 order-md-0 text-center mt-4 mt-md-0">
-                        <img src="https://images.unsplash.com/photo-1581093557871-0072d627c2b6?w=800&h=600&fit=crop" alt="Graphic Design" class="img-fluid rounded shadow-lg">
-                    </div>
-                </div>
 
-                <div class="row align-items-center">
-                    <div class="col-md-6 text-center mb-4 mb-md-0">
-                        <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&h=600&fit=crop" alt="Content Creation" class="img-fluid rounded shadow-lg">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-detail-card bg-white">
+                            <div class="detail-icon"><i class="fas fa-laptop-code"></i></div>
+                            <h3 class="detail-title">2. UI/UX Design</h3>
+                            <p style="color: var(--color-gray);">Thiết kế trải nghiệm người dùng tối ưu. Giao diện trực quan, đẹp mắt cho Website, Web App và Mobile App, tập trung vào hiệu suất và chuyển đổi.</p>
+                            <ul class="list-unstyled service-list small">
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Wireframing & Prototyping</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Responsive Interface Design</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> User Journey Mapping</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="col-md-6">
-                        <h3 class="fw-bold mb-3 primary-red-text">2. Content Marketing Visual</h3>
-                        <p class="lead" style="color: var(--color-gray);">Tạo ra những hình ảnh và video thu hút, giúp chiến dịch truyền thông của bạn nổi bật trên mọi nền tảng.</p>
-                        <ul class="list-unstyled service-list">
-                            <li><i class="fas fa-video me-2 primary-red-text"></i> **Visual Storytelling:** Kể câu chuyện thương hiệu qua hình ảnh và video ngắn.</li>
-                            <li><i class="fas fa-share-alt me-2 primary-red-text"></i> **Social Media Kits:** Bộ ảnh chất lượng cao, tối ưu cho Facebook, Instagram, TikTok.</li>
-                        </ul>
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-detail-card bg-white">
+                            <div class="detail-icon"><i class="fas fa-camera-retro"></i></div>
+                            <h3 class="detail-title">3. Content Creation</h3>
+                            <p style="color: var(--color-gray);">Sản xuất nội dung thị giác thu hút. Kể câu chuyện thương hiệu mạnh mẽ qua hình ảnh, video chất lượng cao, tối ưu cho các kênh Social Media và Marketing.</p>
+                            <ul class="list-unstyled service-list small">
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Video ngắn (Reels, TikTok)</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Bộ ảnh truyền thông chuyên nghiệp</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Lập chiến lược Visual Content</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-detail-card bg-white border border-danger border-4">
+                            <div class="detail-icon"><i class="fas fa-film" style="color: #cc0000;"></i></div>
+                            <h3 class="detail-title">4. Animation & Motion</h3>
+                            <p style="color: var(--color-gray); font-weight: 600;">Mang sự sống vào thương hiệu của bạn! Chuyên nghiệp trong việc tạo ra Motion Graphics và Animation 2D/3D mượt mà, phục vụ quảng cáo và giải thích sản phẩm.</p>
+                            <ul class="list-unstyled service-list small">
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Explainer Videos (Video giải thích)</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Motion Graphics cho Social Ads</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Animation Logo/Intro</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-detail-card bg-white">
+                            <div class="detail-icon"><i class="fas fa-code"></i></div>
+                            <h3 class="detail-title">5. Front-end Web Dev</h3>
+                            <p style="color: var(--color-gray);">Biến thiết kế thành mã nguồn hoạt động. Code HTML5, CSS3, JavaScript sạch, chuẩn, đảm bảo tốc độ tải nhanh, hiển thị tốt trên mọi thiết bị (Responsive).</p>
+                            <ul class="list-unstyled service-list small">
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> PSD/Figma to HTML Conversion</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Tối ưu hóa hiệu suất (Performance)</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Cấu trúc Web chuẩn SEO</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <section id="development-services" class="py-5 bg-dark-section">
+        <section class="py-5 text-center bg-dark-section">
             <div class="container">
-                <div class="section-header text-center mb-5">
-                    <h2 class="section-title text-white">DỊCH VỤ PHÁT TRIỂN: GIẢI PHÁP KỸ THUẬT</h2>
-                    <div class="title-underline" style="background-color: var(--color-primary);"></div>
-                </div>
-                
-                <div class="row g-4 text-center">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-card dark-card" style="background-color: var(--color-light); color: var(--color-dark);">
-                            <div class="service-icon" style="background: linear-gradient(135deg, var(--color-primary), #cc0000);">
-                                <i class="fas fa-server"></i>
-                            </div>
-                            <h3 class="service-title" style="color: var(--color-secondary);">FTP Server Development</h3>
-                            <p class="service-description" style="color: var(--color-gray);">Nghiên cứu và triển khai **FTP Server nội bộ** (Local Network) để đảm bảo chia sẻ file dung lượng lớn nhanh chóng và bảo mật giữa các thành viên.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="service-card dark-card" style="background-color: var(--color-light); color: var(--color-dark);">
-                            <div class="service-icon" style="background: linear-gradient(135deg, var(--color-primary), #cc0000);">
-                                <i class="fas fa-tools"></i>
-                            </div>
-                            <h3 class="service-title" style="color: var(--color-secondary);">Ứng Dụng Tiện Ích Nhỏ</h3>
-                            <p class="service-description" style="color: var(--color-gray);">Xây dựng các **Utility Apps** (ứng dụng nhỏ) tùy chỉnh bằng Python/Batch Script phục vụ cho nhu cầu quản lý dự án, xử lý dữ liệu hoặc tối ưu hóa công việc lặp lại.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-12">
-                        <div class="service-card dark-card" style="background-color: var(--color-light); color: var(--color-dark);">
-                            <div class="service-icon" style="background: linear-gradient(135deg, var(--color-primary), #cc0000);">
-                                <i class="fas fa-laptop-code"></i>
-                            </div>
-                            <h3 class="service-title" style="color: var(--color-secondary);">Front-end Web Development</h3>
-                            <p class="service-description" style="color: var(--color-gray);">Chuyển đổi thiết kế thành sản phẩm web thực tế. Code chuẩn HTML5, CSS3, JavaScript, đảm bảo website **responsive** và tốc độ tải tối ưu.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section id="process" class="py-5 text-center bg-light-section">
-            <div class="container">
-                <div class="section-header mb-5">
-                    <h2 class="section-title" style="color: var(--color-secondary);">QUY TRÌNH HỢP TÁC CHUYÊN NGHIỆP</h2>
-                    <div class="title-underline" style="background-color: var(--color-primary);"></div>
-                </div>
-                <div class="row timeline">
-                    <div class="col-md-3 timeline-item">
-                        <div class="timeline-icon" style="background-color: var(--color-primary);"><i class="fas fa-comments"></i></div>
-                        <h4 style="color: var(--color-secondary);">1. Tiếp Nhận</h4>
-                        <p style="color: var(--color-gray);">Trao đổi, thu thập yêu cầu và phân tích mục tiêu dự án rõ ràng.</p>
-                    </div>
-                    <div class="col-md-3 timeline-item">
-                        <div class="timeline-icon" style="background-color: var(--color-primary);"><i class="fas fa-lightbulb"></i></div>
-                        <h4 style="color: var(--color-secondary);">2. Lên Ý Tưởng</h4>
-                        <p style="color: var(--color-gray);">Xây dựng Concept, Wireframe, và thống nhất định hướng sáng tạo/kỹ thuật.</p>
-                    </div>
-                    <div class="col-md-3 timeline-item">
-                        <div class="timeline-icon" style="background-color: var(--color-primary);"><i class="fas fa-drafting-compass"></i></div>
-                        <h4 style="color: var(--color-secondary);">3. Thiết Kế/Code</h4>
-                        <p style="color: var(--color-gray);">Bắt đầu triển khai thiết kế chi tiết (Photoshop) hoặc phát triển mã nguồn.</p>
-                    </div>
-                    <div class="col-md-3 timeline-item">
-                        <div class="timeline-icon" style="background-color: var(--color-primary);"><i class="fas fa-rocket"></i></div>
-                        <h4 style="color: var(--color-secondary);">4. Bàn Giao</h4>
-                        <p style="color: var(--color-gray);">Kiểm thử lần cuối, bàn giao sản phẩm hoàn chỉnh và hỗ trợ sau triển khai.</p>
-                    </div>
-                </div>
-                <a href="projects.html" class="btn btn-primary btn-lg mt-5 btn-hero">Xem Các Dự Án Đã Hoàn Thành</a>
+                <h2 class="hero-title mb-4">SẴN SÀNG KHỞI CHẠY DỰ ÁN CỦA BẠN?</h2>
+                <p class="lead mb-4" style="color: var(--color-gray);">Liên hệ với chúng tôi để bắt đầu hành trình biến ý tưởng thành sản phẩm thị giác bùng nổ!</p>
+                <a href="index.html#gapgo" class="btn btn-hero">BẮT ĐẦU NGAY</a>
             </div>
         </section>
         </main>
@@ -197,6 +207,5 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/script.js"></script>
-</body>
+    </body>
 </html>
