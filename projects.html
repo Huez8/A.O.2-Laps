@@ -47,15 +47,13 @@
             box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
         }
         .portfolio-grid-item {
-            display: none; /* Mặc định ẩn, sẽ hiển thị bằng JS */
+            /* Đảm bảo hiển thị ban đầu, JS sẽ xử lý filter */
+            display: block; 
+            opacity: 1;
         }
-        /* Style cho dự án chưa có nội dung chi tiết */
-        .is-placeholder .portfolio-title {
-            color: var(--color-primary);
-        }
-        .is-placeholder .portfolio-card:hover {
-            box-shadow: 0 0 10px rgba(255, 165, 0, 0.5); /* Thay bóng đổ đỏ thành màu khác để phân biệt */
-            cursor: pointer;
+        .portfolio-card img {
+            height: 250px; /* Đảm bảo kích thước đồng đều cho ảnh */
+            object-fit: cover;
         }
     </style>
 </head>
@@ -102,47 +100,46 @@
                 </div>
             </div>
         </section>
-        
         <section id="portfolio-grid" class="portfolio-section py-5">
             <div class="container">
                 
                 <div class="row g-4" id="project-list">
                     
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item web is-ready">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item web design">
                         <a href="project-details/project-1.html" style="text-decoration: none;">
                             <div class="portfolio-card">
-                                <img src="https://images.unsplash.com/photo-1547394765-1856e409b30c?w=800&h=600&fit=crop" alt="Dự án FTP Server">
+                                <img src="https://plus.unsplash.com/premium_photo-1683140640468-9e428f4257b8?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dự án FTP Server">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">Dịch Vụ Vận Chuyển File FTP (Kỹ Thuật)</h3>
-                                        <p class="portfolio-category">Kỹ Thuật Server & Mạng</p>
+                                        <h3 class="portfolio-title">Xây Dựng & Vận Hành FTP Server (Nhóm 2)</h3>
+                                        <p class="portfolio-category">Kỹ thuật Server & Mạng</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
                     
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item uiux is-ready">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item uiux web">
                         <a href="project-details/project-2.html" style="text-decoration: none;">
                             <div class="portfolio-card">
-                                <img src="https://images.unsplash.com/photo-1627398242478-f78a7f722a84?w=800&h=600&fit=crop" alt="Dự án Mobile App MIT App Inventor">
+                                <img src="https://images.unsplash.com/photo-1763568258429-b3c7634a764d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Dự án Ứng dụng Di động">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">Mobile App: Ứng Dụng Với MIT App Inventor</h3>
-                                        <p class="portfolio-category">UI/UX Design & Lập Trình Cơ Bản</p>
+                                        <h3 class="portfolio-title">Phát Triển App Cơ Bản (MIT App Inventor)</h3>
+                                        <p class="portfolio-category">UI/UX Design & Lập trình cơ bản</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
                     
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item web is-placeholder">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item web">
                         <a href="project-details/project-3.html" style="text-decoration: none;">
                             <div class="portfolio-card">
                                 <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&h=600&fit=crop" alt="Dự án Web Corporate">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">Landing Page: [CHƯA CÓ NỘI DUNG CHI TIẾT]</h3>
+                                        <h3 class="portfolio-title">Dự Án 3: [Sẽ cập nhật sau]</h3>
                                         <p class="portfolio-category">Front-end Web</p>
                                     </div>
                                 </div>
@@ -150,13 +147,13 @@
                         </a>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item motion is-placeholder">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item motion">
                         <a href="project-details/project-4.html" style="text-decoration: none;">
                             <div class="portfolio-card">
                                 <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=800&h=600&fit=crop" alt="Dự án Content Video">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">Series Motion Ads: [CHƯA CÓ NỘI DUNG CHI TIẾT]</h3>
+                                        <h3 class="portfolio-title">Dự Án 4: [Sẽ cập nhật sau]</h3>
                                         <p class="portfolio-category">Motion & Content</p>
                                     </div>
                                 </div>
@@ -164,13 +161,13 @@
                         </a>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item uiux is-placeholder">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item uiux">
                         <a href="project-details/project-5.html" style="text-decoration: none;">
                             <div class="portfolio-card">
                                 <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=600&fit=crop" alt="Dự án Dashboard UI">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">UX/UI Dashboard: [CHƯA CÓ NỘI DUNG CHI TIẾT]</h3>
+                                        <h3 class="portfolio-title">Dự Án 5: [Sẽ cập nhật sau]</h3>
                                         <p class="portfolio-category">UI/UX Design</p>
                                     </div>
                                 </div>
@@ -178,23 +175,22 @@
                         </a>
                     </div>
 
-                    <div class="col-lg-4 col-md-6 portfolio-grid-item design is-placeholder">
+                    <div class="col-lg-4 col-md-6 portfolio-grid-item design">
                         <a href="project-details/project-6.html" style="text-decoration: none;">
                             <div class="portfolio-card">
                                 <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=600&fit=crop" alt="Dự án Ấn Phẩm">
                                 <div class="portfolio-overlay">
                                     <div class="portfolio-content">
-                                        <h3 class="portfolio-title">Ấn Phẩm Triển Lãm: [CHƯA CÓ NỘI DUNG CHI TIẾT]</h3>
+                                        <h3 class="portfolio-title">Dự Án 6: [Sẽ cập nhật sau]</h3>
                                         <p class="portfolio-category">Đồ Họa & In Ấn</p>
                                     </div>
                                 </div>
                             </div>
                         </a>
                     </div>
-                </div> 
-            </div>
+                </div> </div>
         </section>
-    </main>
+        </main>
 
     <footer class="footer" style="background-color: var(--color-secondary); color: var(--color-light);">
         <div class="container">
@@ -220,7 +216,7 @@
             const filterButtons = document.querySelectorAll('.filter-buttons .btn');
             const projectItems = document.querySelectorAll('.portfolio-grid-item');
 
-            // Hiển thị tất cả dự án khi trang tải
+            // Hiển thị tất cả dự án khi trang tải (đã được sửa trong HTML, nhưng giữ lại JS cho chức năng filter)
             projectItems.forEach(item => item.style.display = 'block');
 
             filterButtons.forEach(button => {
