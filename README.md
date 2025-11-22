@@ -39,7 +39,7 @@ Các module chính được đặt ở cấp thư mục gốc:
 1.  **`index.html`**: Điểm khởi tạo hệ thống (Trang chủ).
 2.  **`services.html`**: Module liệt kê các kỹ năng kỹ thuật/dịch vụ.
 3.  **`projects.html`**: Module tổng hợp danh sách các dự án. Module này chứa logic **Lọc (Filter)** dựa trên class CSS.
-
+4. **`projects.html`**: Module chưa các dự án mà các thành viên/nhóm đã hoàn thành trong quá trình học tập.
 ### 3.1. Các tài sản dự án (Ví dụ)
 
 * **Dự án 1 (Kỹ thuật):** Triển khai FTP Server.
