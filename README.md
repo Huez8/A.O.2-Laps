@@ -1,74 +1,65 @@
-# A.O.2 LAPS: TÀI LIỆU KỸ THUẬT DỰ ÁN
+# A.O.2-LABS: BÁO CÁO NGHIÊN CỨU & TRIỂN KHAI HỆ THỐNG WEB TĨNH
 
-## 1. MỤC TIÊU HƯỚNG TỚI ⭐
+## 1. TÓM TẮT NGHIÊN CỨU (Abstract)
 
-Tài liệu này xác định các thành phần và chức năng của Portfolio Web Tĩnh do nhóm **A.O.2 LAPS** phát triển.
-
-### 1.1. Chức năng Xác nhận
-
-* **Đầu ra:** Triển khai một giao diện người dùng dựa trên HTML5/CSS3.
-* **Mục tiêu:** Chứng minh năng lực phát triển giao diện người dùng (Front-end) và tích hợp các nội dung kỹ thuật (Server, App Design).
-* **Phương thức:** Cấu trúc đa trang (Multi-page structure).
+Dự án này trình bày kết quả của việc chuyển đổi chuyên môn **Thiết kế Đồ họa** sang lĩnh vực **Phát triển Web Server** thông qua việc xây dựng một hệ thống Website Tĩnh **Responsive (đa nền tảng)**. Do hạn chế về nền tảng lập trình ban đầu, **Trí tuệ Nhân tạo (A.I)** đã được áp dụng như một công cụ hỗ trợ chính trong quá trình chuyển đổi mã nguồn và tối ưu hóa kỹ thuật. Mục tiêu là chứng minh tính khả thi của việc tích hợp **Thẩm mỹ Hình ảnh (Visual Aesthetics)** và **Chức năng Lập trình (Technical Functionality)** trong môi trường học thuật.
 
 ---
 
-## 2. KIẾN TRÚC VÀ CÔNG NGHỆ 💻
+## 2. MỤC TIÊU VÀ PHƯƠNG PHÁP LUẬN
 
-### 2.1. Công nghệ nền tảng
+### 2.1. Mục tiêu Dự án (Hypothesis)
 
-* **Markup:** HTML5.
-* **Styling:** CSS3, Framework **Bootstrap 5.3+**.
-* **Tương tác:** JavaScript (Vanilla JS).
-* **Thư viện:** Font Awesome, Google Fonts.
+* Xây dựng một giao diện người dùng (UI) có **Độ Trung Thực Hình ảnh cao** (High Fidelity) so với thiết kế ban đầu.
+* Thiết lập một quy trình **Triển khai Tự động (CI/CD)** ổn định để quản lý các phiên bản phát hành.
+* **Đánh giá hiệu suất** của việc sử dụng công cụ A.I trong việc hỗ trợ chuyển đổi mã nguồn HTML/CSS/JS.
 
-### 2.2. Phân cấp Tài nguyên (Assets)
+### 2.2. Phương pháp Luận (Methodology)
 
-Các tài nguyên được tổ chức theo tiêu chuẩn như sau:
-
-* **`/css`**: File định kiểu chính (`styles.css`).
-* **`/js`**: Nơi lưu trữ các script tùy chỉnh (nếu có).
-* **`/attached_assets`**: Tài nguyên hình ảnh, logo, và các yếu tố đồ họa.
-* **`/project-details`**: Chứa các module trang chi tiết dự án (Ví dụ: `project-1.html`).
+1.  **Giai đoạn Thiết kế (Design Phase):** Hoàn thành wireframe và mockup bằng công cụ thiết kế đồ họa.
+2.  **Giai đoạn Phát triển (Development Phase):** Sử dụng HTML5, CSS3 (Bootstrap 5.3+), và JavaScript.
+    * **Kỹ thuật Code:** Áp dụng phương pháp lập trình mô-đun hóa cho các thành phần UI.
+    * **Hỗ trợ Tích hợp:** Sử dụng A.I để giải quyết các thách thức cú pháp (syntax) và cấu trúc.
+3.  **Giai đoạn Kiểm soát:** Sử dụng **Git/GitHub** và **Branch Protection Rules** để thực hiện kiểm duyệt mã nguồn thông qua Pull Request (PR).
 
 ---
 
-## 3. THÀNH PHẦN CHÍNH (MODULE) 🪨
+## 3. CẤU TRÚC KỸ THUẬT (Technical Architecture)
 
-Các module chính được đặt ở cấp thư mục gốc:
+### 3.1. Stack Công nghệ
 
-1.  **`index.html`**: Điểm khởi tạo hệ thống (Trang chủ).
-2.  **`services.html`**: Module liệt kê các kỹ năng kỹ thuật/dịch vụ.
-3.  **`projects.html`**: Module tổng hợp danh sách các dự án. Module này chứa logic **Lọc (Filter)** dựa trên class CSS.
+| Thành phần | Công nghệ/Thư viện | Mục đích |
+| :--- | :--- | :--- |
+| Markup | HTML5 | Cấu trúc ngữ nghĩa (Semantic Structure). |
+| Styling | CSS3 & **Bootstrap 5.3+** | Thiết kế linh hoạt và Responsive. |
+| Interactivity | **Vanilla JavaScript** | Logic lọc dự án và tương tác UI cơ bản. |
+| Automation | **GitHub Actions / Netlify** | Triển khai liên tục (Continuous Deployment). |
+| Support | **Trí tuệ Nhân tạo** | Hỗ trợ gỡ lỗi và tạo đoạn mã phức tạp. |
 
-### 3.1. Các tài sản dự án (Ví dụ)
+### 3.2. Phân cấp Tài nguyên (Resource Mapping)
 
-* **Dự án 1 (Kỹ thuật):** Triển khai FTP Server.
-* **Dự án 2 (UI/UX):** Phát triển ứng dụng cơ bản (MIT App Inventor).
-
----
-
-## 4. QUY TRÌNH VẬN HÀNH VÀ BẢO TRÌ 🛠️
-
-### 4.1. Vận hành
-
-Hệ thống hoạt động trên nền tảng trình duyệt web.
-Yêu cầu: Mở file `index.html` hoặc `projects.html` trực tiếp.
-
-### 4.2. Độ Tương thích
-
-Hệ thống yêu cầu các đường dẫn tương đối (Relative Paths) phải được giữ nguyên.
-Ví dụ: Các trang trong `/project-details` phải sử dụng đường dẫn `../css/styles.css` để truy cập CSS ở thư mục gốc.
+| Thư mục | Nội dung | Chú thích |
+| :--- | :--- | :--- |
+| **`/css`** | Định kiểu và thư viện CSS. | File `styles.css` là file tùy chỉnh chính. |
+| **`/js`** | Các script tương tác người dùng. | Logic cho các tính năng như Lọc (Filter). |
+| **`/project-details`** | Các trang chi tiết dự án (Module). | Dùng đường dẫn tương đối để gọi tài nguyên. |
+| **`index.html`** | Trang chủ. | Điểm truy cập chính của hệ thống. |
 
 ---
 
-## 5. THÔNG TIN PHÁT TRIỂN 🧑‍💻
+## 4. QUẢN LÝ DỰ ÁN & PHIÊN BẢN
 
-* **Kiểm soát Phiên bản:** Git / GitHub.
-* **Nhân sự:**
-    * Võ Đức Huy (Leader)
-    * Lê Thị Phương Linh
-    * Lê Thị Thùy Hường
-    * Bùi Đoàn Quốc Huy
-    * Đoàn Phi Hồng
+### 4.1. Thông tin Phát triển
 
-*Ngày tạo tài liệu: 22/11/2025.*
+* **Repository:** `Huez8/A.O.2-Labs`
+* **Trạng thái Triển khai:** **Đã hoàn thành Deployment (LIVE)**.
+* **Phiên bản Hiện tại:** `v1.0.0` (Xem mục Releases để biết lịch sử cập nhật).
+* **Leader:** Võ Đức Huy.
+
+### 4.2. Khả năng Tiếp cận (Accessibility)
+
+Hệ thống được thiết kế để hoạt động hiệu quả trên mọi trình duyệt hiện đại. Trang web đang hoạt động LIVE tại: **https://ao2-labs.netlify.app/**
+
+---
+
+**Ngày hoàn thành Báo cáo:** 22/11/2025.
