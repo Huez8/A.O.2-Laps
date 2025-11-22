@@ -1,438 +1,752 @@
-:root {
-    /* GIỮ NGUYÊN MÀU GỐC CỦA BẠN */
-    --color-primary: #FF0000;
-    --color-secondary: #0D1328;
-    --color-light: #FFFFFF;
-    --color-dark: #1a1a1a;
-    --color-gray: #6c757d;
-    --transition-speed: 0.4s; /* Tăng nhẹ thời gian chuyển đổi */
-    --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Hàm Easing mượt mà, có gia tốc/giảm tốc */
-    --anime-duration: 0.7s;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--color-dark);
-    overflow-x: hidden;
-    background-color: var(--color-light);
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Oswald', sans-serif;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-/* ---------------------------------------------------- */
-/* 1. Navbar (Chuyển động mượt và sắc nét)              */
-/* ---------------------------------------------------- */
-.navbar {
-    padding: 1.5rem 0;
-    transition: all var(--transition-speed) var(--anime-easing);
-    z-index: 1000;
-}
-
-.navbar-transparent {
-    background-color: rgba(13, 19, 40, 0) !important;
-}
-
-.navbar-solid {
-    background-color: var(--color-secondary) !important;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow mạnh hơn */
-    padding: 1rem 0;
-}
-
-.navbar-brand {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 3px;
-}
-
-.brand-text {
-    color: var(--color-light);
-    position: relative;
-}
-
-.brand-text::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 60%;
-    height: 3px;
-    background-color: var(--color-primary);
-    transform: skewX(-5deg); /* Thêm hiệu ứng xiên nhẹ */
-}
-
-.nav-link {
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0 0.5rem;
-    padding: 0.5rem 1rem !important;
-    color: var(--color-light) !important;
-    transition: all var(--transition-speed) var(--anime-easing); /* Áp dụng Anime Easing */
-    position: relative;
-}
-
-.nav-link::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) scaleX(0); /* Bắt đầu từ 0 và dùng scaleX */
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-primary);
-    transition: transform var(--transition-speed) var(--anime-easing);
-}
-
-.nav-link:hover::before,
-.nav-link.active::before {
-    transform: translateX(-50%) scaleX(0.8); /* Phóng to lên 80% */
-}
-
-.nav-link:hover {
-    color: var(--color-primary) !important;
-    transform: translateY(-2px); /* Nhấc lên nhẹ nhàng */
-}
-
-/* ---------------------------------------------------- */
-/* 2. Hero Section (Hiệu ứng xuất hiện có thứ tự)       */
-/* ---------------------------------------------------- */
-.hero-section {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&h=1080&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 0, 0.3));
-}
-
-.hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: var(--color-light);
-    padding: 0 20px;
-}
-
-.hero-title {
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin-bottom: 1.5rem;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-    animation: fadeInUp var(--anime-duration) var(--anime-easing); /* Áp dụng Animation mới */
-}
-
-.hero-subtitle {
-    font-size: 1.5rem;
-    font-weight: 300;
-    margin-bottom: 2.5rem;
-    letter-spacing: 1px;
-    animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.15s backwards; /* Delay 150ms */
-}
-
-.btn-hero {
-    padding: 1rem 3rem;
-    font-size: 1.1rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border: none;
-    background-color: var(--color-primary);
-    color: var(--color-light);
-    transition: all 0.5s var(--anime-easing); /* Transition dài hơn cho nút */
-    animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.3s backwards; /* Delay 300ms */
-    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
-}
-
-.btn-hero:hover {
-    transform: translateY(-5px) scale(1.02); /* Nhấc lên và phóng to nhẹ */
-    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.6);
-    background-color: #cc0000;
-}
-
-/* Keyframes mới: Kết hợp dịch chuyển, phóng to và làm mờ để tạo hiệu ứng "xuất hiện" */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(50px) scale(0.95);
-        filter: blur(5px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        filter: blur(0);
-    }
-}
-
-/* ---------------------------------------------------- */
-/* 3. Cards (Hiệu ứng tương tác động)                   */
-/* ---------------------------------------------------- */
-.services-section {
-    background-color: #f8f9fa;
-}
-
-.portfolio-section {
-    background-color: var(--color-light);
-}
-
-.team-section {
-    background-color: #f8f9fa;
-}
-
-.section-header {
-    margin-bottom: 4rem;
-}
-
-.section-title {
-    font-size: 3rem;
-    font-weight: 900;
-    color: var(--color-secondary);
-    margin-bottom: 1rem;
-}
-
-.title-underline {
-    width: 100px;
-    height: 4px;
-    background-color: var(--color-primary);
-    margin: 0 auto;
-}
-
-.service-card {
-    background-color: var(--color-light);
-    padding: 2.5rem 1.5rem;
-    border-radius: 10px;
-    text-align: center;
-    transition: all var(--transition-speed) var(--anime-easing); /* Áp dụng Anime Easing */
-    height: 100%;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-}
-
-.service-card:hover {
-    transform: translateY(-15px); /* Nhấc lên mạnh hơn */
-    box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3); /* Stronger Red shadow */
-}
-
-.service-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--color-primary), #cc0000);
-    border-radius: 50%;
-    color: var(--color-light);
-    font-size: 2rem;
-    transition: all 0.7s var(--anime-easing); /* Tăng thời gian chuyển động */
-}
-
-.service-card:hover .service-icon {
-    transform: rotate(360deg) scale(1.1); /* Xoay toàn bộ 360 độ và zoom nhẹ */
-}
-
-.service-title {
-    font-size: 1.3rem;
-    color: var(--color-secondary);
-    margin-bottom: 1rem;
-}
-
-.service-description {
-    font-size: 0.95rem;
-    color: var(--color-gray);
-    line-height: 1.7;
-}
-
-/* Portfolio Card */
-.portfolio-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    cursor: pointer;
-    height: 350px;
-}
-
-.portfolio-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.7s var(--anime-easing); /* Transition mượt hơn cho ảnh */
-}
-
-.portfolio-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(13, 19, 40, 0.95), rgba(255, 0, 0, 0.85));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: all 0.4s var(--anime-easing);
-}
-
-.portfolio-card:hover .portfolio-overlay {
-    opacity: 1;
-}
-
-.portfolio-card:hover img {
-    transform: scale(1.15) rotate(0.5deg); /* Zoom mạnh hơn và xoay nhẹ */
-}
-
-.portfolio-content {
-    text-align: center;
-    color: var(--color-light);
-    transform: translateY(30px); /* Bắt đầu dịch chuyển xuống */
-    opacity: 0;
-    transition: all 0.5s var(--anime-easing) 0.1s; /* Xuất hiện trễ 100ms */
-}
-
-.portfolio-card:hover .portfolio-content {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.portfolio-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.portfolio-category {
-    font-size: 0.9rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--color-primary);
-}
-
-.team-card {
-    background-color: var(--color-light);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    transition: all var(--transition-speed) var(--anime-easing);
-    height: 100%;
-}
-
-.team-card:hover {
-    transform: translateY(-15px); /* Nhấc lên mạnh hơn */
-    box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
-}
-
-.team-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
-
-/* ---------------------------------------------------- */
-/* 4. Footer (Icon tương tác mạnh)                      */
-/* ---------------------------------------------------- */
-.footer {
-    background-color: var(--color-secondary);
-    color: var(--color-light);
-    padding: 2rem 0;
-}
-
-.footer p {
-    font-size: 0.9rem;
-}
-
-.social-icons {
-    display: flex;
-    gap: 1rem;
-    /* Đã loại bỏ justify-content: center; dư thừa */
-    justify-content: flex-end; 
-}
-
-.social-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-light);
-    border-radius: 50%;
-    transition: all var(--transition-speed) var(--anime-easing);
-    text-decoration: none;
-}
-
-.social-icon:hover {
-    background-color: var(--color-primary);
-    color: var(--color-light);
-    transform: translateY(-7px) rotate(5deg); /* Nhấc lên cao và xoay nhẹ */
-}
-
-/* Điều chỉnh Media Queries */
-@media (max-width: 991px) {
-    .hero-title {
-        font-size: 3rem;
-    }
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.O.2 LAPS - Code Gốc</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Google: Montserrat và Oswald -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Icon Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .section-title {
-        font-size: 2.5rem;
-    }
-    
-    /* FIX LỖI FOOTER: Căn giữa icon và thêm khoảng cách khi xuống dòng */
-    .social-icons {
-        justify-content: center;
-        margin-top: 1rem; /* Thêm khoảng cách phía trên cho icon trên mobile */
-    }
-}
+    <style>
+        /* CSS BẠN CUNG CẤP - GIỮ NGUYÊN 100%, CHỈ SỬA URL ẢNH NỀN */
+        :root {
+            /* GIỮ NGUYÊN MÀU GỐC CỦA BẠN */
+            --color-primary: #FF0000;
+            --color-secondary: #0D1328;
+            --color-light: #FFFFFF;
+            --color-dark: #1a1a1a;
+            --color-gray: #6c757d;
+            --transition-speed: 0.4s; /* Tăng nhẹ thời gian chuyển đổi */
+            --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Hàm Easing mượt mà, có gia tốc/giảm tốc */
+            --anime-duration: 0.7s;
+        }
 
-@media (max-width: 767px) {
-    .hero-title {
-        font-size: 2.5rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-    
-    .btn-hero {
-        padding: 0.8rem 2rem;
-        font-size: 1rem;
-    }
-    
-    .section-title {
-        font-size: 2rem;
-    }
-    
-    .portfolio-card {
-        height: 280px;
-    }
-    
-    .team-card img {
-        height: 250px;
-    }
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-dark);
+            overflow-x: hidden;
+            background-color: var(--color-light);
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ---------------------------------------------------- */
+        /* 1. Navbar (Chuyển động mượt và sắc nét)              */
+        /* ---------------------------------------------------- */
+        .navbar {
+            padding: 1.5rem 0;
+            transition: all var(--transition-speed) var(--anime-easing);
+            z-index: 1000;
+        }
+
+        .navbar-transparent {
+            background-color: rgba(13, 19, 40, 0) !important;
+        }
+
+        .navbar-solid {
+            background-color: var(--color-secondary) !important;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow mạnh hơn */
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Oswald', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .brand-text {
+            color: var(--color-light);
+            position: relative;
+        }
+
+        .brand-text::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 60%;
+            height: 3px;
+            background-color: var(--color-primary);
+            transform: skewX(-5deg); /* Thêm hiệu ứng xiên nhẹ */
+        }
+
+        .nav-link {
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 0 0.5rem;
+            padding: 0.5rem 1rem !important;
+            color: var(--color-light) !important;
+            transition: all var(--transition-speed) var(--anime-easing); /* Áp dụng Anime Easing */
+            position: relative;
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0); /* Bắt đầu từ 0 và dùng scaleX */
+            width: 100%;
+            height: 2px;
+            background-color: var(--color-primary);
+            transition: transform var(--transition-speed) var(--anime-easing);
+        }
+
+        .nav-link:hover::before,
+        .nav-link.active::before {
+            transform: translateX(-50%) scaleX(0.8); /* Phóng to lên 80% */
+        }
+
+        .nav-link:hover {
+            color: var(--color-primary) !important;
+            transform: translateY(-2px); /* Nhấc lên nhẹ nhàng */
+        }
+
+        /* ---------------------------------------------------- */
+        /* 2. Hero Section (Hiệu ứng xuất hiện có thứ tự)       */
+        /* ---------------------------------------------------- */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Thay đổi URL ảnh nền tại đây theo yêu cầu của bạn */
+            background-image: url('https://images.unsplash.com/photo-1603993097397-89c963e325c7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 0, 0.3));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            color: var(--color-light);
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp var(--anime-duration) var(--anime-easing); /* Áp dụng Animation mới */
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            letter-spacing: 1px;
+            animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.15s backwards; /* Delay 150ms */
+        }
+
+        .btn-hero {
+            padding: 1rem 3rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: none;
+            background-color: var(--color-primary);
+            color: var(--color-light);
+            transition: all 0.5s var(--anime-easing); /* Transition dài hơn cho nút */
+            animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.3s backwards; /* Delay 300ms */
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+        }
+
+        .btn-hero:hover {
+            transform: translateY(-5px) scale(1.02); /* Nhấc lên và phóng to nhẹ */
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.6);
+            background-color: #cc0000;
+        }
+
+        /* Keyframes mới: Kết hợp dịch chuyển, phóng to và làm mờ để tạo hiệu ứng "xuất hiện" */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+                filter: blur(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        /* ---------------------------------------------------- */
+        /* 3. Cards (Hiệu ứng tương tác động)                   */
+        /* ---------------------------------------------------- */
+        .services-section {
+            background-color: #f8f9fa;
+        }
+
+        .portfolio-section {
+            background-color: var(--color-light);
+        }
+
+        .team-section {
+            background-color: #f8f9fa;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .title-underline {
+            width: 100px;
+            height: 4px;
+            background-color: var(--color-primary);
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background-color: var(--color-light);
+            padding: 2.5rem 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all var(--transition-speed) var(--anime-easing); /* Áp dụng Anime Easing */
+            height: 100%;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px); /* Nhấc lên mạnh hơn */
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3); /* Stronger Red shadow */
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--color-primary), #cc0000);
+            border-radius: 50%;
+            color: var(--color-light);
+            font-size: 2rem;
+            transition: all 0.7s var(--anime-easing); /* Tăng thời gian chuyển động */
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotate(360deg) scale(1.1); /* Xoay toàn bộ 360 độ và zoom nhẹ */
+        }
+
+        .service-title {
+            font-size: 1.3rem;
+            color: var(--color-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .service-description {
+            font-size: 0.95rem;
+            color: var(--color-gray);
+            line-height: 1.7;
+        }
+
+        /* Portfolio Card */
+        .portfolio-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+            height: 350px;
+        }
+
+        .portfolio-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: all 0.7s var(--anime-easing); /* Transition mượt hơn cho ảnh */
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(13, 19, 40, 0.95), rgba(255, 0, 0, 0.85));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: all 0.4s var(--anime-easing);
+        }
+
+        .portfolio-card:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-card:hover img {
+            transform: scale(1.15) rotate(0.5deg); /* Zoom mạnh hơn và xoay nhẹ */
+        }
+
+        .portfolio-content {
+            text-align: center;
+            color: var(--color-light);
+            transform: translateY(30px); /* Bắt đầu dịch chuyển xuống */
+            opacity: 0;
+            transition: all 0.5s var(--anime-easing) 0.1s; /* Xuất hiện trễ 100ms */
+        }
+
+        .portfolio-card:hover .portfolio-content {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .portfolio-title {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .portfolio-category {
+            font-size: 0.9rem;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-primary);
+        }
+
+        .team-card {
+            background-color: var(--color-light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: all var(--transition-speed) var(--anime-easing);
+            height: 100%;
+        }
+
+        .team-card:hover {
+            transform: translateY(-15px); /* Nhấc lên mạnh hơn */
+            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+        }
+
+        .team-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        /* ---------------------------------------------------- */
+        /* 4. Footer (Icon tương tác mạnh)                      */
+        /* ---------------------------------------------------- */
+        .footer {
+            background-color: var(--color-secondary);
+            color: var(--color-light);
+            padding: 2rem 0;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            /* Đã loại bỏ justify-content: center; dư thừa */
+            justify-content: flex-end; 
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--color-light);
+            border-radius: 50%;
+            transition: all var(--transition-speed) var(--anime-easing);
+            text-decoration: none;
+        }
+
+        .social-icon:hover {
+            background-color: var(--color-primary);
+            color: var(--color-light);
+            transform: translateY(-7px) rotate(5deg); /* Nhấc lên cao và xoay nhẹ */
+        }
+
+        /* Điều chỉnh Media Queries */
+        @media (max-width: 991px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+            
+            /* FIX LỖI FOOTER: Căn giữa icon và thêm khoảng cách khi xuống dòng */
+            .social-icons {
+                justify-content: center;
+                margin-top: 1rem; /* Thêm khoảng cách phía trên cho icon trên mobile */
+            }
+        }
+
+        @media (max-width: 767px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+            
+            .btn-hero {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .portfolio-card {
+                height: 280px;
+            }
+            
+            .team-card img {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body id="home">
+
+    <!-- Navbar -->
+    <nav class="navbar fixed top-0 w-full transition duration-500 bg-transparent" id="mainNav">
+        <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
+            <a class="navbar-brand text-white" href="#home">
+                <span class="brand-text">A.O.2 LAPS</span>
+            </a>
+            <button class="text-white md:hidden focus:outline-none" id="navToggle">
+                <i class="fas fa-bars fa-lg"></i>
+            </button>
+            <div class="hidden md:flex space-x-2" id="navbarNav">
+                <a class="nav-link active" href="#home">Trang Chủ</a>
+                <a class="nav-link" href="#services">Dịch Vụ</a>
+                <a class="nav-link" href="#portfolio">Dự Án</a>
+                <a class="nav-link" href="#team">Gặp Gỡ</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu (Ẩn trên Desktop) -->
+    <div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-slate-900 bg-opacity-95 z-[999] hidden md:hidden flex-col items-center justify-center space-y-8 transition-all duration-300">
+        <button class="absolute top-6 right-6 text-white text-3xl focus:outline-none" id="closeMobileMenu"><i class="fas fa-times"></i></button>
+        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#home">Trang Chủ</a>
+        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#services">Dịch Vụ</a>
+        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#portfolio">Dự Án</a>
+        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#team">Gặp Gỡ</a>
+    </div>
+
+    <!-- 1. Hero Section -->
+    <section class="hero-section" id="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">CHÀO MỪNG ĐẾN VỚI A.O.2 LAPS</h1>
+            <p class="hero-subtitle">Nâng tầm thương hiệu của bạn với thiết kế đột phá và chiến lược số thông minh.</p>
+            <a href="#portfolio" class="btn-hero inline-block rounded-lg shadow-xl">XEM PORTFOLIO ĐỈNH CAO</a>
+        </div>
+    </section>
+
+    <!-- 2. Services Section -->
+    <section class="services-section py-20 md:py-32" id="services">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="section-header text-center">
+                <h2 class="section-title">NĂM LĨNH VỰC CỐT LÕI</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-palette"></i></div>
+                        <h3 class="service-title">1. ĐỒ HOẠ & ẤN PHẨM</h3>
+                        <p class="service-description">Tạo ra các sản phẩm đồ họa và ấn phẩm thương hiệu sẵn sàng để in ấn và sử dụng. Đảm bảo chất lượng cao nhất cho mọi sản phẩm vật lý và kỹ thuật số.</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3 class="service-title">2. UI/UX DESIGN</h3>
+                        <p class="service-description">Thiết kế trải nghiệm người dùng tối ưu. Giao diện trực quan, đẹp mắt cho Website, Web App và Mobile App, tập trung vào hiệu suất và chuyển đổi.</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-server"></i></div>
+                        <h3 class="service-title">3. KỸ THUẬT SERVER/MẠNG</h3>
+                        <p class="service-description">Cung cấp giải pháp hạ tầng, bảo trì và tối ưu hóa hệ thống máy chủ, mạng và cơ sở dữ liệu để đảm bảo hoạt động ổn định và bảo mật.</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-globe"></i></div>
+                        <h3 class="service-title">4. WEB FRONT-END (HTML/CSS/JS)</h3>
+                        <p class="service-description">Phát triển giao diện người dùng sống động, tương thích mọi thiết bị (Responsive), đảm bảo tốc độ tải nhanh và tối ưu SEO.</p>
+                    </div>
+                </div>
+                <!-- Card 5 (Thêm một card để hoàn thiện 5 lĩnh vực) -->
+                <div>
+                    <div class="service-card">
+                        <div class="service-icon"><i class="fas fa-video"></i></div>
+                        <h3 class="service-title">5. MOTION GRAPHICS & VIDEO</h3>
+                        <p class="service-description">Sáng tạo Motion Graphics, Animation 2D/3D mượt mà và video quảng cáo chuyên nghiệp phục vụ cho các chiến dịch truyền thông của bạn.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Portfolio Section -->
+    <section class="portfolio-section py-20 md:py-32" id="portfolio">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="section-header text-center">
+                <h2 class="section-title text-red-600">DỰ ÁN TIÊU BIỂU</h2>
+                <div class="title-underline bg-red-600"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Item 1 -->
+                <div class="portfolio-card">
+                    <img src="https://placehold.co/800x600/0D1328/FFFFFF?text=WEB+APP+01" alt="Dự án Web App 1">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-content">
+                            <h4 class="portfolio-title">Landing Page Doanh Nghiệp</h4>
+                            <p class="portfolio-category">Web/UIUX</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 2 -->
+                <div class="portfolio-card">
+                    <img src="https://placehold.co/800x600/FF0000/FFFFFF?text=GRAPHIC+DESIGN" alt="Dự án Graphic Design">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-content">
+                            <h4 class="portfolio-title">Bộ Nhận Diện Thương Hiệu</h4>
+                            <p class="portfolio-category">Graphic Design</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 3 -->
+                <div class="portfolio-card">
+                    <img src="https://placehold.co/800x600/0D1328/FFFFFF?text=MOBILE+UI" alt="Dự án Mobile UI">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-content">
+                            <h4 class="portfolio-title">Mobile App Prototype</h4>
+                            <p class="portfolio-category">UIUX/Mobile</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Item 4 -->
+                <div class="portfolio-card">
+                    <img src="https://placehold.co/800x600/FF0000/FFFFFF?text=MOTION+VIDEO" alt="Dự án Motion Video">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-content">
+                            <h4 class="portfolio-title">Video Quảng Cáo 2D</h4>
+                            <p class="portfolio-category">Motion Graphics</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Team Section -->
+    <section class="team-section py-20 md:py-32" id="team">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="section-header text-center">
+                <h2 class="section-title">GẶP GỠ ĐỘI NGŨ</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Member 1 -->
+                <div class="team-card">
+                    <img src="https://placehold.co/400x300/6c757d/FFFFFF?text=CEO" alt="Thành viên 1">
+                    <div class="p-5 text-center">
+                        <h4 class="font-bold text-xl text-red-600">HUE Z8</h4>
+                        <p class="text-sm text-gray-600">Sáng Lập & CTO</p>
+                    </div>
+                </div>
+                <!-- Member 2 -->
+                <div class="team-card">
+                    <img src="https://placehold.co/400x300/0D1328/FFFFFF?text=DESIGNER" alt="Thành viên 2">
+                    <div class="p-5 text-center">
+                        <h4 class="font-bold text-xl text-red-600">ĐÀ ĐIỂU CHÂU PHI</h4>
+                        <p class="text-sm text-gray-600">Giám Đốc Thiết Kế</p>
+                    </div>
+                </div>
+                <!-- Member 3 -->
+                <div class="team-card">
+                    <img src="https://placehold.co/400x300/6c757d/FFFFFF?text=DEVELOPER" alt="Thành viên 3">
+                    <div class="p-5 text-center">
+                        <h4 class="font-bold text-xl text-red-600">TEAM DEVELOPMENT</h4>
+                        <p class="text-sm text-gray-600">Kỹ Thuật Web/Server</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Call to Action -->
+    <section class="py-20 text-center" style="background-color: var(--color-secondary);">
+        <div class="container mx-auto px-4">
+            <h2 class="section-title text-white">SẴN SÀNG KHỞI CHẠY DỰ ÁN CỦA BẠN?</h2>
+            <p class="text-white mb-8">Liên hệ với chúng tôi để bắt đầu hành trình biến ý tưởng thành sản phẩm phi giới hạn bùng nổ!</p>
+            <a href="#" class="btn-hero inline-block rounded-lg shadow-xl">BẮT ĐẦU NGAY</a>
+        </div>
+    </section>
+
+    <!-- 6. Footer -->
+    <footer class="footer">
+        <div class="container mx-auto px-4 md:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                <p class="text-center md:text-left">
+                    &copy; 2025 A.O.2 LAPS - Đà Điểu Châu Phi. All Rights Reserved.
+                </p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-icon" aria-label="Behance"><i class="fab fa-behance"></i></a>
+                    <a href="#" class="social-icon" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Firebase SDK (MANDATORY FOR CANVAS) -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        
+        // Thiết lập cấu hình Firebase
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
+        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+        let db, auth;
+        let userId = null;
+
+        if (firebaseConfig) {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            auth = getAuth(app);
+            setLogLevel('Debug');
+
+            // Xử lý đăng nhập
+            const handleAuth = async () => {
+                try {
+                    if (initialAuthToken) {
+                        await signInWithCustomToken(auth, initialAuthToken);
+                    } else {
+                        await signInAnonymously(auth);
+                    }
+                } catch (error) {
+                    console.error("Lỗi xác thực Firebase:", error);
+                }
+            };
+
+            onAuthStateChanged(auth, (user) => {
+                if (user) {
+                    userId = user.uid;
+                    console.log("Người dùng đã đăng nhập. ID:", userId);
+                    // Có thể gọi hàm khởi tạo dữ liệu Firestore tại đây nếu cần
+                } else {
+                    userId = null;
+                    console.log("Người dùng chưa đăng nhập.");
+                }
+            });
+
+            handleAuth();
+        }
+    </script>
+
+    <!-- LOGIC JS CƠ BẢN (CHỈ DÀNH CHO NAV BAR) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const navbar = document.getElementById('mainNav');
+            const mobileMenu = document.getElementById('mobileMenu');
+            const navToggle = document.getElementById('navToggle');
+            const closeMobileMenu = document.getElementById('closeMobileMenu');
+            
+            // 1. Chuyển đổi Navbar (Sticky/Solid)
+            const handleScroll = () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.remove('navbar-transparent');
+                    navbar.classList.add('navbar-solid');
+                } else {
+                    navbar.classList.remove('navbar-solid');
+                    navbar.classList.add('navbar-transparent');
+                }
+            };
+
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Chạy lần đầu để thiết lập trạng thái ban đầu
+
+            // 2. Mobile Menu Logic
+            navToggle.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+            });
+
+            closeMobileMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                mobileMenu.classList.remove('flex');
+            });
+            
+            // Đóng menu khi click vào link
+            document.querySelectorAll('#mobileMenu a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.remove('flex');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
