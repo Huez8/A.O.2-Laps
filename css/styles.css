@@ -1,76 +1,438 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chỉnh Sửa Style Trực Tiếp</title>
-    <!-- Tải Tailwind CSS để hỗ trợ styling nhanh chóng và responsive -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* --- 1. CSS NỘI BỘ (INTERNAL CSS) --- */
-        /* Các style bên trong thẻ <style> này sẽ áp dụng cho toàn bộ file HTML */
-        
-        /* Đặt màu nền cho phần tử có ID là 'internal-box' */
-        #internal-box {
-            background-color: #fca5a5; /* Màu hồng nhạt (tailwind: bg-red-300) */
-            border: 2px solid #ef4444; /* Viền đỏ (tailwind: border-red-500) */
-        }
+:root {
+    /* GIỮ NGUYÊN MÀU GỐC CỦA BẠN */
+    --color-primary: #FF0000;
+    --color-secondary: #0D1328;
+    --color-light: #FFFFFF;
+    --color-dark: #1a1a1a;
+    --color-gray: #6c757d;
+    --transition-speed: 0.4s; /* Tăng nhẹ thời gian chuyển đổi */
+    --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Hàm Easing mượt mà, có gia tốc/giảm tốc */
+    --anime-duration: 0.7s;
+}
 
-        /* Định nghĩa một class CSS tùy chỉnh */
-        .custom-shadow {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease-in-out;
-        }
-        
-        .custom-shadow:hover {
-            transform: scale(1.03);
-        }
-    </style>
-</head>
-<body class="bg-gray-50 min-h-screen p-8 font-sans">
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-    <div class="max-w-4xl mx-auto space-y-8">
-        <h1 class="text-4xl font-extrabold text-gray-800 text-center mb-10 border-b pb-4">
-            Các Phương Pháp Áp Dụng CSS
-        </h1>
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-dark);
+    overflow-x: hidden;
+    background-color: var(--color-light);
+}
 
-        <!-- VÍ DỤ 1: CSS NỘI BỘ (INTERNAL CSS) -->
-        <div id="internal-box" class="p-6 rounded-xl custom-shadow text-gray-800">
-            <h2 class="text-2xl font-bold mb-3">1. CSS NỘI BỘ (Internal)</h2>
-            <p class="mb-2">
-                Style của khối này được định nghĩa trong thẻ <code class="bg-red-200 px-1 rounded">&lt;style&gt;</code> ở phần <code class="bg-red-200 px-1 rounded">&lt;head&gt;</code> của file <code class="bg-red-200 px-1 rounded">index.html</code>.
-            </p>
-            <ul class="list-disc ml-6 mt-4 text-sm">
-                <li>Ưu điểm: Dễ dàng áp dụng cho toàn bộ trang.</li>
-                <li>Nhược điểm: Không thể tái sử dụng cho các file HTML khác.</li>
-            </ul>
-        </div>
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
 
-        <!-- VÍ DỤ 2: CSS TRỰC TIẾP (INLINE CSS) -->
-        <div class="p-6 rounded-xl custom-shadow" 
-             style="background-color: #93c5fd; border: 2px solid #3b82f6; color: #1e40af;">
-            <h2 class="text-2xl font-bold mb-3">2. CSS TRỰC TIẾP (Inline)</h2>
-            <p class="mb-2">
-                Style của khối này được viết trực tiếp vào thuộc tính <code class="bg-blue-200 px-1 rounded">style="..."</code> của thẻ <code class="bg-blue-200 px-1 rounded">&lt;div&gt;</code>.
-            </p>
-            <ul class="list-disc ml-6 mt-4 text-sm">
-                <li>Ưu điểm: Độ ưu tiên (precedence) cao nhất, đảm bảo style được áp dụng.</li>
-                <li>Nhược điểm: Không gọn gàng, khó quản lý, chỉ áp dụng cho một phần tử.</li>
-            </ul>
-        </div>
+/* ---------------------------------------------------- */
+/* 1. Navbar (Chuyển động mượt và sắc nét)              */
+/* ---------------------------------------------------- */
+.navbar {
+    padding: 1.5rem 0;
+    transition: all var(--transition-speed) var(--anime-easing);
+    z-index: 1000;
+}
 
-        <!-- VÍ DỤ VỀ SỬ DỤNG TAILWIND (Class) -->
-        <div class="bg-green-100 border-2 border-green-500 p-6 rounded-xl custom-shadow text-green-800 hover:scale-[1.03] transition duration-300">
-            <h2 class="text-2xl font-bold mb-3">3. CSS BẰNG Class (Sử dụng Tailwind)</h2>
-            <p class="mb-2">
-                Đây là phương pháp sử dụng các class có sẵn (như Tailwind CSS) được nhúng trong file HTML. Về bản chất nó tương tự như việc tạo class của riêng bạn, nhưng tiện lợi hơn rất nhiều.
-            </p>
-            <p class="font-semibold mt-4">
-                <span class="text-sm font-light">Các class được sử dụng:</span> <code class="bg-green-200 px-1 rounded text-xs">bg-green-100</code>, <code class="bg-green-200 px-1 rounded text-xs">border-green-500</code>, <code class="bg-green-200 px-1 rounded text-xs">p-6</code>, etc.
-            </p>
-        </div>
+.navbar-transparent {
+    background-color: rgba(13, 19, 40, 0) !important;
+}
 
-    </div>
+.navbar-solid {
+    background-color: var(--color-secondary) !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow mạnh hơn */
+    padding: 1rem 0;
+}
 
-</body>
-</html>
+.navbar-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.brand-text {
+    color: var(--color-light);
+    position: relative;
+}
+
+.brand-text::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background-color: var(--color-primary);
+    transform: skewX(-5deg); /* Thêm hiệu ứng xiên nhẹ */
+}
+
+.nav-link {
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem !important;
+    color: var(--color-light) !important;
+    transition: all var(--transition-speed) var(--anime-easing); /* Áp dụng Anime Easing */
+    position: relative;
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0); /* Bắt đầu từ 0 và dùng scaleX */
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-primary);
+    transition: transform var(--transition-speed) var(--anime-easing);
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+    transform: translateX(-50%) scaleX(0.8); /* Phóng to lên 80% */
+}
+
+.nav-link:hover {
+    color: var(--color-primary) !important;
+    transform: translateY(-2px); /* Nhấc lên nhẹ nhàng */
+}
+
+/* ---------------------------------------------------- */
+/* 2. Hero Section (Hiệu ứng xuất hiện có thứ tự)       */
+/* ---------------------------------------------------- */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 0, 0.3));
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--color-light);
+    padding: 0 20px;
+}
+
+.hero-title {
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp var(--anime-duration) var(--anime-easing); /* Áp dụng Animation mới */
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+    animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.15s backwards; /* Delay 150ms */
+}
+
+.btn-hero {
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    transition: all 0.5s var(--anime-easing); /* Transition dài hơn cho nút */
+    animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.3s backwards; /* Delay 300ms */
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+}
+
+.btn-hero:hover {
+    transform: translateY(-5px) scale(1.02); /* Nhấc lên và phóng to nhẹ */
+    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.6);
+    background-color: #cc0000;
+}
+
+/* Keyframes mới: Kết hợp dịch chuyển, phóng to và làm mờ để tạo hiệu ứng "xuất hiện" */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px) scale(0.95);
+        filter: blur(5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0);
+    }
+}
+
+/* ---------------------------------------------------- */
+/* 3. Cards (Hiệu ứng tương tác động)                   */
+/* ---------------------------------------------------- */
+.services-section {
+    background-color: #f8f9fa;
+}
+
+.portfolio-section {
+    background-color: var(--color-light);
+}
+
+.team-section {
+    background-color: #f8f9fa;
+}
+
+.section-header {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.title-underline {
+    width: 100px;
+    height: 4px;
+    background-color: var(--color-primary);
+    margin: 0 auto;
+}
+
+.service-card {
+    background-color: var(--color-light);
+    padding: 2.5rem 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: all var(--transition-speed) var(--anime-easing); /* Áp dụng Anime Easing */
+    height: 100%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.service-card:hover {
+    transform: translateY(-15px); /* Nhấc lên mạnh hơn */
+    box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3); /* Stronger Red shadow */
+}
+
+.service-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), #cc0000);
+    border-radius: 50%;
+    color: var(--color-light);
+    font-size: 2rem;
+    transition: all 0.7s var(--anime-easing); /* Tăng thời gian chuyển động */
+}
+
+.service-card:hover .service-icon {
+    transform: rotate(360deg) scale(1.1); /* Xoay toàn bộ 360 độ và zoom nhẹ */
+}
+
+.service-title {
+    font-size: 1.3rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
+}
+
+.service-description {
+    font-size: 0.95rem;
+    color: var(--color-gray);
+    line-height: 1.7;
+}
+
+/* Portfolio Card */
+.portfolio-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 350px;
+}
+
+.portfolio-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.7s var(--anime-easing); /* Transition mượt hơn cho ảnh */
+}
+
+.portfolio-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(13, 19, 40, 0.95), rgba(255, 0, 0, 0.85));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s var(--anime-easing);
+}
+
+.portfolio-card:hover .portfolio-overlay {
+    opacity: 1;
+}
+
+.portfolio-card:hover img {
+    transform: scale(1.15) rotate(0.5deg); /* Zoom mạnh hơn và xoay nhẹ */
+}
+
+.portfolio-content {
+    text-align: center;
+    color: var(--color-light);
+    transform: translateY(30px); /* Bắt đầu dịch chuyển xuống */
+    opacity: 0;
+    transition: all 0.5s var(--anime-easing) 0.1s; /* Xuất hiện trễ 100ms */
+}
+
+.portfolio-card:hover .portfolio-content {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.portfolio-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.portfolio-category {
+    font-size: 0.9rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+}
+
+.team-card {
+    background-color: var(--color-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-speed) var(--anime-easing);
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-15px); /* Nhấc lên mạnh hơn */
+    box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+}
+
+.team-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+
+/* ---------------------------------------------------- */
+/* 4. Footer (Icon tương tác mạnh)                      */
+/* ---------------------------------------------------- */
+.footer {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    padding: 2rem 0;
+}
+
+.footer p {
+    font-size: 0.9rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    /* Đã loại bỏ justify-content: center; dư thừa */
+    justify-content: flex-end; 
+}
+
+.social-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-light);
+    border-radius: 50%;
+    transition: all var(--transition-speed) var(--anime-easing);
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    transform: translateY(-7px) rotate(5deg); /* Nhấc lên cao và xoay nhẹ */
+}
+
+/* Điều chỉnh Media Queries */
+@media (max-width: 991px) {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    /* FIX LỖI FOOTER: Căn giữa icon và thêm khoảng cách khi xuống dòng */
+    .social-icons {
+        justify-content: center;
+        margin-top: 1rem; /* Thêm khoảng cách phía trên cho icon trên mobile */
+    }
+}
+
+@media (max-width: 767px) {
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    
+    .btn-hero {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 2rem;
+    }
+    
+    .portfolio-card {
+        height: 280px;
+    }
+    
+    .team-card img {
+        height: 250px;
+    }
+}
