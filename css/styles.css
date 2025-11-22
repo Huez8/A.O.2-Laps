@@ -353,6 +353,23 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------------------------------------------------- */
 /* 4. Footer (Icon tương tác mạnh)                      */
 /* ---------------------------------------------------- */
+.footer {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    padding: 2rem 0;
+}
+
+.footer p {
+    font-size: 0.9rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    /* Đã loại bỏ justify-content: center; dư thừa */
+    justify-content: flex-end; 
+}
+
 .social-icon {
     width: 40px;
     height: 40px;
@@ -372,7 +389,7 @@ h1, h2, h3, h4, h5, h6 {
     transform: translateY(-7px) rotate(5deg); /* Nhấc lên cao và xoay nhẹ */
 }
 
-/* Giữ nguyên Media Queries */
+/* Điều chỉnh Media Queries */
 @media (max-width: 991px) {
     .hero-title {
         font-size: 3rem;
@@ -386,8 +403,10 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 2.5rem;
     }
     
+    /* FIX LỖI FOOTER: Căn giữa icon và thêm khoảng cách khi xuống dòng */
     .social-icons {
         justify-content: center;
+        margin-top: 1rem; /* Thêm khoảng cách phía trên cho icon trên mobile */
     }
 }
 
