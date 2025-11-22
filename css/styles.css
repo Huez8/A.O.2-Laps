@@ -1,17 +1,14 @@
 :root {
-    /* Updated Color Palette for Neon/Cyberpunk Feel */
-    --color-primary: #00FFFF;     /* Electric Cyan (Main Highlight) */
-    --color-accent: #FF0077;      /* Vibrant Magenta (Secondary Glow/Accent) */
-    --color-background: #0D1328;  /* Deep Midnight Blue (Main Background) */
-    --color-surface: #1a264a;     /* Dark Blue Surface (Cards/Sections) */
-    --color-text: #E0F7FA;        /* Off-white/Light Text */
-    --color-shadow-light: rgba(0, 255, 255, 0.4); /* Cyan Shadow */
-    --color-shadow-dark: rgba(255, 0, 119, 0.5);  /* Magenta Shadow */
-    --transition-speed: 0.4s;
-    --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth, acceleration-deceleration easing */
+    --color-primary: #FF0000;     /* Original Red */
+    --color-secondary: #0D1328;  /* Original Dark Blue */
+    --color-light: #FFFFFF;
+    --color-dark: #1a1a1a;
+    --color-gray: #6c757d;
+    --transition-speed: 0.4s; /* Slightly increased for smoother effect */
+    --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Anime.js common easing: easeInOutQuad */
+    --anime-duration: 0.6s;
 }
 
-/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -19,169 +16,176 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    color: var(--color-text);
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-dark);
     overflow-x: hidden;
-    background-color: var(--color-background); /* Switched to Dark Theme */
-    perspective: 1500px; /* Enable 3D effects globally */
+    background-color: var(--color-light);
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', sans-serif;
-    font-weight: 900;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 3px;
-    color: var(--color-primary);
-    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Subtle Neon Glow */
+    letter-spacing: 2px;
 }
 
-/* Navbar Enhancements */
+/* ---------------------------------------------------- */
+/* 1. Navbar Enhancements (Smoothness & Staging)        */
+/* ---------------------------------------------------- */
 .navbar {
-    padding: 1.2rem 0;
+    padding: 1.5rem 0;
     transition: all var(--transition-speed) var(--anime-easing);
     z-index: 1000;
 }
 
 .navbar-transparent {
-    background-color: rgba(13, 19, 40, 0.1) !important;
-    backdrop-filter: blur(8px); /* Glassmorphism effect */
-    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
+    background-color: rgba(13, 19, 40, 0) !important;
 }
 
 .navbar-solid {
-    background-color: rgba(13, 19, 40, 0.95) !important;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 15px var(--color-shadow-light); /* Layered Shadow/Glow */
-    padding: 0.75rem 0;
+    background-color: var(--color-secondary) !important;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5); /* Stronger shadow when solid */
+    padding: 1rem 0;
+}
+
+.navbar-brand {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    letter-spacing: 3px;
 }
 
 .brand-text {
-    color: var(--color-text);
+    color: var(--color-light);
     position: relative;
-    text-shadow: 0 0 10px var(--color-primary);
-    transition: text-shadow var(--transition-speed);
+    transition: all var(--anime-duration) var(--anime-easing);
 }
 
-.brand-text::after { /* Glitch effect line below brand */
+.brand-text::after {
     content: '';
     position: absolute;
     bottom: -5px;
     left: 0;
     width: 60%;
     height: 3px;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
-    transform: skewX(-10deg);
+    background-color: var(--color-primary);
+    transform: skewX(-5deg); /* Subtle tilt for modern look */
 }
 
 .nav-link {
-    color: var(--color-text) !important;
-    transition: all var(--transition-speed) var(--anime-easing);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem !important;
+    color: var(--color-light) !important;
+    transition: all var(--transition-speed) var(--anime-easing); /* Use anime easing */
     position: relative;
-    overflow: hidden; /* For line animation */
+    overflow: hidden;
 }
 
-.nav-link::before, .nav-link::after { /* Staggered Underline/Glitch Effect */
+.nav-link::before {
     content: '';
     position: absolute;
     bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0); /* Start scaled to 0 */
+    width: 100%;
     height: 2px;
-    opacity: 0;
-    transition: all 0.3s ease-out;
-}
-
-.nav-link::before { /* Main Line (Cyan) */
-    left: 0;
-    width: 0;
     background-color: var(--color-primary);
-}
-
-.nav-link::after { /* Glitch Offset Line (Magenta) */
-    right: 0;
-    width: 0;
-    background-color: var(--color-accent);
-    transform: skewX(-20deg);
-    transition-delay: 0.1s;
+    transition: transform var(--transition-speed) var(--anime-easing); /* Animate transform */
 }
 
 .nav-link:hover::before,
 .nav-link.active::before {
-    width: 70%;
-    opacity: 1;
-}
-
-.nav-link:hover::after,
-.nav-link.active::after {
-    width: 70%;
-    opacity: 1;
+    transform: translateX(-50%) scaleX(0.8); /* Scale up to 80% width */
 }
 
 .nav-link:hover {
     color: var(--color-primary) !important;
-    text-shadow: 0 0 8px var(--color-primary);
-    transform: translateY(-2px);
+    transform: translateY(-1px); /* Subtle vertical lift */
 }
 
-/* Hero Section Enhancements */
+/* ---------------------------------------------------- */
+/* 2. Hero Section (Staged Entry Animation)             */
+/* ---------------------------------------------------- */
+.hero-section {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&h=1080&fit=crop');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
 .hero-overlay {
-    background: linear-gradient(135deg, rgba(13, 19, 40, 0.98), rgba(0, 255, 255, 0.2));
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Subtle fade using original colors */
+    background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 0, 0.4));
 }
 
 .hero-content {
-    transition: transform 1s var(--anime-easing);
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--color-light);
+    padding: 0 20px;
 }
 
 .hero-title {
-    font-size: 5rem;
-    text-shadow: 0 0 20px var(--color-primary), 0 0 5px var(--color-accent); /* Double Glow Effect */
-    margin-bottom: 2rem;
-    animation: fadeInUp 1.2s var(--anime-easing);
+    font-size: 4.5rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8); /* Added Red Glow */
+    animation: fadeInUp var(--anime-duration) var(--anime-easing);
 }
 
 .hero-subtitle {
+    font-size: 1.5rem;
     font-weight: 300;
-    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
-    animation: fadeInUp 1.2s var(--anime-easing) 0.2s backwards;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
+    /* Staged animation with delay */
+    animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.15s backwards;
 }
 
 .btn-hero {
-    padding: 1.1rem 3.5rem;
+    padding: 1rem 3rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    border: 2px solid var(--color-primary);
-    background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
-    box-shadow: 0 0 15px var(--color-primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-light);
+    transition: all var(--transition-speed) var(--anime-easing);
+    /* Staged animation with delay */
+    animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.3s backwards;
+    box-shadow: 0 5px 20px rgba(255, 0, 0, 0.5);
     position: relative;
     overflow: hidden;
-    z-index: 1;
-    animation: fadeInUp 1.2s var(--anime-easing) 0.4s backwards;
-    transition: all 0.5s var(--anime-easing);
-}
-
-.btn-hero::before { /* Glint/Flash Effect */
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -150%;
-    width: 100%;
-    height: 100%;
-    background: rgba(255, 255, 255, 0.3);
-    transform: skewX(-30deg);
-    transition: all 0.7s ease-in-out;
 }
 
 .btn-hero:hover {
     transform: scale(1.05); /* Zoom instead of just Y-translate */
-    box-shadow: 0 0 30px var(--color-primary), 0 0 60px var(--color-accent); /* Stronger layered glow */
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.8);
+    background-color: #cc0000;
 }
 
-.btn-hero:hover::before {
-    left: 150%;
-}
-
-/* Anime.js-style Keyframes: More dramatic start */
+/* Updated Keyframes: Subtle scale/blur for dynamic entry */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(60px) scale(0.9);
-        filter: blur(5px);
+        transform: translateY(40px) scale(0.98);
+        filter: blur(2px);
     }
     to {
         opacity: 1;
@@ -190,70 +194,111 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
-/* Section & Typography */
+/* ---------------------------------------------------- */
+/* 3. Section Cards (Interactive Motion)                */
+/* ---------------------------------------------------- */
+.services-section {
+    background-color: #f8f9fa;
+}
+
+.portfolio-section {
+    background-color: var(--color-light);
+}
+
+.team-section {
+    background-color: #f8f9fa;
+}
+
 .section-header {
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
 }
 
 .section-title {
-    font-size: 3.5rem;
+    font-size: 3rem;
     font-weight: 900;
-    color: var(--color-text); /* Title text is light */
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
-    margin-bottom: 1.5rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
 }
 
 .title-underline {
-    width: 120px;
-    height: 5px;
-    background: var(--color-primary);
-    box-shadow: 0 0 10px var(--color-primary);
+    width: 100px;
+    height: 4px;
+    background-color: var(--color-primary);
     margin: 0 auto;
-    transform: skewX(-10deg);
 }
 
-/* Card Effects */
-.service-card, .team-card, .portfolio-card {
-    background-color: var(--color-surface); /* Dark surface */
-    border-radius: 12px;
-    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7); /* Deep shadow */
-    transition: all var(--transition-speed) var(--anime-easing);
-    transform: translateZ(0); /* Start 3D context */
-    border: 1px solid rgba(0, 255, 255, 0.05);
+.service-card {
+    background-color: var(--color-light);
+    padding: 2.5rem 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    transition: all var(--transition-speed) var(--anime-easing); /* Use anime easing */
+    height: 100%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
-.service-card:hover, .team-card:hover {
-    transform: translateY(-15px) rotateX(2deg); /* Lift and subtle tilt */
-    box-shadow: 
-        0 20px 50px rgba(0, 0, 0, 1), 
-        0 0 25px var(--color-shadow-light),
-        0 0 50px var(--color-shadow-dark); /* Stronger, layered glow on hover */
-    border-color: var(--color-primary);
+.service-card:hover {
+    transform: translateY(-12px) scale(1.02); /* More lift and slight zoom */
+    box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3); /* Stronger Red shadow */
 }
 
 .service-icon {
-    background: radial-gradient(circle, var(--color-primary) 0%, var(--color-accent) 100%);
-    box-shadow: 0 0 20px var(--color-primary);
-    transition: all 0.6s var(--anime-easing);
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary), #cc0000);
+    border-radius: 50%;
+    color: var(--color-light);
+    font-size: 2rem;
+    transition: all 0.7s var(--anime-easing); /* Slower, more impactful rotation */
 }
 
 .service-card:hover .service-icon {
-    transform: scale(1.1) rotate(5deg);
-    box-shadow: 0 0 30px var(--color-primary);
+    transform: rotate(360deg) scale(1.1); /* Rotate and zoom */
+    box-shadow: 0 0 20px var(--color-primary);
 }
 
 .service-title {
-    color: var(--color-primary);
-    text-shadow: 0 0 5px var(--color-primary);
+    font-size: 1.3rem;
+    color: var(--color-secondary);
+    margin-bottom: 1rem;
 }
 
 .service-description {
-    color: var(--color-text);
+    font-size: 0.95rem;
+    color: var(--color-gray);
+    line-height: 1.7;
 }
 
 /* Portfolio Card */
+.portfolio-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    height: 350px;
+}
+
+.portfolio-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.6s var(--anime-easing); /* Smoother image transition */
+}
+
 .portfolio-overlay {
-    background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 119, 0.7)); /* Magenta Overlay */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 0, 0.8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
     opacity: 0;
     transition: all 0.5s var(--anime-easing);
 }
@@ -263,63 +308,131 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portfolio-card:hover img {
-    transform: scale(1.15) rotate(1deg); /* More dramatic scale/rotation */
-    filter: blur(2px);
+    transform: scale(1.2) rotateZ(1deg); /* More aggressive zoom and slight rotation */
 }
 
 .portfolio-content {
-    color: var(--color-text);
-    transform: translateY(50px) scale(0.9);
+    text-align: center;
+    color: var(--color-light);
+    transform: translateY(40px); /* Start lower */
     opacity: 0;
-    transition: all 0.5s var(--anime-easing) 0.1s;
+    transition: all 0.5s var(--anime-easing) 0.1s; /* Delayed transition */
 }
 
 .portfolio-card:hover .portfolio-content {
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
     opacity: 1;
 }
 
-.portfolio-category {
-    color: var(--color-primary);
-    text-shadow: 0 0 5px var(--color-primary);
+.portfolio-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Footer */
+.portfolio-category {
+    font-size: 0.9rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary);
+}
+
+/* Team Card (Same hover as Service Card) */
+.team-card {
+    background-color: var(--color-light);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    transition: all var(--transition-speed) var(--anime-easing);
+    height: 100%;
+}
+
+.team-card:hover {
+    transform: translateY(-12px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+}
+
+/* ---------------------------------------------------- */
+/* 4. Footer                                            */
+/* ---------------------------------------------------- */
 .footer {
-    background-color: var(--color-background);
-    border-top: 1px solid var(--color-surface);
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    padding: 2rem 0;
+}
+
+.footer p {
+    font-size: 0.9rem;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    justify-content: flex-end;
 }
 
 .social-icon {
-    background-color: var(--color-surface);
-    color: var(--color-primary);
-    box-shadow: 0 0 8px var(--color-primary);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--color-light);
+    border-radius: 50%;
     transition: all var(--transition-speed) var(--anime-easing);
+    text-decoration: none;
 }
 
 .social-icon:hover {
     background-color: var(--color-primary);
-    color: var(--color-background);
-    transform: translateY(-5px) scale(1.1);
-    box-shadow: 0 0 15px var(--color-primary), 0 5px 15px rgba(0, 0, 0, 0.5);
+    color: var(--color-light);
+    transform: translateY(-5px) scale(1.1); /* More distinct lift and zoom */
 }
 
-/* Media Queries adjusted for visual impact */
+/* Media Queries (Unchanged) */
 @media (max-width: 991px) {
     .hero-title {
-        font-size: 4rem;
+        font-size: 3rem;
+    }
+    
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .section-title {
+        font-size: 2.5rem;
+    }
+    
+    .social-icons {
+        justify-content: center;
     }
 }
 
 @media (max-width: 767px) {
     .hero-title {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
-    .btn-hero {
-        padding: 1rem 2.5rem;
+    
+    .hero-subtitle {
         font-size: 1rem;
     }
+    
+    .btn-hero {
+        padding: 0.8rem 2rem;
+        font-size: 1rem;
+    }
+    
     .section-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
+    }
+    
+    .portfolio-card {
+        height: 280px;
+    }
+    
+    .team-card img {
+        height: 250px;
     }
 }
