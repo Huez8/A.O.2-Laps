@@ -347,3 +347,9 @@ justify-content: center;
         transform: scale(1.05); 
 }
 }
+
+.btn-hero {
+  background-color: #FFC107; /* Màu vàng hổ phách */
+  border-color: #FFC107; /* Thường thì màu viền cũng nên khớp */
+  color: #333; /* Đảm bảo màu chữ dễ đọc (ví dụ: màu đen hoặc xám đậm) */
+}
