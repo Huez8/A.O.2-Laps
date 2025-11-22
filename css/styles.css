@@ -3,26 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A.O.2 LAPS - Anime Motion</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Google: Montserrat và Oswald (Đã giữ nguyên) -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@700;900&display=swap" rel="stylesheet">
-    <!-- Icon Font Awesome -->
+    <title>Công Ty Thiết Kế Sáng Tạo | Trang Chủ</title>
+    <!-- Tải phông chữ được sử dụng trong CSS -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700&family=Oswald:wght@700;900&display=swap" rel="stylesheet">
+    <!-- Tải Font Awesome cho các icon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Anime.js CDN (Thư viện animation) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
     <style>
-        /* CSS CŨ ĐÃ CHỈNH SỬA (Giữ nguyên màu và bố cục, tăng chất lượng motion) */
+        /* CSS CỦA BẠN ĐÃ CUNG CẤP */
         :root {
-            /* GIỮ NGUYÊN MÀU GỐC CỦA BẠN */
             --color-primary: #FF0000;
             --color-secondary: #0D1328;
             --color-light: #FFFFFF;
             --color-dark: #1a1a1a;
             --color-gray: #6c757d;
-            --transition-speed: 0.4s; 
-            --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-            --anime-duration: 0.7s;
+            --transition-speed: 0.3s;
         }
 
         * {
@@ -36,6 +31,7 @@
             color: var(--color-dark);
             overflow-x: hidden;
             background-color: var(--color-light);
+            line-height: 1.6;
         }
 
         h1, h2, h3, h4, h5, h6 {
@@ -44,14 +40,37 @@
             text-transform: uppercase;
             letter-spacing: 2px;
         }
+        
+        /* Utility Classes (Thêm để hỗ trợ layout responsive) */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        .text-center { text-align: center; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .py-24 { padding-top: 6rem; padding-bottom: 6rem; }
+        .row { display: flex; flex-wrap: wrap; margin: 0 -1rem; }
+        .col-12 { width: 100%; padding: 1rem; }
+        .col-md-6 { width: 100%; padding: 1rem; }
+        .col-lg-4 { width: 100%; padding: 1rem; }
 
-        /* ---------------------------------------------------- */
-        /* 1. Navbar (Chuyển động mượt và sắc nét)              */
-        /* ---------------------------------------------------- */
+        @media (min-width: 768px) {
+            .col-md-6 { width: 50%; }
+        }
+        @media (min-width: 992px) {
+            .col-lg-4 { width: calc(100% / 3); }
+        }
+        
+        /* Navbar */
         .navbar {
             padding: 1.5rem 0;
-            transition: all var(--transition-speed) var(--anime-easing);
+            transition: all var(--transition-speed) ease;
             z-index: 1000;
+            position: fixed;
+            top: 0;
+            width: 100%;
         }
 
         .navbar-transparent {
@@ -60,8 +79,14 @@
 
         .navbar-solid {
             background-color: var(--color-secondary) !important;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow mạnh hơn */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
             padding: 1rem 0;
+        }
+        
+        .navbar-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .navbar-brand {
@@ -69,6 +94,7 @@
             font-size: 1.8rem;
             font-weight: 700;
             letter-spacing: 3px;
+            text-decoration: none;
         }
 
         .brand-text {
@@ -84,7 +110,11 @@
             width: 60%;
             height: 3px;
             background-color: var(--color-primary);
-            transform: skewX(-5deg); /* Thêm hiệu ứng xiên nhẹ */
+        }
+        
+        .navbar-nav {
+            display: flex;
+            list-style: none;
         }
 
         .nav-link {
@@ -95,8 +125,9 @@
             margin: 0 0.5rem;
             padding: 0.5rem 1rem !important;
             color: var(--color-light) !important;
-            transition: all var(--transition-speed) var(--anime-easing); /* Áp dụng Anime Easing */
+            transition: all var(--transition-speed) ease;
             position: relative;
+            text-decoration: none;
         }
 
         .nav-link::before {
@@ -104,33 +135,37 @@
             position: absolute;
             bottom: 0;
             left: 50%;
-            transform: translateX(-50%) scaleX(0); /* Bắt đầu từ 0 và dùng scaleX */
-            width: 100%;
+            transform: translateX(-50%);
+            width: 0;
             height: 2px;
             background-color: var(--color-primary);
-            transition: transform var(--transition-speed) var(--anime-easing);
+            transition: width var(--transition-speed) ease;
         }
 
         .nav-link:hover::before,
         .nav-link.active::before {
-            transform: translateX(-50%) scaleX(0.8); /* Phóng to lên 80% */
+            width: 80%;
         }
 
         .nav-link:hover {
             color: var(--color-primary) !important;
-            transform: translateY(-2px); /* Nhấc lên nhẹ nhàng */
+        }
+        
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--color-light);
+            cursor: pointer;
         }
 
-        /* ---------------------------------------------------- */
-        /* 2. Hero Section (Hiệu ứng xuất hiện có thứ tự)       */
-        /* ---------------------------------------------------- */
+        /* Hero Section */
         .hero-section {
             position: relative;
             height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&h=1080&fit=crop');
+            background-image: url('https://placehold.co/1920x1080/0D1328/FFFFFF?text=Creative+Agency+Background'); /* Placeholder image */
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -142,7 +177,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 0, 0.3));
+            /* Đảm bảo màu sắc theo yêu cầu CSS của bạn */
+            background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 0, 0.3)); 
         }
 
         .hero-content {
@@ -158,8 +194,7 @@
             font-weight: 900;
             margin-bottom: 1.5rem;
             text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-            /* Giữ nguyên CSS Animation cho lần tải đầu tiên */
-            animation: fadeInUp var(--anime-duration) var(--anime-easing); 
+            animation: fadeInUp 1s ease;
         }
 
         .hero-subtitle {
@@ -167,50 +202,47 @@
             font-weight: 300;
             margin-bottom: 2.5rem;
             letter-spacing: 1px;
-            animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.15s backwards; 
+            animation: fadeInUp 1s ease 0.2s backwards;
         }
 
         .btn-hero {
+            display: inline-block;
             padding: 1rem 3rem;
             font-size: 1.1rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             border: none;
-            background-color: var(--color-primary);
+            text-decoration: none;
+            /* Đảm bảo màu sắc theo yêu cầu CSS của bạn */
+            background-color: var(--color-primary); 
             color: var(--color-light);
-            transition: all 0.5s var(--anime-easing); 
-            animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.3s backwards; 
+            border-radius: 5px;
+            transition: all var(--transition-speed) ease;
+            animation: fadeInUp 1s ease 0.4s backwards;
             box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
         }
 
         .btn-hero:hover {
-            transform: translateY(-5px) scale(1.02); 
-            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
             background-color: #cc0000;
         }
 
-        /* Keyframes cũ được giữ lại cho Hero Section load lần đầu */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(50px) scale(0.95);
-                filter: blur(5px);
+                transform: translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
-                filter: blur(0);
+                transform: translateY(0);
             }
         }
-
-        /* ---------------------------------------------------- */
-        /* 3. Cards & Sections (Hiệu ứng cuộn chuột mới)        */
-        /* ---------------------------------------------------- */
         
-        /* Đảm bảo các phần tử được ẩn đi trước khi cuộn */
-        .animate-on-scroll {
-            opacity: 0;
+        /* Section Styles */
+        .section {
+            padding: 6rem 0;
         }
 
         .services-section {
@@ -242,20 +274,21 @@
             background-color: var(--color-primary);
             margin: 0 auto;
         }
-
+        
+        /* Service Card */
         .service-card {
             background-color: var(--color-light);
             padding: 2.5rem 1.5rem;
             border-radius: 10px;
             text-align: center;
-            transition: all var(--transition-speed) var(--anime-easing); 
+            transition: all var(--transition-speed) ease;
             height: 100%;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
         }
 
         .service-card:hover {
-            transform: translateY(-15px); 
-            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3); 
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
         }
 
         .service-icon {
@@ -269,11 +302,11 @@
             border-radius: 50%;
             color: var(--color-light);
             font-size: 2rem;
-            transition: all 0.7s var(--anime-easing); 
+            transition: all var(--transition-speed) ease;
         }
 
         .service-card:hover .service-icon {
-            transform: rotate(360deg) scale(1.1); 
+            transform: rotateY(360deg);
         }
 
         .service-title {
@@ -301,7 +334,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: all 0.7s var(--anime-easing); 
+            transition: all 0.5s ease;
         }
 
         .portfolio-overlay {
@@ -310,12 +343,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(13, 19, 40, 0.95), rgba(255, 0, 0, 0.85));
+            /* Đảm bảo màu sắc theo yêu cầu CSS của bạn */
+            background: linear-gradient(135deg, rgba(13, 19, 40, 0.95), rgba(255, 0, 0, 0.8));
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
-            transition: all 0.4s var(--anime-easing);
+            transition: all 0.4s ease;
         }
 
         .portfolio-card:hover .portfolio-overlay {
@@ -323,20 +357,18 @@
         }
 
         .portfolio-card:hover img {
-            transform: scale(1.15) rotate(0.5deg); 
+            transform: scale(1.1);
         }
 
         .portfolio-content {
             text-align: center;
             color: var(--color-light);
-            transform: translateY(30px); 
-            opacity: 0;
-            transition: all 0.5s var(--anime-easing) 0.1s; 
+            transform: translateY(20px);
+            transition: all 0.4s ease;
         }
 
         .portfolio-card:hover .portfolio-content {
             transform: translateY(0);
-            opacity: 1;
         }
 
         .portfolio-title {
@@ -352,18 +384,19 @@
             color: var(--color-primary);
         }
 
+        /* Team Card */
         .team-card {
             background-color: var(--color-light);
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            transition: all var(--transition-speed) var(--anime-easing);
+            transition: all var(--transition-speed) ease;
             height: 100%;
         }
 
         .team-card:hover {
-            transform: translateY(-15px); 
-            box-shadow: 0 15px 40px rgba(255, 0, 0, 0.3);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
         }
 
         .team-card img {
@@ -372,9 +405,33 @@
             object-fit: cover;
         }
 
-        /* ---------------------------------------------------- */
-        /* 4. Footer (Icon tương tác mạnh)                      */
-        /* ---------------------------------------------------- */
+        .team-content {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.3rem;
+            color: var(--color-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-role {
+            font-size: 0.9rem;
+            color: var(--color-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .team-bio {
+            font-size: 0.9rem;
+            color: var(--color-gray);
+            line-height: 1.6;
+        }
+
+        /* Footer */
         .footer {
             background-color: var(--color-secondary);
             color: var(--color-light);
@@ -383,12 +440,21 @@
 
         .footer p {
             font-size: 0.9rem;
+            margin-bottom: 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
         }
 
         .social-icons {
             display: flex;
             gap: 1rem;
-            justify-content: flex-end; 
+            justify-content: flex-start;
         }
 
         .social-icon {
@@ -400,17 +466,26 @@
             background-color: rgba(255, 255, 255, 0.1);
             color: var(--color-light);
             border-radius: 50%;
-            transition: all var(--transition-speed) var(--anime-easing);
+            transition: all var(--transition-speed) ease;
             text-decoration: none;
+            font-size: 1.1rem;
         }
 
         .social-icon:hover {
             background-color: var(--color-primary);
             color: var(--color-light);
-            transform: translateY(-7px) rotate(5deg); 
+            transform: translateY(-3px);
         }
 
-        /* Điều chỉnh Media Queries */
+        /* Media Queries */
+        @media (min-width: 768px) {
+            .footer-content {
+                flex-direction: row;
+            }
+            .social-icons {
+                justify-content: flex-end;
+            }
+        }
         @media (max-width: 991px) {
             .hero-title {
                 font-size: 3rem;
@@ -424,9 +499,29 @@
                 font-size: 2.5rem;
             }
             
+            .navbar-nav {
+                display: none; /* Ẩn menu trên mobile theo mặc định */
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--color-secondary);
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            }
+            .navbar-nav.active {
+                display: flex;
+            }
+            .nav-link {
+                text-align: center;
+                margin: 0.5rem 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
             .social-icons {
                 justify-content: center;
-                margin-top: 1rem; 
             }
         }
 
@@ -455,273 +550,201 @@
             .team-card img {
                 height: 250px;
             }
+            .col-12, .col-md-6, .col-lg-4 {
+                width: 100%;
+            }
         }
     </style>
 </head>
-<body id="home">
+<body>
 
-    <!-- Navbar -->
-    <nav class="navbar fixed top-0 w-full transition duration-500 bg-transparent" id="mainNav">
-        <div class="container mx-auto px-4 md:px-8 flex justify-between items-center">
-            <a class="navbar-brand text-white" href="#home">
-                <span class="brand-text">A.O.2 LAPS</span>
-            </a>
-            <button class="text-white md:hidden focus:outline-none" id="navToggle">
-                <i class="fas fa-bars fa-lg"></i>
-            </button>
-            <div class="hidden md:flex space-x-2" id="navbarNav">
-                <a class="nav-link active" href="#home">Trang Chủ</a>
-                <a class="nav-link" href="#services">Dịch Vụ</a>
-                <a class="nav-link" href="#portfolio">Dự Án</a>
-                <a class="nav-link" href="#team">Gặp Gỡ</a>
+    <!-- NAV BAR -->
+    <header class="navbar navbar-transparent" id="main-nav">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="#" class="navbar-brand">
+                    <span class="brand-text">GEMINI AG.</span>
+                </a>
+                <nav>
+                    <ul class="navbar-nav" id="nav-links">
+                        <li><a href="#" class="nav-link active">Trang Chủ</a></li>
+                        <li><a href="#services" class="nav-link">Dịch Vụ</a></li>
+                        <li><a href="#portfolio" class="nav-link">Dự Án</a></li>
+                        <li><a href="#team" class="nav-link">Đội Ngũ</a></li>
+                        <!-- Đã sửa: Đảm bảo link chuyển hướng đúng -->
+                        <li><a href="./contact.html" class="nav-link">Liên Hệ</a></li>
+                    </ul>
+                </nav>
+                <div class="menu-toggle" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
         </div>
-    </nav>
+    </header>
 
-    <!-- Mobile Menu (Ẩn trên Desktop) -->
-    <div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-slate-900 bg-opacity-95 z-[999] hidden md:hidden flex-col items-center justify-center space-y-8 transition-all duration-300">
-        <button class="absolute top-6 right-6 text-white text-3xl focus:outline-none" id="closeMobileMenu"><i class="fas fa-times"></i></button>
-        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#home">Trang Chủ</a>
-        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#services">Dịch Vụ</a>
-        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#portfolio">Dự Án</a>
-        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#team">Gặp Gỡ</a>
-    </div>
-
-    <!-- 1. Hero Section -->
-    <section class="hero-section" id="hero-section">
+    <!-- HERO SECTION -->
+    <section class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">CHÀO MỪNG ĐẾN VỚI A.O.2 LAPS!</h1>
+            <h1 class="hero-title">SÁNG TẠO KHÔNG GIỚI HẠN</h1>
             <p class="hero-subtitle">Nâng tầm thương hiệu của bạn với thiết kế đột phá và chiến lược số thông minh.</p>
-            <a href="#portfolio" class="btn-hero inline-block rounded-lg shadow-xl">XEM PORTFOLIO ĐỈNH CAO</a>
+            <!-- Đã sửa: Đảm bảo nút chuyển hướng đúng -->
+            <a href="./contact.html" class="btn-hero">BẮT ĐẦU DỰ ÁN CỦA BẠN</a>
         </div>
     </section>
 
-    <!-- 2. Services Section -->
-    <section class="services-section py-20 md:py-32" id="services">
-        <div class="container mx-auto px-4 md:px-8">
-            <div class="section-header text-center animate-on-scroll data-animate="title-stagger">
-                <h2 class="section-title">NĂM LĨNH VỰC CỐT LÕI</h2>
+    <!-- SERVICES SECTION -->
+    <section id="services" class="section services-section py-24">
+        <div class="container">
+            <header class="section-header text-center">
+                <h2 class="section-title">DỊCH VỤ CỦA CHÚNG TÔI</h2>
                 <div class="title-underline"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Card 1 -->
-                <div class="animate-on-scroll data-animate="card-up">
+            </header>
+            <div class="row">
+                <!-- Service 1 -->
+                <div class="col-lg-4 col-md-6 col-12">
                     <div class="service-card">
                         <div class="service-icon"><i class="fas fa-palette"></i></div>
-                        <h3 class="service-title">1. ĐỒ HOẠ & ẤN PHẨM</h3>
-                        <p class="service-description">Tạo ra các sản phẩm đồ họa và ấn phẩm thương hiệu sẵn sàng để in ấn và sử dụng. Đảm bảo chất lượng cao nhất cho mọi sản phẩm vật lý và kỹ thuật số.</p>
+                        <h3 class="service-title">Thiết Kế Thương Hiệu</h3>
+                        <p class="service-description">Xây dựng hệ thống nhận diện thương hiệu mạnh mẽ, từ logo đến guideline. Tông màu Đỏ/Xanh Đen được áp dụng.</p>
                     </div>
                 </div>
-                <!-- Card 2 -->
-                <div class="animate-on-scroll data-animate="card-up">
+                <!-- Service 2 -->
+                <div class="col-lg-4 col-md-6 col-12">
                     <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
-                        <h3 class="service-title">2. UI/UX DESIGN</h3>
-                        <p class="service-description">Thiết kế trải nghiệm người dùng tối ưu. Giao diện trực quan, đẹp mắt cho Website, Web App và Mobile App, tập trung vào hiệu suất và chuyển đổi.</p>
+                        <div class="service-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="service-title">Phát Triển Website</h3>
+                        <p class="service-description">Tạo ra các trang web nhanh, an toàn và tối ưu hóa cho di động. Màu sắc chính `--color-primary` nổi bật.</p>
                     </div>
                 </div>
-                <!-- Card 3 -->
-                <div class="animate-on-scroll data-animate="card-up">
+                <!-- Service 3 -->
+                <div class="col-lg-4 col-md-6 col-12">
                     <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-server"></i></div>
-                        <h3 class="service-title">3. KỸ THUẬT SERVER/MẠNG</h3>
-                        <p class="service-description">Cung cấp giải pháp hạ tầng, bảo trì và tối ưu hóa hệ thống máy chủ, mạng và cơ sở dữ liệu để đảm bảo hoạt động ổn định và bảo mật.</p>
-                    </div>
-                </div>
-                <!-- Card 4 -->
-                <div class="animate-on-scroll data-animate="card-up">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-globe"></i></div>
-                        <h3 class="service-title">4. WEB FRONT-END (HTML/CSS/JS)</h3>
-                        <p class="service-description">Phát triển giao diện người dùng sống động, tương thích mọi thiết bị (Responsive), đảm bảo tốc độ tải nhanh và tối ưu SEO.</p>
-                    </div>
-                </div>
-                <!-- Card 5 (Thêm một card để hoàn thiện 5 lĩnh vực) -->
-                <div class="animate-on-scroll data-animate="card-up">
-                    <div class="service-card">
-                        <div class="service-icon"><i class="fas fa-video"></i></div>
-                        <h3 class="service-title">5. MOTION GRAPHICS & VIDEO</h3>
-                        <p class="service-description">Sáng tạo Motion Graphics, Animation 2D/3D mượt mà và video quảng cáo chuyên nghiệp phục vụ cho các chiến dịch truyền thông của bạn.</p>
+                        <div class="service-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3 class="service-title">Chiến Lược Digital</h3>
+                        <p class="service-description">Lập kế hoạch marketing số toàn diện, giúp bạn tiếp cận khách hàng tiềm năng hiệu quả.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. Portfolio Section -->
-    <section class="portfolio-section py-20 md:py-32" id="portfolio">
-        <div class="container mx-auto px-4 md:px-8">
-            <div class="section-header text-center animate-on-scroll data-animate="title-stagger">
-                <h2 class="section-title text-red-600">DỰ ÁN TIÊU BIỂU</h2>
-                <div class="title-underline bg-red-600"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Item 1 -->
-                <div class="portfolio-card animate-on-scroll data-animate="card-fade">
-                    <img src="https://placehold.co/800x600/0D1328/FFFFFF?text=WEB+APP+01" alt="Dự án Web App 1">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-content">
-                            <h4 class="portfolio-title">Landing Page Doanh Nghiệp</h4>
-                            <p class="portfolio-category">Web/UIUX</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item 2 -->
-                <div class="portfolio-card animate-on-scroll data-animate="card-fade">
-                    <img src="https://placehold.co/800x600/FF0000/FFFFFF?text=GRAPHIC+DESIGN" alt="Dự án Graphic Design">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-content">
-                            <h4 class="portfolio-title">Bộ Nhận Diện Thương Hiệu</h4>
-                            <p class="portfolio-category">Graphic Design</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item 3 -->
-                <div class="portfolio-card animate-on-scroll data-animate="card-fade">
-                    <img src="https://placehold.co/800x600/0D1328/FFFFFF?text=MOBILE+UI" alt="Dự án Mobile UI">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-content">
-                            <h4 class="portfolio-title">Mobile App Prototype</h4>
-                            <p class="portfolio-category">UIUX/Mobile</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Item 4 -->
-                <div class="portfolio-card animate-on-scroll data-animate="card-fade">
-                    <img src="https://placehold.co/800x600/FF0000/FFFFFF?text=MOTION+VIDEO" alt="Dự án Motion Video">
-                    <div class="portfolio-overlay">
-                        <div class="portfolio-content">
-                            <h4 class="portfolio-title">Video Quảng Cáo 2D</h4>
-                            <p class="portfolio-category">Motion Graphics</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. Team Section -->
-    <section class="team-section py-20 md:py-32" id="team">
-        <div class="container mx-auto px-4 md:px-8">
-            <div class="section-header text-center animate-on-scroll data-animate="title-stagger">
-                <h2 class="section-title">GẶP GỠ ĐỘI NGŨ</h2>
+    <!-- PORTFOLIO SECTION -->
+    <section id="portfolio" class="section portfolio-section py-24">
+        <div class="container">
+            <header class="section-header text-center">
+                <h2 class="section-title">CÁC DỰ ÁN NỔI BẬT</h2>
                 <div class="title-underline"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Member 1 -->
-                <div class="team-card animate-on-scroll data-animate="card-up">
-                    <img src="https://placehold.co/400x300/6c757d/FFFFFF?text=CEO" alt="Thành viên 1">
-                    <div class="p-5 text-center">
-                        <h4 class="font-bold text-xl text-red-600">HUE Z8</h4>
-                        <p class="text-sm text-gray-600">Sáng Lập & CTO</p>
+            </header>
+            <div class="row">
+                <!-- Portfolio Item 1 -->
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="portfolio-card">
+                        <img src="https://placehold.co/600x400/0D1328/FFFFFF?text=Project+1" alt="Dự án 1">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content">
+                                <h4 class="portfolio-title">Thiết Kế App Mobile</h4>
+                                <p class="portfolio-category">UI/UX Design</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Member 2 -->
-                <div class="team-card animate-on-scroll data-animate="card-up">
-                    <img src="https://placehold.co/400x300/0D1328/FFFFFF?text=DESIGNER" alt="Thành viên 2">
-                    <div class="p-5 text-center">
-                        <h4 class="font-bold text-xl text-red-600">ĐÀ ĐIỂU CHÂU PHI</h4>
-                        <p class="text-sm text-gray-600">Giám Đốc Thiết Kế</p>
+                <!-- Portfolio Item 2 -->
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="portfolio-card">
+                        <img src="https://placehold.co/600x400/FF0000/FFFFFF?text=Project+2" alt="Dự án 2">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content">
+                                <h4 class="portfolio-title">Landing Page Doanh Nghiệp</h4>
+                                <p class="portfolio-category">Web Development</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Member 3 -->
-                <div class="team-card animate-on-scroll data-animate="card-up">
-                    <img src="https://placehold.co/400x300/6c757d/FFFFFF?text=DEVELOPER" alt="Thành viên 3">
-                    <div class="p-5 text-center">
-                        <h4 class="font-bold text-xl text-red-600">TEAM DEVELOPMENT</h4>
-                        <p class="text-sm text-gray-600">Kỹ Thuật Web/Server</p>
+                <!-- Portfolio Item 3 -->
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="portfolio-card">
+                        <img src="https://placehold.co/600x400/0D1328/FF0000?text=Project+3" alt="Dự án 3">
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-content">
+                                <h4 class="portfolio-title">Chiến Dịch Quảng Cáo</h4>
+                                <p class="portfolio-category">Digital Marketing</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 5. Call to Action -->
-    <section class="py-20 text-center" style="background-color: var(--color-secondary);">
-        <div class="container mx-auto px-4 animate-on-scroll data-animate="title-stagger">
-            <h2 class="section-title text-white">SẴN SÀNG KHỞI CHẠY DỰ ÁN CỦA BẠN?</h2>
-            <p class="text-white mb-8">Liên hệ với chúng tôi để bắt đầu hành trình biến ý tưởng thành sản phẩm phi giới hạn bùng nổ!</p>
-            <a href="#" class="btn-hero inline-block rounded-lg shadow-xl">BẮT ĐẦU NGAY</a>
+    <!-- TEAM SECTION -->
+    <section id="team" class="section team-section py-24">
+        <div class="container">
+            <header class="section-header text-center">
+                <h2 class="section-title">ĐỘI NGŨ SÁNG LẬP</h2>
+                <div class="title-underline"></div>
+            </header>
+            <div class="row">
+                <!-- Team Member 1 -->
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="team-card">
+                        <img src="https://placehold.co/400x300/6c757d/FFFFFF?text=Founder+A" alt="Thành viên A">
+                        <div class="team-content">
+                            <h4 class="team-name">Nguyễn Văn A</h4>
+                            <p class="team-role">CEO & Sáng Lập</p>
+                            <p class="team-bio">Chuyên gia chiến lược thương hiệu với hơn 10 năm kinh nghiệm trong ngành.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member 2 -->
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="team-card">
+                        <img src="https://placehold.co/400x300/6c757d/FFFFFF?text=Design+Lead" alt="Thành viên B">
+                        <div class="team-content">
+                            <h4 class="team-name">Trần Thị B</h4>
+                            <p class="team-role">Trưởng Nhóm Thiết Kế</p>
+                            <p class="team-bio">Người dẫn dắt sáng tạo, đảm bảo mọi sản phẩm đều đạt tiêu chuẩn thẩm mỹ cao nhất.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Team Member 3 -->
+                <div class="col-lg-4 col-md-6 col-12">
+                    <div class="team-card">
+                        <img src="https://placehold.co/400x300/6c757d/FFFFFF?text=Dev+Lead" alt="Thành viên C">
+                        <div class="team-content">
+                            <h4 class="team-name">Lê Văn C</h4>
+                            <p class="team-role">Trưởng Nhóm Kỹ Thuật</p>
+                            <p class="team-bio">Chịu trách nhiệm về hiệu suất và tính năng của tất cả các sản phẩm kỹ thuật số.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- 6. Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
-        <div class="container mx-auto px-4 md:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
-                <p class="text-center md:text-left">
-                    &copy; 2025 A.O.2 LAPS - Đà Điểu Châu Phi. All Rights Reserved.
-                </p>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2025 GEMINI AG. Bản quyền thuộc về Công ty Thiết Kế Sáng Tạo.</p>
                 <div class="social-icons">
-                    <a href="#" class="social-icon" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#" class="social-icon" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="social-icon" aria-label="Behance"><i class="fab fa-behance"></i></a>
-                    <a href="#" class="social-icon" aria-label="Youtube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
                 </div>
             </div>
         </div>
     </footer>
 
-    <!-- Firebase SDK (MANDATORY FOR CANVAS) -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        import { setLogLevel } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
-        
-        // Thiết lập cấu hình Firebase
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : null;
-        const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
-
-        let db, auth;
-        let userId = null;
-
-        if (firebaseConfig) {
-            const app = initializeApp(firebaseConfig);
-            db = getFirestore(app);
-            auth = getAuth(app);
-            setLogLevel('Debug');
-
-            // Xử lý đăng nhập
-            const handleAuth = async () => {
-                try {
-                    if (initialAuthToken) {
-                        await signInWithCustomToken(auth, initialAuthToken);
-                    } else {
-                        await signInAnonymously(auth);
-                    }
-                } catch (error) {
-                    console.error("Lỗi xác thực Firebase:", error);
-                }
-            };
-
-            onAuthStateChanged(auth, (user) => {
-                if (user) {
-                    userId = user.uid;
-                    console.log("Người dùng đã đăng nhập. ID:", userId);
-                    // Có thể gọi hàm khởi tạo dữ liệu Firestore tại đây nếu cần
-                } else {
-                    userId = null;
-                    console.log("Người dùng chưa đăng nhập.");
-                }
-            });
-
-            handleAuth();
-        }
-    </script>
-
-    <!-- LOGIC HIỆU ỨNG CUỘN CHUỘT BẰNG ANIME.JS -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const navbar = document.getElementById('mainNav');
-            const mobileMenu = document.getElementById('mobileMenu');
-            const navToggle = document.getElementById('navToggle');
-            const closeMobileMenu = document.getElementById('closeMobileMenu');
-            const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbar = document.getElementById('main-nav');
+            const menuToggle = document.getElementById('menu-toggle');
+            const navLinks = document.getElementById('nav-links');
 
-            // 1. Chuyển đổi Navbar (Sticky/Solid)
-            const handleScroll = () => {
+            // 1. Logic chuyển đổi Navbar khi cuộn
+            window.addEventListener('scroll', function() {
                 if (window.scrollY > 50) {
                     navbar.classList.remove('navbar-transparent');
                     navbar.classList.add('navbar-solid');
@@ -729,106 +752,27 @@
                     navbar.classList.remove('navbar-solid');
                     navbar.classList.add('navbar-transparent');
                 }
-                // Đồng thời chạy kiểm tra các phần tử cần animation
-                checkAnimations();
-            };
-
-            window.addEventListener('scroll', handleScroll);
-            handleScroll(); // Chạy lần đầu để thiết lập trạng thái ban đầu
-
-            // 2. Mobile Menu Logic
-            navToggle.addEventListener('click', () => {
-                mobileMenu.classList.remove('hidden');
-                mobileMenu.classList.add('flex');
             });
 
-            closeMobileMenu.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                mobileMenu.classList.remove('flex');
+            // 2. Logic Menu Mobile
+            menuToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
             });
             
-            // Đóng menu khi click vào link
-            document.querySelectorAll('#mobileMenu a').forEach(link => {
+            // Đóng menu khi click vào một link (trên mobile)
+            navLinks.querySelectorAll('.nav-link').forEach(link => {
                 link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                    mobileMenu.classList.remove('flex');
+                    if (navLinks.classList.contains('active')) {
+                        navLinks.classList.remove('active');
+                    }
                 });
             });
 
-
-            // 3. Logic Animation khi Cuộn (Anime.js)
-            const isVisible = (el) => {
-                const rect = el.getBoundingClientRect();
-                const windowHeight = (window.innerHeight || document.documentElement.clientHeight);
-                // Phần tử được coi là hiển thị nếu nó nằm trong 80% từ đỉnh màn hình
-                return (rect.top <= windowHeight * 0.8 && rect.bottom >= 0);
-            };
-
-            const animateElement = (element) => {
-                // Đánh dấu đã hoạt hình để không chạy lại
-                element.classList.add('animated');
-                element.classList.remove('animate-on-scroll');
-                
-                // Lấy kiểu animation từ data-animate (nếu có)
-                const animateType = element.getAttribute('data-animate');
-                
-                // Các hiệu ứng có thứ tự (stagger) áp dụng cho các container
-                if (animateType === 'title-stagger') {
-                    // Animation cho tiêu đề: xuất hiện cùng lúc, dịch chuyển nhẹ và mờ dần
-                    anime({
-                        targets: element.querySelectorAll('.section-title, .title-underline'),
-                        opacity: [0, 1],
-                        translateY: [20, 0],
-                        duration: 800,
-                        easing: 'easeOutQuad',
-                        delay: anime.stagger(100)
-                    });
-                } 
-                
-                // Các hiệu ứng cho từng thẻ (card)
-                else {
-                    // Mặc định cho card: Fade In Up + Scale nhẹ
-                    anime({
-                        targets: element,
-                        opacity: [0, 1],
-                        translateY: [50, 0],
-                        scale: [0.95, 1],
-                        duration: 1200,
-                        easing: 'easeInOutExpo', // Hiệu ứng mượt mà đặc trưng Anime.js
-                        // Dùng filter: 'blur' để tăng chất lượng thị giác
-                        filter: ['blur(10px)', 'blur(0px)']
-                    });
-
-                    // Nếu là container chứa nhiều card, chạy stagger cho các card bên trong
-                    const innerCards = element.querySelectorAll('.service-card, .portfolio-card, .team-card');
-                    if (innerCards.length > 0) {
-                        anime({
-                            targets: innerCards,
-                            opacity: [0, 1],
-                            translateY: [30, 0],
-                            scale: [0.95, 1],
-                            duration: 1000,
-                            easing: 'easeInOutExpo',
-                            delay: anime.stagger(200, { start: 300 }), // Mỗi card delay 200ms
-                            filter: ['blur(5px)', 'blur(0px)']
-                        });
-                    }
-                }
-            };
-
-            const checkAnimations = () => {
-                animatedElements.forEach(el => {
-                    // Chỉ chạy animation cho các phần tử chưa được chạy và đang hiển thị
-                    if (el && isVisible(el) && !el.classList.contains('animated')) {
-                        animateElement(el);
-                    }
-                });
-            };
-
-            // Chạy kiểm tra ban đầu và gắn sự kiện
-            checkAnimations();
-            window.addEventListener('scroll', checkAnimations);
-            window.addEventListener('resize', checkAnimations);
+            // Đặt trạng thái navbar ban đầu (nếu người dùng refresh trang khi đang cuộn)
+            if (window.scrollY > 50) {
+                navbar.classList.remove('navbar-transparent');
+                navbar.classList.add('navbar-solid');
+            }
         });
     </script>
 </body>
