@@ -1,12 +1,17 @@
 :root {
-    --color-primary: #FF0000;
-    --color-secondary: #0D1328;
-    --color-light: #FFFFFF;
-    --color-dark: #1a1a1a;
-    --color-gray: #6c757d;
-    --transition-speed: 0.3s;
+    /* Updated Color Palette for Neon/Cyberpunk Feel */
+    --color-primary: #00FFFF;     /* Electric Cyan (Main Highlight) */
+    --color-accent: #FF0077;      /* Vibrant Magenta (Secondary Glow/Accent) */
+    --color-background: #0D1328;  /* Deep Midnight Blue (Main Background) */
+    --color-surface: #1a264a;     /* Dark Blue Surface (Cards/Sections) */
+    --color-text: #E0F7FA;        /* Off-white/Light Text */
+    --color-shadow-light: rgba(0, 255, 255, 0.4); /* Cyan Shadow */
+    --color-shadow-dark: rgba(255, 0, 119, 0.5);  /* Magenta Shadow */
+    --transition-speed: 0.4s;
+    --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smooth, acceleration-deceleration easing */
 }
 
+/* Base Styles */
 * {
     margin: 0;
     padding: 0;
@@ -14,268 +19,243 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
-    color: var(--color-dark);
+    font-family: 'Inter', sans-serif;
+    color: var(--color-text);
     overflow-x: hidden;
-    background-color: var(--color-light);
+    background-color: var(--color-background); /* Switched to Dark Theme */
+    perspective: 1500px; /* Enable 3D effects globally */
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', sans-serif;
-    font-weight: 700;
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5); /* Subtle Neon Glow */
 }
 
+/* Navbar Enhancements */
 .navbar {
-    padding: 1.5rem 0;
-    transition: all var(--transition-speed) ease;
+    padding: 1.2rem 0;
+    transition: all var(--transition-speed) var(--anime-easing);
     z-index: 1000;
 }
 
 .navbar-transparent {
-    background-color: rgba(13, 19, 40, 0) !important;
+    background-color: rgba(13, 19, 40, 0.1) !important;
+    backdrop-filter: blur(8px); /* Glassmorphism effect */
+    border-bottom: 1px solid rgba(0, 255, 255, 0.1);
 }
 
 .navbar-solid {
-    background-color: var(--color-secondary) !important;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-    padding: 1rem 0;
-}
-
-.navbar-brand {
-    font-family: 'Oswald', sans-serif;
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: 3px;
+    background-color: rgba(13, 19, 40, 0.95) !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7), 0 0 15px var(--color-shadow-light); /* Layered Shadow/Glow */
+    padding: 0.75rem 0;
 }
 
 .brand-text {
-    color: var(--color-light);
+    color: var(--color-text);
     position: relative;
+    text-shadow: 0 0 10px var(--color-primary);
+    transition: text-shadow var(--transition-speed);
 }
 
-.brand-text::after {
+.brand-text::after { /* Glitch effect line below brand */
     content: '';
     position: absolute;
     bottom: -5px;
     left: 0;
     width: 60%;
     height: 3px;
-    background-color: var(--color-primary);
+    background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+    transform: skewX(-10deg);
 }
 
 .nav-link {
-    font-weight: 600;
-    font-size: 0.95rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin: 0 0.5rem;
-    padding: 0.5rem 1rem !important;
-    color: var(--color-light) !important;
-    transition: all var(--transition-speed) ease;
+    color: var(--color-text) !important;
+    transition: all var(--transition-speed) var(--anime-easing);
     position: relative;
+    overflow: hidden; /* For line animation */
 }
 
-.nav-link::before {
+.nav-link::before, .nav-link::after { /* Staggered Underline/Glitch Effect */
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
     height: 2px;
+    opacity: 0;
+    transition: all 0.3s ease-out;
+}
+
+.nav-link::before { /* Main Line (Cyan) */
+    left: 0;
+    width: 0;
     background-color: var(--color-primary);
-    transition: width var(--transition-speed) ease;
+}
+
+.nav-link::after { /* Glitch Offset Line (Magenta) */
+    right: 0;
+    width: 0;
+    background-color: var(--color-accent);
+    transform: skewX(-20deg);
+    transition-delay: 0.1s;
 }
 
 .nav-link:hover::before,
 .nav-link.active::before {
-    width: 80%;
+    width: 70%;
+    opacity: 1;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 70%;
+    opacity: 1;
 }
 
 .nav-link:hover {
     color: var(--color-primary) !important;
+    text-shadow: 0 0 8px var(--color-primary);
+    transform: translateY(-2px);
 }
 
-.hero-section {
-    position: relative;
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&h=1080&fit=crop');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-}
-
+/* Hero Section Enhancements */
 .hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 0, 0.3));
+    background: linear-gradient(135deg, rgba(13, 19, 40, 0.98), rgba(0, 255, 255, 0.2));
 }
 
 .hero-content {
-    position: relative;
-    z-index: 2;
-    text-align: center;
-    color: var(--color-light);
-    padding: 0 20px;
+    transition: transform 1s var(--anime-easing);
 }
 
 .hero-title {
-    font-size: 4.5rem;
-    font-weight: 900;
-    margin-bottom: 1.5rem;
-    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
-    animation: fadeInUp 1s ease;
+    font-size: 5rem;
+    text-shadow: 0 0 20px var(--color-primary), 0 0 5px var(--color-accent); /* Double Glow Effect */
+    margin-bottom: 2rem;
+    animation: fadeInUp 1.2s var(--anime-easing);
 }
 
 .hero-subtitle {
-    font-size: 1.5rem;
     font-weight: 300;
-    margin-bottom: 2.5rem;
-    letter-spacing: 1px;
-    animation: fadeInUp 1s ease 0.2s backwards;
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.5);
+    animation: fadeInUp 1.2s var(--anime-easing) 0.2s backwards;
 }
 
 .btn-hero {
-    padding: 1rem 3rem;
-    font-size: 1.1rem;
+    padding: 1.1rem 3.5rem;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    border: none;
-    background-color: var(--color-primary);
-    color: var(--color-light);
-    transition: all var(--transition-speed) ease;
-    animation: fadeInUp 1s ease 0.4s backwards;
-    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+    border: 2px solid var(--color-primary);
+    background: linear-gradient(45deg, var(--color-primary), var(--color-accent));
+    box-shadow: 0 0 15px var(--color-primary);
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    animation: fadeInUp 1.2s var(--anime-easing) 0.4s backwards;
+    transition: all 0.5s var(--anime-easing);
+}
+
+.btn-hero::before { /* Glint/Flash Effect */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: skewX(-30deg);
+    transition: all 0.7s ease-in-out;
 }
 
 .btn-hero:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(255, 0, 0, 0.6);
-    background-color: #cc0000;
+    transform: scale(1.05); /* Zoom instead of just Y-translate */
+    box-shadow: 0 0 30px var(--color-primary), 0 0 60px var(--color-accent); /* Stronger layered glow */
 }
 
+.btn-hero:hover::before {
+    left: 150%;
+}
+
+/* Anime.js-style Keyframes: More dramatic start */
 @keyframes fadeInUp {
     from {
         opacity: 0;
-        transform: translateY(30px);
+        transform: translateY(60px) scale(0.9);
+        filter: blur(5px);
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: translateY(0) scale(1);
+        filter: blur(0);
     }
 }
 
-.services-section {
-    background-color: #f8f9fa;
-}
-
-.portfolio-section {
-    background-color: var(--color-light);
-}
-
-.team-section {
-    background-color: #f8f9fa;
-}
-
+/* Section & Typography */
 .section-header {
-    margin-bottom: 4rem;
+    margin-bottom: 5rem;
 }
 
 .section-title {
-    font-size: 3rem;
+    font-size: 3.5rem;
     font-weight: 900;
-    color: var(--color-secondary);
-    margin-bottom: 1rem;
+    color: var(--color-text); /* Title text is light */
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    margin-bottom: 1.5rem;
 }
 
 .title-underline {
-    width: 100px;
-    height: 4px;
-    background-color: var(--color-primary);
+    width: 120px;
+    height: 5px;
+    background: var(--color-primary);
+    box-shadow: 0 0 10px var(--color-primary);
     margin: 0 auto;
+    transform: skewX(-10deg);
 }
 
-.service-card {
-    background-color: var(--color-light);
-    padding: 2.5rem 1.5rem;
-    border-radius: 10px;
-    text-align: center;
-    transition: all var(--transition-speed) ease;
-    height: 100%;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+/* Card Effects */
+.service-card, .team-card, .portfolio-card {
+    background-color: var(--color-surface); /* Dark surface */
+    border-radius: 12px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.7); /* Deep shadow */
+    transition: all var(--transition-speed) var(--anime-easing);
+    transform: translateZ(0); /* Start 3D context */
+    border: 1px solid rgba(0, 255, 255, 0.05);
 }
 
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+.service-card:hover, .team-card:hover {
+    transform: translateY(-15px) rotateX(2deg); /* Lift and subtle tilt */
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 1), 
+        0 0 25px var(--color-shadow-light),
+        0 0 50px var(--color-shadow-dark); /* Stronger, layered glow on hover */
+    border-color: var(--color-primary);
 }
 
 .service-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--color-primary), #cc0000);
-    border-radius: 50%;
-    color: var(--color-light);
-    font-size: 2rem;
-    transition: all var(--transition-speed) ease;
+    background: radial-gradient(circle, var(--color-primary) 0%, var(--color-accent) 100%);
+    box-shadow: 0 0 20px var(--color-primary);
+    transition: all 0.6s var(--anime-easing);
 }
 
 .service-card:hover .service-icon {
-    transform: rotateY(360deg);
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 0 30px var(--color-primary);
 }
 
 .service-title {
-    font-size: 1.3rem;
-    color: var(--color-secondary);
-    margin-bottom: 1rem;
+    color: var(--color-primary);
+    text-shadow: 0 0 5px var(--color-primary);
 }
 
 .service-description {
-    font-size: 0.95rem;
-    color: var(--color-gray);
-    line-height: 1.7;
+    color: var(--color-text);
 }
 
-.portfolio-card {
-    position: relative;
-    overflow: hidden;
-    border-radius: 10px;
-    cursor: pointer;
-    height: 350px;
-}
-
-.portfolio-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: all 0.5s ease;
-}
-
+/* Portfolio Card */
 .portfolio-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(13, 19, 40, 0.95), rgba(255, 0, 0, 0.8));
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 0, 119, 0.7)); /* Magenta Overlay */
     opacity: 0;
-    transition: all 0.4s ease;
+    transition: all 0.5s var(--anime-easing);
 }
 
 .portfolio-card:hover .portfolio-overlay {
@@ -283,156 +263,63 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .portfolio-card:hover img {
-    transform: scale(1.1);
+    transform: scale(1.15) rotate(1deg); /* More dramatic scale/rotation */
+    filter: blur(2px);
 }
 
 .portfolio-content {
-    text-align: center;
-    color: var(--color-light);
-    transform: translateY(20px);
-    transition: all 0.4s ease;
+    color: var(--color-text);
+    transform: translateY(50px) scale(0.9);
+    opacity: 0;
+    transition: all 0.5s var(--anime-easing) 0.1s;
 }
 
 .portfolio-card:hover .portfolio-content {
-    transform: translateY(0);
-}
-
-.portfolio-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    transform: translateY(0) scale(1);
+    opacity: 1;
 }
 
 .portfolio-category {
-    font-size: 0.9rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 2px;
     color: var(--color-primary);
+    text-shadow: 0 0 5px var(--color-primary);
 }
 
-.team-card {
-    background-color: var(--color-light);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    transition: all var(--transition-speed) ease;
-    height: 100%;
-}
-
-.team-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
-}
-
-.team-card img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-}
-
-.team-content {
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.team-name {
-    font-size: 1.3rem;
-    color: var(--color-secondary);
-    margin-bottom: 0.5rem;
-}
-
-.team-role {
-    font-size: 0.9rem;
-    color: var(--color-primary);
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 1rem;
-}
-
-.team-bio {
-    font-size: 0.9rem;
-    color: var(--color-gray);
-    line-height: 1.6;
-}
-
+/* Footer */
 .footer {
-    background-color: var(--color-secondary);
-    color: var(--color-light);
-    padding: 2rem 0;
-}
-
-.footer p {
-    font-size: 0.9rem;
-}
-
-.social-icons {
-    display: flex;
-    gap: 1rem;
-    justify-content: center;
-    justify-content: flex-end;
+    background-color: var(--color-background);
+    border-top: 1px solid var(--color-surface);
 }
 
 .social-icon {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: rgba(255, 255, 255, 0.1);
-    color: var(--color-light);
-    border-radius: 50%;
-    transition: all var(--transition-speed) ease;
-    text-decoration: none;
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+    box-shadow: 0 0 8px var(--color-primary);
+    transition: all var(--transition-speed) var(--anime-easing);
 }
 
 .social-icon:hover {
     background-color: var(--color-primary);
-    color: var(--color-light);
-    transform: translateY(-3px);
+    color: var(--color-background);
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 0 15px var(--color-primary), 0 5px 15px rgba(0, 0, 0, 0.5);
 }
 
+/* Media Queries adjusted for visual impact */
 @media (max-width: 991px) {
     .hero-title {
-        font-size: 3rem;
-    }
-    
-    .hero-subtitle {
-        font-size: 1.2rem;
-    }
-    
-    .section-title {
-        font-size: 2.5rem;
-    }
-    
-    .social-icons {
-        justify-content: center;
+        font-size: 4rem;
     }
 }
 
 @media (max-width: 767px) {
     .hero-title {
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
-    
-    .hero-subtitle {
-        font-size: 1rem;
-    }
-    
     .btn-hero {
-        padding: 0.8rem 2rem;
+        padding: 1rem 2.5rem;
         font-size: 1rem;
     }
-    
     .section-title {
-        font-size: 2rem;
-    }
-    
-    .portfolio-card {
-        height: 280px;
-    }
-    
-    .team-card img {
-        height: 250px;
+        font-size: 2.5rem;
     }
 }
