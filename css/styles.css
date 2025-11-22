@@ -129,7 +129,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Thay đổi URL ảnh nền tại đây theo yêu cầu của bạn */
+            /* URL ẢNH NỀN BẠN CUNG CẤP */
             background-image: url('https://images.unsplash.com/photo-1603993097397-89c963e325c7?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
             background-size: cover;
             background-position: center;
@@ -452,6 +452,23 @@
             }
         }
     </style>
+
+    <!-- Tailwind config để cho phép dùng màu tùy chỉnh -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': 'var(--color-primary)',
+                        'secondary': 'var(--color-secondary)',
+                        'light': 'var(--color-light)',
+                        'dark': 'var(--color-dark)',
+                        'gray': 'var(--color-gray)',
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body id="home">
 
@@ -474,12 +491,13 @@
     </nav>
 
     <!-- Mobile Menu (Ẩn trên Desktop) -->
-    <div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-slate-900 bg-opacity-95 z-[999] hidden md:hidden flex-col items-center justify-center space-y-8 transition-all duration-300">
+    <div id="mobileMenu" class="fixed top-0 left-0 w-full h-full bg-secondary bg-opacity-95 z-[999] hidden md:hidden flex-col items-center justify-center space-y-8 transition-all duration-300">
         <button class="absolute top-6 right-6 text-white text-3xl focus:outline-none" id="closeMobileMenu"><i class="fas fa-times"></i></button>
-        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#home">Trang Chủ</a>
-        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#services">Dịch Vụ</a>
-        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#portfolio">Dự Án</a>
-        <a class="text-white text-2xl font-bold hover:text-red-500 transition duration-300" href="#team">Gặp Gỡ</a>
+        <!-- Dùng màu primary/light của Tailwind sau khi config -->
+        <a class="text-light text-2xl font-bold hover:text-primary transition duration-300" href="#home">Trang Chủ</a>
+        <a class="text-light text-2xl font-bold hover:text-primary transition duration-300" href="#services">Dịch Vụ</a>
+        <a class="text-light text-2xl font-bold hover:text-primary transition duration-300" href="#portfolio">Dự Án</a>
+        <a class="text-light text-2xl font-bold hover:text-primary transition duration-300" href="#team">Gặp Gỡ</a>
     </div>
 
     <!-- 1. Hero Section -->
@@ -548,8 +566,10 @@
     <section class="portfolio-section py-20 md:py-32" id="portfolio">
         <div class="container mx-auto px-4 md:px-8">
             <div class="section-header text-center">
-                <h2 class="section-title text-red-600">DỰ ÁN TIÊU BIỂU</h2>
-                <div class="title-underline bg-red-600"></div>
+                <!-- SỬ DỤNG MÀU TỪ BIẾN CSS GỐC THÔNG QUA CONFIG CỦA TAILWIND -->
+                <h2 class="section-title" style="color: var(--color-primary);">DỰ ÁN TIÊU BIỂU</h2>
+                <!-- Vẫn giữ class 'title-underline' vì nó đã có style trong CSS gốc -->
+                <div class="title-underline"></div>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 <!-- Item 1 -->
@@ -608,7 +628,8 @@
                 <div class="team-card">
                     <img src="https://placehold.co/400x300/6c757d/FFFFFF?text=CEO" alt="Thành viên 1">
                     <div class="p-5 text-center">
-                        <h4 class="font-bold text-xl text-red-600">HUE Z8</h4>
+                        <!-- SỬ DỤNG MÀU TỪ BIẾN CSS GỐC -->
+                        <h4 class="font-bold text-xl" style="color: var(--color-primary);">HUE Z8</h4>
                         <p class="text-sm text-gray-600">Sáng Lập & CTO</p>
                     </div>
                 </div>
@@ -616,7 +637,8 @@
                 <div class="team-card">
                     <img src="https://placehold.co/400x300/0D1328/FFFFFF?text=DESIGNER" alt="Thành viên 2">
                     <div class="p-5 text-center">
-                        <h4 class="font-bold text-xl text-red-600">ĐÀ ĐIỂU CHÂU PHI</h4>
+                        <!-- SỬ DỤNG MÀU TỪ BIẾN CSS GỐC -->
+                        <h4 class="font-bold text-xl" style="color: var(--color-primary);">ĐÀ ĐIỂU CHÂU PHI</h4>
                         <p class="text-sm text-gray-600">Giám Đốc Thiết Kế</p>
                     </div>
                 </div>
@@ -624,7 +646,8 @@
                 <div class="team-card">
                     <img src="https://placehold.co/400x300/6c757d/FFFFFF?text=DEVELOPER" alt="Thành viên 3">
                     <div class="p-5 text-center">
-                        <h4 class="font-bold text-xl text-red-600">TEAM DEVELOPMENT</h4>
+                        <!-- SỬ DỤNG MÀU TỪ BIẾN CSS GỐC -->
+                        <h4 class="font-bold text-xl" style="color: var(--color-primary);">TEAM DEVELOPMENT</h4>
                         <p class="text-sm text-gray-600">Kỹ Thuật Web/Server</p>
                     </div>
                 </div>
@@ -716,6 +739,7 @@
             
             // 1. Chuyển đổi Navbar (Sticky/Solid)
             const handleScroll = () => {
+                // Kiểm tra xem đã có sẵn class 'navbar-transparent' chưa, nếu không thì thêm vào lần đầu
                 if (window.scrollY > 50) {
                     navbar.classList.remove('navbar-transparent');
                     navbar.classList.add('navbar-solid');
