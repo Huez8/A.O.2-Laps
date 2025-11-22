@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
 /* 1. Navbar (Chuyển động mượt và sắc nét)              */
 /* ---------------------------------------------------- */
 .navbar {
-    padding: 1.5rem 0;
+    padding: 1.7rem 0;
     transition: all var(--transition-speed) var(--anime-easing);
     z-index: 1000;
 }
