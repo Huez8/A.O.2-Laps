@@ -11,20 +11,17 @@
     --modern-radius: 12px; /* Thêm biến cho bo cong hiện đại */
 }
 
-/* ⭐ ĐIỀU CHỈNH: Đảm bảo body không có margin/padding mặc định */
-body {
-    margin: 0; /* ĐÃ THÊM: Loại bỏ margin mặc định của trình duyệt */
-    padding: 0; /* ĐÃ THÊM: Loại bỏ padding mặc định của trình duyệt */
-    font-family: 'Montserrat', sans-serif;
-    color: var(--color-dark);
-    overflow-x: hidden;
-    background-color: var(--color-light);
-}
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--color-dark);
+    overflow-x: hidden;
+    background-color: var(--color-light);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -38,12 +35,11 @@ h1, h2, h3, h4, h5, h6 {
 /* 1. Navbar (Chuyển động mượt và sắc nét)              */
 /* ---------------------------------------------------- */
 .navbar {
-    /* ⭐ ĐIỀU CHỈNH: Đặt Navbar ở vị trí tuyệt đối/cố định để không chiếm không gian */
-    position: absolute; /* Hoặc 'fixed' nếu bạn muốn nó luôn nằm trên cùng */
-    top: 0; /* Quan trọng: Đặt nó chạm mép trên */
-    left: 0;
-    width: 100%; /* Đảm bảo nó chiếm toàn bộ chiều rộng */
-    
+    /* ⭐ SỬA LỖI: Đặt position: absolute để Navbar nằm đè lên Hero Section và không chiếm không gian */
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+    width: 100%;
     padding: 1.7rem 0;
     transition: all var(--transition-speed) var(--anime-easing);
     z-index: 1000;
@@ -54,7 +50,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navbar-solid {
-    /* Khi cuộn, bạn vẫn muốn nó fixed/absolute */
     background-color: var(--color-secondary) !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow mạnh hơn */
     padding: 1rem 0;
