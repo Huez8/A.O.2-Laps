@@ -113,7 +113,7 @@
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="project-description">
-                            <p class="lead">Dự án này mô phỏng việc **xây dựng và vận hành một FTP Server** trên nền tảng Windows 11 sử dụng **Internet Information Services (IIS)**. Mục tiêu là tạo ra một "nhà kho kỹ thuật số" an toàn và dễ quản lý, cho phép chia sẻ dữ liệu hiệu quả trong môi trường mạng nội bộ (LAN) của nhóm.</p>
+                            <p class="lead">Dự án này mô phỏng việc xây dựng và vận hành một FTP Server** trên nền tảng Windows 11 sử dụng Internet Information Services (IIS). Mục tiêu là tạo ra một "nhà kho kỹ thuật số" an toàn và dễ quản lý, cho phép chia sẻ dữ liệu hiệu quả trong môi trường mạng nội bộ (LAN) của nhóm.</p>
                             
                             <h2 class="section-title mt-4 mb-3">Tóm Tắt Vai Trò Nhóm</h2>
                             <p>Đây là chi tiết phân công trách nhiệm của các thành viên trong quá trình xây dựng và báo cáo FTP Server:</p>
@@ -132,10 +132,10 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>**Võ Đức Huy**</td>
+                                            <td>Võ Đức Huy</td>
                                             <td>Nhóm trưởng - Chịu trách nhiệm chính</td>
                                             <td>Thực hiện kỹ thuật (Thiết lập Server, Virtual Directory, Cấu hình Site, Kiểm thử). Tổng hợp toàn bộ Báo cáo và Slide.</td>
-                                            <td>**Tổng hợp**</td>
+                                            <td>Tổng hợp</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
@@ -174,11 +174,11 @@
                             <h2 class="section-title mb-3">BÁO CÁO: QUÁ TRÌNH THỰC HIỆN KỸ THUẬT</h2>
 
                             <h3>1. Giới thiệu – FTP là gì?</h3>
-                            <p>**FTP (File Transfer Protocol) là giao thức chuyển giao file cơ bản và quan trọng nhất, hoạt động như một dịch vụ giao hàng trong thế giới máy tính.</p>
+                            <p>FTP (File Transfer Protocol) là giao thức chuyển giao file cơ bản và quan trọng nhất, hoạt động như một dịch vụ giao hàng trong thế giới máy tính.</p>
                             <ul>
-                                <li>**FTP Server 🏠: Là "Nhà kho" lưu trữ file.</li>
-                                <li>**FTP Client 👤: Là "Khách hàng" gửi yêu cầu lấy hoặc gửi file.</li>
-                                <li>**TCP/IP 🚚: Là "Shipper" đảm bảo vận chuyển dữ liệu chính xác và không thất thoát.</li>
+                                <li>FTP Server 🏠: Là "Nhà kho" lưu trữ file.</li>
+                                <li>FTP Client 👤: Là "Khách hàng" gửi yêu cầu lấy hoặc gửi file.</li>
+                                <li>TCP/IP 🚚: Là "Shipper" đảm bảo vận chuyển dữ liệu chính xác và không thất thoát.</li>
                             </ul>
                             <p class="fst-italic text-center"></p>
 
@@ -209,15 +209,15 @@
                             <h4>Bước 2 – Tạo FTP Site và Cấu hình Vật lý</h4>
                             <ol>
                                 <li>Mở IIS Manager → Chuột phải vào Sites → Add FTP Site.</li>
-                                <li>Đặt tên site (ví dụ: `DaDieuChauPhiFTPsite`) và chọn thư mục vật lý chia sẻ (ví dụ: `C:\inetpub\ftproot`).</li>
+                                <li>Đặt tên site (ví dụ: 'DaDieuChauPhiFTPsite') và chọn thư mục vật lý chia sẻ (ví dụ: `C:\inetpub\ftproot`).</li>
                                 <li>Thiết lập IP (IP nội bộ của Server), Port (21) và bật tự động khởi động.</li>
-                                <li>Nhấn **Finish** để hoàn tất cấu hình cơ bản.</li>
+                                <li>Nhấn 'Finish' để hoàn tất cấu hình cơ bản.</li>
                             </ol>
                             
                             <h4>Bước 3 – Tạo User và Phân quyền (User Isolation)</h4>
                             <ol>
-                                <li>Tạo User hệ thống mới (ví dụ: `HuongBel`) trong **Computer Management**.</li>
-                                <li>Tạo thư mục riêng cho User đó trong thư mục gốc (`C:\inetpub\ftproot\HuongBel`).</li>
+                                <li>Tạo User hệ thống mới (ví dụ: `HuongBel`) trong Computer Management.</li>
+                                <li>Tạo thư mục riêng cho User đó trong thư mục gốc (C:\inetpub\ftproot\HuongBel').</li>
                                 <li>Cấp quyền NTFS: Chuột phải vào folder User → Security → Edit → Add User → Cấp quyền Full Control cho User.</li>
                                 <li>Giới hạn truy cập (User Isolation): Trong IIS Manager → Trang chủ FTP Site → FTP User Isolation → Chọn User name directory → Apply. (Đảm bảo mỗi user chỉ thấy thư mục riêng của mình).</li>
                             </ol>
@@ -227,8 +227,8 @@
                                 <li>Cấu hình Passive Port trong IIS: Quay lại trang chủ IIS → FTP Firewall Support → Nhập dải port cho Data Channel Port Range (ví dụ: `5000-6000`).</li>
                                 <li>Cấu hình Firewall trong Windows: Mở Windows Defender Firewall → **Advanced Security → Inbound Rules.
                                     <ul>
-                                        <li>Bật **FTP Server (FTP Traffic-In)** (Port 21).</li>
-                                        <li>Bật **FTP Server Passive (FTP Passive Traffic-In)** (cho phép dải port 5000–6000).</li>
+                                        <li>Bật FTP Server (FTP Traffic-In) (Port 21).</li>
+                                        <li>Bật FTP Server Passive (FTP Passive Traffic-In) (cho phép dải port 5000–6000).</li>
                                     </ul>
                                 </li>
                             </ol>
