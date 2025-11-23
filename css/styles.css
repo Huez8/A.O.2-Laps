@@ -14,24 +14,32 @@
     /* THÔNG SỐ GIAO DIỆN */
     --border-radius-modern: 8px;
     --modern-radius: 12px;
+    
+    /* BIẾN CHIỀU CAO NAVBAR (FIX BỐ CỤC) */
+    --navbar-height: 90px; 
 }
 
 /* ---------------------------------------------------- */
-/* 1. KHAI BÁO FONT CHỮ (Cần thêm vào nếu chưa có) */
+/* 1. KHAI BÁO FONT CHỮ (FIX LỖI CHỮ TIÊU ĐỀ) */
 /* ---------------------------------------------------- */
 
-/* Cần thêm font-family vào đây để sửa lỗi hiển thị font trên các tiêu đề */
-/* * {
+/* Đã bỏ ghi chú (UNCOMMENT) để áp dụng font đã import trong HTML */
+* {
     font-family: 'Montserrat', sans-serif;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', sans-serif;
-} */
+}
 
 
 /* ---------------------------------------------------- */
 /* 2. THANH ĐIỀU HƯỚNG (NAVBAR) */
 /* ---------------------------------------------------- */
+
+/* ⭐ FIX 1: TĂNG Z-INDEX CHO NAVBAR ĐỂ KHÔNG BỊ NỘI DUNG CHE ⭐ */
+#mainNavbar { 
+    z-index: 1050; 
+}
 
 .navbar-solid {
     background-color: var(--color-secondary) !important;
@@ -54,7 +62,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 60%;
     height: 3px;
     background-color: var(--color-primary); 
-    transform: skewX(-5deg); /* Thêm hiệu ứng xiên nhẹ */
+    transform: skewX(-5deg); 
 }
 
 .nav-link {
@@ -93,13 +101,26 @@ h1, h2, h3, h4, h5, h6 {
 /* 3. HERO SECTION */
 /* ---------------------------------------------------- */
 
+/* ⭐ FIX 2: ĐỊNH NGHĨA HERO SECTION & KHOẢNG CÁCH CHO NAVBAR ⭐ */
+.hero-section {
+    position: relative;
+    /* Chiếm toàn bộ chiều cao màn hình trình duyệt */
+    min-height: 100vh; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    /* Thêm padding top để tạo khoảng trống cho Navbar fixed */
+    padding-top: var(--navbar-height); 
+}
+/* ------------------------------------------------------------------- */
+
+
 .hero-overlay {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* Đã cập nhật Gradient Vàng Cam */
     background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 193, 7, 0.3));
 }
 
@@ -108,6 +129,7 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 10;
     text-align: center;
     color: var(--color-light);
+    margin-top: 0; /* Đảm bảo không có margin âm gây lỗi tràn */
 }
 
 .hero-title {
@@ -134,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 2px;
     border: none;
     background-color: var(--color-primary);
-    color: var(--color-dark); /* Đã đổi màu chữ thành tối để tương phản với nền vàng */
+    color: var(--color-dark);
     transition: all 0.5s var(--anime-easing); 
     animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.3s backwards; 
     box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4); 
@@ -144,7 +166,7 @@ h1, h2, h3, h4, h5, h6 {
 .btn-hero:hover {
     transform: translateY(-5px) scale(1.02); 
     box-shadow: 0 10px 30px rgba(255, 193, 7, 0.6);
-    background-color: #e6b000; /* Màu vàng đậm hơn khi hover */
+    background-color: #e6b000;
 }
 
 /* Keyframes giữ nguyên như bạn đã định nghĩa */
@@ -167,6 +189,8 @@ h1, h2, h3, h4, h5, h6 {
 .section-header {
     text-align: center;
     margin-bottom: 3rem;
+    /* Đảm bảo Section này không có margin âm nào */
+    margin-top: 0; 
 }
 
 .section-title {
@@ -193,7 +217,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .service-card:hover {
-    transform: translateY(-15px); /* Nhấc lên mạnh hơn */
+    transform: translateY(-15px); 
     box-shadow: 0 15px 40px rgba(255, 193, 7, 0.3); 
 }
 
@@ -206,7 +230,7 @@ h1, h2, h3, h4, h5, h6 {
     justify-content: center;
     background: linear-gradient(135deg, var(--color-primary), #e6b000);
     border-radius: 50%;
-    color: var(--color-dark); /* Đổi màu chữ icon thành tối để tương phản */
+    color: var(--color-dark); 
     font-size: 2rem;
     transition: all 0.7s var(--anime-easing); 
 }
@@ -357,7 +381,13 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------------------------------------------------- */
 /* 6. MEDIA QUERIES (FIX Portfolio & Điều chỉnh chung) */
 /* ---------------------------------------------------- */
+
 @media (max-width: 991px) {
+    /* Điều chỉnh biến chiều cao Navbar trên Mobile nếu cần */
+    :root {
+        --navbar-height: 70px; 
+    }
+    
     .hero-title {
         font-size: 3rem;
     }
@@ -371,13 +401,13 @@ h1, h2, h3, h4, h5, h6 {
 
     /* ⭐⭐⭐ QUY TẮC MOBILE CHO PORTFOLIO ⭐⭐⭐ */
     .portfolio-card .portfolio-overlay {
-        opacity: 1; /* LUÔN HIỂN THỊ LỚP PHỦ */
+        opacity: 1; 
         background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 193, 7, 0.85));
     }
     
     .portfolio-card .portfolio-content {
-        transform: translateY(0); /* Đảm bảo nội dung không bị dịch chuyển */
-        opacity: 1; /* LUÔN HIỂN THỊ NỘI DUNG */
+        transform: translateY(0); 
+        opacity: 1; 
     }
     
     .portfolio-card:hover {
@@ -385,6 +415,6 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .portfolio-card:hover img {
-        transform: scale(1.05); /* Chỉ zoom ảnh nhẹ nhàng */
+        transform: scale(1.05); 
     }
 }
