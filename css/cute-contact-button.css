@@ -1,0 +1,59 @@
+/* Trong file: css/cute-contact-button.css */
+
+/* -------------------------------------- */
+/* 1. Thiết lập Keyframe cho hiệu ứng lắc lư (chim cute) */
+/* -------------------------------------- */
+@keyframes cute-bounce {
+    0%, 100% {
+        /* Vị trí ban đầu, lắc lư nhẹ sang trái */
+        transform: translateY(0) rotate(-3deg);
+    }
+    50% {
+        /* Lắc lư nhẹ sang phải và nảy lên chút xíu */
+        transform: translateY(-8px) rotate(4deg); 
+    }
+}
+
+
+/* -------------------------------------- */
+/* 2. Thiết lập cơ bản cho Nút Liên Hệ Cố Định (55x55px, to hơn) */
+/* -------------------------------------- */
+.contact-fixed-btn.ostrich-btn {
+    /* Vị trí cố định */
+    position: fixed;
+    bottom: 25px; 
+    right: 25px;
+    z-index: 1050; 
+    
+    /* Kích thước */
+    width: 55px; 
+    height: 55px;
+    padding: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Thiết kế */
+    background-color: #ffc107; /* Màu Vàng mặc định (tương tự màu Primary của Bootstrap) */
+    color: #212529; /* Màu chữ/icon đen */
+    border-radius: 50%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+    font-size: 1.6rem; /* Kích thước icon lớn */
+    text-decoration: none;
+    cursor: pointer;
+    
+    /* Hiệu ứng chuyển động */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    animation: cute-bounce 2s ease-in-out infinite; 
+}
+
+/* -------------------------------------- */
+/* 3. Hiệu ứng Hover (Di chuột vào) */
+/* -------------------------------------- */
+.contact-fixed-btn.ostrich-btn:hover {
+    background-color: #e0ac00; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    /* Dừng hiệu ứng lặp lại khi hover */
+    animation: none;
+    transform: scale(1.15); 
+}
