@@ -16,16 +16,25 @@
     <style>
         /* CSS Tùy chỉnh nhỏ để tối ưu hiển thị */
         .primary-red-text { color: var(--color-primary); }
-        .bg-light-section { background-color: #f8f9fa; } /* Dùng màu xám nhạt để phân biệt */
+        .bg-light-section { background-color: #f8f9fa; }
         .bg-dark-section { background-color: var(--color-secondary); color: var(--color-light); }
         .service-list li { margin-bottom: 10px; font-weight: 500; }
+        
         .small-hero { 
-            height: 60vh; 
-            min-height: 400px; 
-            background-image: url('https://images.unsplash.com/photo-1510511977934-2e99a4c8a2cc?w=1920&h=1080&fit=crop'); /* Ảnh banner mới cho Services */
-            background-attachment: scroll; /* Bỏ fixed để mượt hơn trên di động */
+            height: 80vh; /* Tăng chiều cao lên 80% viewport */
+            min-height: 450px; 
+            background-image: url('https://images.unsplash.com/photo-1510511977934-2e99a4c8a2cc?w=1920&h=1080&fit=crop'); 
+            background-attachment: scroll; 
+            
+            /* CĂN GIỮA DỌC BẰNG FLEXBOX */
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .small-hero .hero-content { padding-top: 120px; } 
+        .small-hero .hero-content { 
+            padding-top: 0; /* Loại bỏ padding cũ */
+            margin-top: -50px; /* Dịch chuyển nội dung lên trên */
+        } 
 
         .service-detail-card {
             padding: 2.5rem;
@@ -72,7 +81,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-solid" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html#home">
-                <span class="brand-text">A.O.2 LABS</span>
+                <span class="brand-text">A.O.2 LAPS</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
