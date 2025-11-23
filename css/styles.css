@@ -7,9 +7,9 @@
     --color-gray: #6c757d;
     
     /* THÔNG SỐ ANIMATION & TRANSITION */
-    --transition-speed: 0.4s; 
-    --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); 
-    --anime-duration: 0.7s;
+    --transition-speed: 0.3s; /* Thời gian chuyển động nhanh và sắc nét */
+    --anime-easing: cubic-bezier(0.86, 0, 0.07, 1); /* Hàm Easing MƯỢT VÀ SẮC NÉT (Cinema Style) */
+    --anime-duration: 0.8s; 
     
     /* THÔNG SỐ GIAO DIỆN */
     --border-radius-modern: 8px;
@@ -20,11 +20,22 @@
 }
 
 /* ---------------------------------------------------- */
-/* 1. KHAI BÁO FONT CHỮ (FIX LỖI CHỮ TIÊU ĐỀ) */
+/* ⭐ 0. TỐI ƯU HÓA CHUYỂN ĐỘNG TOÀN CỤC ⭐ */
+/* ---------------------------------------------------- */
+html {
+    /* Bật tính năng cuộn mượt khi click vào link neo (Smooth Scroll) */
+    scroll-behavior: smooth; 
+}
+
+/* ---------------------------------------------------- */
+/* 1. KHAI BÁO FONT CHỮ */
 /* ---------------------------------------------------- */
 
 * {
     font-family: 'Montserrat', sans-serif;
+    /* Tối ưu hóa render font chữ */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Oswald', sans-serif;
@@ -38,6 +49,9 @@ h1, h2, h3, h4, h5, h6 {
 /* ⭐ FIX 1: TĂNG Z-INDEX CHO NAVBAR ĐỂ KHÔNG BỊ NỘI DUNG CHE ⭐ */
 #mainNavbar { 
     z-index: 1050; 
+    /* Bắt buộc dùng GPU cho NavBar (siêu mượt) */
+    transform: translateZ(0); 
+    transition: background-color var(--transition-speed) var(--anime-easing), box-shadow var(--transition-speed) var(--anime-easing);
 }
 
 .navbar-solid {
@@ -46,30 +60,12 @@ h1, h2, h3, h4, h5, h6 {
     padding: 1rem 0;
 }
 
-.title-underline {
-    position: relative;
-    margin: 0 auto 2rem auto;
-    width: 100px;
-    height: 4px;
-}
-
-.title-underline::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 60%;
-    height: 3px;
-    background-color: var(--color-primary); 
-    transform: skewX(-5deg); 
-}
-
 .nav-link {
     font-weight: 600;
     margin: 0 0.5rem;
     padding: 0.5rem 1rem !important;
     color: var(--color-light) !important;
-    transition: all var(--transition-speed) var(--anime-easing); 
+    transition: all 0.3s var(--anime-easing); 
     position: relative;
     border-radius: var(--border-radius-modern); 
 }
@@ -83,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 2px;
     background-color: var(--color-primary); 
-    transition: transform var(--transition-speed) var(--anime-easing);
+    transition: transform 0.3s var(--anime-easing);
 }
 
 .nav-link:hover::before,
@@ -93,14 +89,15 @@ h1, h2, h3, h4, h5, h6 {
 
 .nav-link:hover {
     color: var(--color-primary) !important; 
-    transform: translateY(-2px); 
+    transform: translateY(-2px) translateZ(0); /* Dùng translateZ(0) để kích hoạt GPU */
 }
+
 
 /* ---------------------------------------------------- */
 /* 3. HERO SECTION */
 /* ---------------------------------------------------- */
 
-/* ⭐ FIX 2: ĐỊNH NGHĨA HERO SECTION & KHOẢNG CÁCH CHO NAVBAR ⭐ */
+/* ⭐ FIX 2: ĐỊNH NGHĨA HERO SECTION & KHOẢNG CÁCH CHO NAVBAR & PARALLAX ⭐ */
 .hero-section {
     position: relative;
     min-height: 100vh; 
@@ -108,6 +105,10 @@ h1, h2, h3, h4, h5, h6 {
     align-items: center; 
     justify-content: center;
     padding-top: var(--navbar-height); 
+    /* PARALLAX CHO ẢNH NỀN */
+    background-attachment: fixed; 
+    background-size: cover;
+    background-position: center center;
 }
 
 .hero-overlay {
@@ -117,6 +118,7 @@ h1, h2, h3, h4, h5, h6 {
     width: 100%;
     height: 100%;
     background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 193, 7, 0.3));
+    transform: translateZ(0); /* Kích hoạt GPU */
 }
 
 .hero-content {
@@ -125,6 +127,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     color: var(--color-light);
     margin-top: 0; 
+    transform: translateZ(0); /* Kích hoạt GPU */
 }
 
 .hero-title {
@@ -152,14 +155,14 @@ h1, h2, h3, h4, h5, h6 {
     border: none;
     background-color: var(--color-primary);
     color: var(--color-dark);
-    transition: all 0.5s var(--anime-easing); 
+    transition: all 0.4s var(--anime-easing); 
     animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.3s backwards; 
     box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4); 
     border-radius: var(--modern-radius); 
 }
 
 .btn-hero:hover {
-    transform: translateY(-5px) scale(1.02); 
+    transform: translateY(-5px) scale(1.02) translateZ(0); /* Kích hoạt GPU */
     box-shadow: 0 10px 30px rgba(255, 193, 7, 0.6);
     background-color: #e6b000;
 }
@@ -193,6 +196,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .title-underline {
+    position: relative; /* Đã có trong đoạn code bạn gửi */
     width: 100px;
     height: 4px;
     background-color: var(--color-primary);
@@ -204,13 +208,13 @@ h1, h2, h3, h4, h5, h6 {
     padding: 2.5rem 1.5rem;
     border-radius: var(--modern-radius); 
     text-align: center;
-    transition: all var(--transition-speed) var(--anime-easing); 
+    transition: all 0.4s var(--anime-easing); /* Tối ưu transition */
     height: 100%;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .service-card:hover {
-    transform: translateY(-15px); 
+    transform: translateY(-15px) translateZ(0); /* Kích hoạt GPU */
     box-shadow: 0 15px 40px rgba(255, 193, 7, 0.3); 
 }
 
@@ -229,13 +233,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .service-card:hover .service-icon {
-    transform: rotate(360deg) scale(1.1); 
-}
-
-.service-title {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
+    transform: rotate(360deg) scale(1.1) translateZ(0); /* Kích hoạt GPU */
 }
 
 .portfolio-card {
@@ -253,54 +251,10 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.7s var(--anime-easing); 
 }
 
-.portfolio-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(135deg, rgba(13, 19, 40, 0.95), rgba(255, 193, 7, 0.85));
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: all 0.4s var(--anime-easing);
-}
-
-.portfolio-card:hover .portfolio-overlay {
-    opacity: 1;
-}
-
 .portfolio-card:hover img {
-    transform: scale(1.15) rotate(0.5deg); 
+    transform: scale(1.15) rotate(0.5deg) translateZ(0); /* Kích hoạt GPU */
 }
 
-.portfolio-content {
-    text-align: center;
-    color: var(--color-light);
-    transform: translateY(30px); 
-    opacity: 0;
-    transition: all 0.5s var(--anime-easing) 0.1s; 
-}
-
-.portfolio-card:hover .portfolio-content {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.portfolio-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-    color: var(--color-light); 
-}
-
-.portfolio-category {
-    font-size: 0.9rem;
-    font-weight: 300;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--color-primary); 
-}
 
 /* ---------------------------------------------------- */
 /* 5. TEAM & FOOTER */
@@ -311,72 +265,33 @@ h1, h2, h3, h4, h5, h6 {
     border-radius: var(--modern-radius); 
     overflow: hidden;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    transition: all var(--transition-speed) var(--anime-easing);
+    transition: all 0.4s var(--anime-easing);
     height: 100%;
 }
 
 .team-card:hover {
-    transform: translateY(-15px); 
+    transform: translateY(-15px) translateZ(0); /* Kích hoạt GPU */
     box-shadow: 0 15px 40px rgba(255, 193, 7, 0.3);
 }
 
-.team-card img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-}
-
-.team-content {
-    padding: 1.5rem;
-    text-align: center;
-}
-
-.team-name {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 0.25rem;
-}
-
-.team-role {
-    font-weight: 600;
-    color: var(--color-primary);
-    margin-bottom: 0.5rem;
-}
-
-.footer {
-    background-color: var(--color-secondary);
-    color: var(--color-light);
-    padding: 2rem 0;
-}
-
-.social-icon {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    margin-left: 10px;
-    background-color: var(--color-dark);
-    color: var(--color-light);
-    border-radius: 50%;
-    transition: all var(--transition-speed) var(--anime-easing);
-    text-decoration: none;
-}
-
+/* Tối ưu hóa transition cho social icon */
 .social-icon:hover {
-    background-color: var(--color-primary);
-    color: var(--color-dark); 
-    transform: translateY(-7px) rotate(5deg); 
+    transform: translateY(-7px) rotate(5deg) translateZ(0); 
 }
+
 
 /* ---------------------------------------------------- */
-/* 6. MEDIA QUERIES (FIX Portfolio & Điều chỉnh chung) */
+/* 6. MEDIA QUERIES (FIX Mobile) */
 /* ---------------------------------------------------- */
 
 @media (max-width: 991px) {
-    /* Điều chỉnh biến chiều cao Navbar trên Mobile nếu cần */
     :root {
         --navbar-height: 70px; 
+    }
+    
+    /* Tắt Parallax trên Mobile để tránh lỗi/giảm hiệu suất */
+    .hero-section {
+        background-attachment: scroll; 
     }
     
     .hero-title {
@@ -390,7 +305,7 @@ h1, h2, h3, h4, h5, h6 {
         margin-top: 1rem; 
     }
 
-    /* ⭐⭐⭐ QUY TẮC MOBILE CHO PORTFOLIO ⭐⭐⭐ */
+    /* ⭐ QUY TẮC MOBILE CHO PORTFOLIO (Giữ nguyên) ⭐ */
     .portfolio-card .portfolio-overlay {
         opacity: 1; 
         background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 193, 7, 0.85));
