@@ -12,17 +12,32 @@
     }
 }
 
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: scale(0.5); }
+    5% { opacity: 1; transform: scale(1); }
+    95% { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(0.5); }
+}
+
 /* -------------------------------------- */
 /* 2. Thiết lập cơ bản cho Nút Liên Hệ Cố Định */
 /* -------------------------------------- */
-.contact-fixed-btn.ostrich-btn {
-    position: fixed;
+.contact-fixed-btn {
+    /* Quan trọng: Thiết lập vị trí cha cho bubble */
+    position: fixed; 
     bottom: 25px; 
     right: 25px;
     z-index: 1050; 
+    
+    /* Thiết lập cho thẻ bao ngoài (anchor tag) */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Style cho nút tròn */
+.contact-fixed-btn .ostrich-btn-inner {
     width: 55px; 
     height: 55px;
-    padding: 0; 
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,51 +46,62 @@
     border-radius: 50%; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
     font-size: 1.6rem; 
-    text-decoration: none;
-    cursor: pointer;
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     animation: cute-bounce 2s ease-in-out infinite; 
+    position: relative; /* Dùng để hover thay đổi bubble */
 }
 
-.contact-fixed-btn.ostrich-btn:hover {
+/* Hiệu ứng Hover cho nút */
+.contact-fixed-btn:hover .ostrich-btn-inner {
     background-color: #e0ac00; 
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
     animation: none;
     transform: scale(1.15); 
 }
 
+
 /* -------------------------------------- */
-/* 3. Style cho Bong Bóng Lời Thoại (Bubble Text) */
+/* 3. Style cho Bubble Text (bong bóng lời thoại) */
 /* -------------------------------------- */
-.contact-bubble {
-    /* Vị trí tương đối với nút */
+.cute-bubble {
+    /* Vị trí tuyệt đối so với nút cha */
     position: absolute;
-    bottom: 65px; /* Nằm phía trên nút */
-    right: 5px; 
+    top: -50px; /* Đặt phía trên nút */
+    right: 60px; /* Đặt sang bên trái nút */
     
-    /* Thiết kế Bong bóng */
+    /* Thiết kế bubble */
     background-color: #fff;
-    color: #333;
+    color: #343a40;
     padding: 8px 12px;
-    border-radius: 18px 18px 18px 4px; /* Tạo hình dạng như bong bóng truyện tranh */
+    border-radius: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap; /* Ngăn không cho chữ xuống dòng */
     font-size: 0.9rem;
     font-weight: 600;
-    line-height: 1.2;
-    white-space: nowrap; /* Giữ text trên 1 dòng */
     
-    /* Ẩn/Hiện và Transition */
-    opacity: 0; /* Mặc định ẩn */
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
-    transform: translateY(10px); /* Bắt đầu từ dưới đi lên */
-    
-    z-index: 1040; /* Dưới nút một chút */
+    /* Ban đầu ẩn đi */
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s, transform 0.5s;
 }
 
-/* Class hiện bong bóng */
-.contact-bubble.show {
+/* Tạo mũi tên cho bubble (sử dụng pseudo-element) */
+.cute-bubble::after {
+    content: '';
+    position: absolute;
+    right: -10px; /* Vị trí mũi tên */
+    bottom: 10px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #fff;
+}
+
+/* Class để hiển thị bubble */
+.cute-bubble.show {
     opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
+    transform: scale(1);
+    /* Dùng animation ngắn để làm nổi bật hiệu ứng bật ra */
+    animation: fadeInOut 5s;
 }
