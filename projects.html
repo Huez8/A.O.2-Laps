@@ -16,13 +16,24 @@
     <style>
         /* CSS Tùy chỉnh nhỏ cho trang Dự Án */
         .small-hero { 
-            height: 80vh; 
-            min-height: 400px; 
-            background-image: url('https://images.unsplash.com/photo-1522204523234-8729aa6e9d58?w=1920&h=1080&fit=crop'); /* Ảnh banner cho Projects */
+            /* ⭐ ĐIỀU CHỈNH CHÍNH: CĂN GIỮA DỌC BẰNG FLEXBOX ⭐ */
+            height: 100vh; /* Tăng chiều cao lên 100% viewport */
+            min-height: 500px; 
+            background-image: url('https://images.unsplash.com/photo-1522204523234-8729aa6e9d58?w=1920&h=1080&fit=crop');
             background-attachment: scroll;
-            background-position: center top; 
+            background-position: center center;
+            
+            /* Bật Flexbox để căn giữa nội dung */
+            display: flex; 
+            align-items: center; /* Căn giữa theo chiều dọc */
+            justify-content: center; /* Căn giữa theo chiều ngang (đã có trong hero-section, nhưng nên đặt lại) */
         }
-        .small-hero .hero-content { padding-top: 120px; } 
+        .small-hero .hero-content { 
+            /* Xóa padding-top không cần thiết */
+            padding-top: 0;
+            /* Dịch chuyển khối nội dung lên trên một chút so với trung tâm */
+            margin-top: -50px; 
+        } 
 
         /* Nút Lọc (Filter) */
         .filter-buttons .btn {
