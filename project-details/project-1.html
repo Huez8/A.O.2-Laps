@@ -14,36 +14,52 @@
     <link rel="stylesheet" href="../css/styles.css"> 
 
     <style>
-        /* CSS Tùy chỉnh cho trang chi tiết */
-        .project-header-banner {
-            /* Thay thế bằng ảnh FTP Server/Network của bạn */
-            background-image: url('uploaded:image_c2dafe.png-27e17766-1a7b-4038-ad8a-3a8e30127e75'); 
-            background-size: cover;
-            background-position: center;
-            height: 400px; /* Chiều cao banner */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7); /* Lớp phủ đen 70% */
-        }
-        .project-title-box {
-            z-index: 1;
-            color: white;
-            text-align: center;
-        }
-        .project-title-box h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
+        /* CSS Tùy chỉnh cho trang chi tiết */
+        :root {
+            /* Giả định màu chủ đạo, nếu chưa có trong styles.css */
+            --color-primary: #ffc107; /* Màu vàng */
+            --color-secondary: #212529; /* Màu đen/xám tối */
+            --color-light: #f8f9fa;
+        }
+
+        .project-header-banner {
+            /* SỬ DỤNG ẢNH BẠN ĐÃ TẢI LÊN */
+            background-image: url('uploaded:image_c2dafe.png-27e17766-1a7b-4038-ad8a-3a8e30127e75'); 
+            background-size: cover;
+            background-position: center 30%; 
+            height: 400px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7); /* Lớp phủ đen 70% */
+        }
+        .project-title-box {
+            z-index: 1;
+            color: white;
+            text-align: center;
+            padding-top: 5rem; 
+        }
+        .project-title-box h1 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem; 
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0;
+        }
+        .project-title-box p {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
         .meta-data-card {
             background-color: #f8f9fa;
             border-left: 5px solid var(--color-primary);
@@ -77,7 +93,6 @@
         .team-table th:first-child, .team-table td:first-child {
             width: 5%;
         }
-        /* Style cho ảnh minh họa */
         .report-illustration {
             max-width: 100%;
             height: auto;
@@ -176,7 +191,7 @@
                                     </tbody>
                                 </table>
                             </div>
-                    </div>
+                        </div>
 
                     <div class="col-lg-4">
                         <div class="sticky-top" style="top: 100px;">
