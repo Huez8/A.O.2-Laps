@@ -4,11 +4,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const bubble = document.getElementById('cuteBubble');
     const contactBtn = document.getElementById('contactBtn');
     
+    // Thoát nếu các phần tử HTML cần thiết không được tìm thấy
     if (!bubble || !contactBtn) {
         return;
     }
 
-    // ################ DANH SÁCH CÂU THOẠI (16 CÂU) ################
+    // ################ DANH SÁCH CÂU THOẠI (16 CÂU ĐA DẠNG) ################
     const messages = [
         // Kêu gọi hành động (CTA) & Tư vấn chuyên nghiệp
         'Bạn đang tìm kiếm ý tưởng đột phá? Nhấp vào đây để trò chuyện ngay!',
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         'Đừng ngần ngại! Bạn có câu hỏi? Nhấn vào đây để kết nối với A.O.2 LABS.',
         'Sẵn sàng để dự án của bạn "cất cánh"? Bấm ngay để gặp team Đà Điểu!',
         
-        // Hài hước & Xàm xí (Tăng tính tự nhiên)
+        // Hài hước & Xàm xí (Tăng tính tự nhiên và thu hút)
         'Đà điểu đã sẵn sàng lắng nghe bạn! (Đừng lo, tụi mình không cắn đâu 😉)',
         'Ê ê, bạn ơi! Bấm vào đây nè, mình có chuyện muốn nói riêng với bạn!',
         'Alo, alo? Thấy cái nút tròn chưa? Bấm vào đi rồi nói chuyện tiếp!',
@@ -36,8 +37,8 @@ document.addEventListener('DOMContentLoaded', function() {
     ];
 
     // --- CẤU HÌNH THỜI GIAN ---
-    const DISPLAY_DURATION = 4000; // 4 giây hiển thị (giảm để chu kỳ lặp nhanh hơn)
-    const REPEAT_CYCLE = 10000;    // Tổng chu kỳ 10 giây/lần
+    const DISPLAY_DURATION = 4000; // 4 giây (Phải khớp với animation trong CSS)
+    const REPEAT_CYCLE = 10000;    // Tổng chu kỳ lặp lại: 10 giây/lần
 
     let currentMessageIndex = -1; // Biến để theo dõi câu thoại cuối cùng
 
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function getRandomMessage() {
         let randomIndex;
         do {
+            // Chọn số ngẫu nhiên từ 0 đến length-1
             randomIndex = Math.floor(Math.random() * messages.length);
         } while (randomIndex === currentMessageIndex); // Đảm bảo câu mới khác câu cũ
 
@@ -54,9 +56,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- 2. HÀM HIỂN THỊ BUBBLE VÀ TỰ ẨN ---
     function showBubble() {
-        bubble.textContent = getRandomMessage(); // Lấy câu ngẫu nhiên mới
+        // Lấy câu ngẫu nhiên mới và đặt nội dung
+        bubble.textContent = getRandomMessage(); 
         
-        // Kích hoạt animation CSS
+        // Kích hoạt animation CSS (thêm class 'show')
         bubble.classList.add('show');
         
         // Tự động ẩn bubble sau DISPLAY_DURATION
@@ -66,22 +69,24 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // --- 3. THIẾT LẬP LẶP LẠI (10 GIÂY/LẦN) ---
-    setInterval(showBubble, REPEAT_CYCLE); 
+    // Lưu trữ interval để có thể xóa (clearInterval) khi người dùng tương tác
+    window.bubbleInterval = setInterval(showBubble, REPEAT_CYCLE); 
 
     // Hiển thị lần đầu khi load trang (sau 3 giây)
     setTimeout(showBubble, 3000); 
 
-    // --- 4. HIỆU ỨNG KHI CLICK (Gây chú ý và chuyển trang) ---
+    // --- 4. HIỆU ỨNG KHI CLICK (Dừng lặp và chuyển trang) ---
     contactBtn.addEventListener('click', function(e) {
+        // Ngăn chặn chuyển trang ngay lập tức
         e.preventDefault(); 
         
-        // Hiển thị thông báo "Tuyệt vời!" và chuyển trang sau 1.5 giây
-        bubble.classList.remove('show');
-        // Vô hiệu hóa interval tạm thời khi người dùng tương tác
+        // Vô hiệu hóa interval để bubble text không đổi nữa
         clearInterval(window.bubbleInterval); 
 
+        // Hiển thị thông báo chuyển trang
+        bubble.classList.remove('show');
         bubble.textContent = 'Tuyệt vời! Đang chuyển đến trang Liên Hệ...';
-        void bubble.offsetWidth; 
+        void bubble.offsetWidth; // Force reflow để animation reset
         bubble.classList.add('show');
         
         // Đợi 1.5 giây rồi mới chuyển trang
@@ -89,7 +94,4 @@ document.addEventListener('DOMContentLoaded', function() {
             window.location.href = contactBtn.href;
         }, 1500); 
     });
-
-    // Lưu trữ interval để có thể xóa khi cần (ví dụ: khi người dùng click)
-    window.bubbleInterval = setInterval(showBubble, REPEAT_CYCLE); 
 });
