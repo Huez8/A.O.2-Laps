@@ -1,60 +1,59 @@
-/* Trong file: ../css/fixed-button.css */
+/* Trong file: css/contact-button.css */
 
 /* -------------------------------------- */
-/* 2.1. Thiết lập Keyframe cho hiệu ứng */
+/* 1. Thiết lập Keyframe cho hiệu ứng lắc lư (lặp lại) */
 /* -------------------------------------- */
-@keyframes ostrich-bounce {
+@keyframes cute-bounce {
     0%, 100% {
         /* Vị trí ban đầu, lắc lư nhẹ sang trái */
         transform: translateY(0) rotate(-3deg);
     }
     50% {
         /* Lắc lư nhẹ sang phải và nảy lên chút xíu */
-        transform: translateY(-5px) rotate(3deg);
+        transform: translateY(-8px) rotate(4deg); /* Tăng độ nảy nhẹ */
     }
 }
 
 
 /* -------------------------------------- */
-/* 2.2. Thiết lập cơ bản cho Nút */
+/* 2. Thiết lập cơ bản cho Nút Liên Hệ Cố Định (Ostrich/Penguin) */
 /* -------------------------------------- */
 .contact-fixed-btn.ostrich-btn {
     /* Vị trí cố định */
     position: fixed;
-    bottom: 20px; /* Đặt thấp hơn chút */
-    right: 20px;  /* Đặt sát lề hơn */
+    bottom: 25px; 
+    right: 25px;
     z-index: 1050; 
     
-    /* Kích thước: Hơi bé chút */
-    width: 45px; 
-    height: 45px;
-    padding: 0; /* Bỏ padding cũ */
+    /* Kích thước: To hơn chút xíu (55x55px) */
+    width: 55px; 
+    height: 55px;
+    padding: 0; 
     display: flex;
     justify-content: center;
     align-items: center;
     
-    /* Thiết kế chung */
-    background-color: var(--color-primary, #ffc107); /* Sử dụng màu Vàng chủ đạo */
-    color: #212529; /* Màu tối cho icon */
+    /* Thiết kế */
+    background-color: #ffc107; /* Màu Vàng mặc định */
+    color: #212529; 
     border-radius: 50%; 
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); 
-    font-size: 1.3rem; /* Kích thước icon bên trong */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+    font-size: 1.6rem; /* Kích thước icon bên trong lớn hơn */
     text-decoration: none;
+    cursor: pointer;
     
     /* Hiệu ứng chuyển động */
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    
-    /* Áp dụng hiệu ứng lặp lại */
-    animation: ostrich-bounce 2s ease-in-out infinite; 
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    animation: cute-bounce 2s ease-in-out infinite; 
 }
 
 /* -------------------------------------- */
-/* 2.3. Hiệu ứng Hover (Di chuột vào) */
+/* 3. Hiệu ứng Hover (Di chuột vào) */
 /* -------------------------------------- */
 .contact-fixed-btn.ostrich-btn:hover {
-    background-color: #e0ac00; /* Màu đậm hơn khi hover */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    /* Dừng hiệu ứng lặp lại khi hover để người dùng nhấn */
+    background-color: #e0ac00; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    /* Dừng hiệu ứng lặp lại khi hover */
     animation: none;
-    transform: scale(1.1); /* Nảy nhẹ lên khi di chuột vào */
+    transform: scale(1.15); /* Nảy nhẹ lên khi di chuột vào */
 }
