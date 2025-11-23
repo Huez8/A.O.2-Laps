@@ -1,302 +1,303 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Chi tiết Dự án: Xây dựng và vận hành FTP Server bằng IIS trên Windows 11 của A.O.2 LAPS.">
-    <title>Dự Án Chi Tiết | FTP Server DaDieuChauPhi</title>
-    
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css"> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Chi tiết Dự án: Xây dựng và vận hành FTP Server bằng IIS trên Windows 11 của A.O.2 LAPS.">
+    <title>Dự Án Chi Tiết | FTP Server DaDieuChauPhi</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css"> 
 
-    <style>
-        /* CSS Tùy chỉnh cho trang chi tiết */
-        .project-header-banner {
-            background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1920&h=600&fit=crop'); /* Ảnh minh họa server/network */
-            background-size: cover;
-            background-position: center;
-            height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-        }
-        .project-title-box {
-            z-index: 1;
-            color: white;
-            text-align: center;
-        }
-        .project-title-box h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
-        .meta-data-card {
-            background-color: #f8f9fa;
-            border-left: 5px solid var(--color-primary);
-            padding: 20px;
-            border-radius: 8px;
-        }
-        .meta-data-card p {
-            margin-bottom: 5px;
-            font-size: 0.95rem;
-        }
-        .meta-data-card strong {
-            font-weight: 600;
-            color: var(--color-secondary);
-        }
-        .tech-stack-icon {
-            font-size: 2rem;
-            color: var(--color-primary);
-            margin-right: 15px;
-        }
-        .report-section h3 {
-            color: var(--color-primary);
-            font-weight: 700;
-            margin-top: 2rem;
-            border-bottom: 2px solid var(--color-primary);
-            padding-bottom: 5px;
-        }
-        .team-table th, .team-table td {
-            vertical-align: middle;
-            font-size: 0.9rem;
-        }
-        .team-table th:first-child, .team-table td:first-child {
-            width: 5%;
-        }
-    </style>
+    <style>
+        /* CSS Tùy chỉnh cho trang chi tiết */
+        .project-header-banner {
+            /* ĐÃ CẬP NHẬT: Thay thế ảnh bị lỗi bằng ảnh Unsplash mới chủ đề kỹ thuật */
+            background-image: url('https://images.unsplash.com/photo-1555949963-aa79d32d4c83?w=1920&h=600&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .project-title-box {
+            z-index: 1;
+            color: white;
+            text-align: center;
+        }
+        .project-title-box h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+        .meta-data-card {
+            background-color: #f8f9fa;
+            border-left: 5px solid var(--color-primary);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .meta-data-card p {
+            margin-bottom: 5px;
+            font-size: 0.95rem;
+        }
+        .meta-data-card strong {
+            font-weight: 600;
+            color: var(--color-secondary);
+        }
+        .tech-stack-icon {
+            font-size: 2rem;
+            color: var(--color-primary);
+            margin-right: 15px;
+        }
+        .report-section h3 {
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-top: 2rem;
+            border-bottom: 2px solid var(--color-primary);
+            padding-bottom: 5px;
+        }
+        .team-table th, .team-table td {
+            vertical-align: middle;
+            font-size: 0.9rem;
+        }
+        .team-table th:first-child, .team-table td:first-child {
+            width: 5%;
+        }
+    </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-solid" id="mainNavbar">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="../index.html#home">
-                <span class="brand-text">A.O.2 LABS</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../index.html#home">Trang Chủ</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../services.html">Dịch Vụ</a></li>
-                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="../projects.html">Dự Án</a></li>
-                    <li class="nav-item"><a class="nav-link" href="../index.html#gapgo">Gặp Gỡ</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-    <main>
-        <section class="project-header-banner">
-            <div class="project-overlay"></div>
-            <div class="project-title-box">
-                <p class="text-uppercase fw-bold mb-2" style="color: var(--color-primary);">Kỹ Thuật & Mạng Máy Tính</p>
-                <h1>DỊCH VỤ VẬN CHUYỂN FILE FTP (NHÓM 2)</h1>
-            </div>
-        </section>
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-solid" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="../index.html#home">
+                <span class="brand-text">A.O.2 LABS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html#home">Trang Chủ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../services.html">Dịch Vụ</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="../projects.html">Dự Án</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html#gapgo">Gặp Gỡ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section class="project-header-banner">
+            <div class="project-overlay"></div>
+            <div class="project-title-box">
+                <p class="text-uppercase fw-bold mb-2" style="color: var(--color-primary);">Kỹ Thuật & Mạng Máy Tính</p>
+                <h1>DỊCH VỤ VẬN CHUYỂN FILE FTP (NHÓM 2)</h1>
+            </div>
+        </section>
 
-        <section class="py-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="project-description">
-                            <p class="lead">Dự án này mô phỏng việc **xây dựng và vận hành một FTP Server** trên nền tảng Windows 11 sử dụng **Internet Information Services (IIS)**. Mục tiêu là tạo ra một "nhà kho kỹ thuật số" an toàn và dễ quản lý, cho phép chia sẻ dữ liệu hiệu quả trong môi trường mạng nội bộ (LAN) của nhóm.</p>
-                            
-                            <h2 class="section-title mt-4 mb-3">Tóm Tắt Vai Trò Nhóm</h2>
-                            <p>Đây là chi tiết phân công trách nhiệm của các thành viên trong quá trình xây dựng và báo cáo FTP Server:</p>
-                            
-                            <div class="table-responsive">
-                                <table class="table table-bordered team-table">
-                                    <thead class="bg-light">
-                                        <tr>
-                                            <th>STT</th>
-                                            <th>Thành Viên</th>
-                                            <th>Vai Trò</th>
-                                            <th>Nhiệm Vụ Cốt Lõi</th>
-                                            <th>Ghi Chú</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>**Võ Đức Huy**</td>
-                                            <td>Nhóm trưởng - Chịu trách nhiệm chính</td>
-                                            <td>Thực hiện kỹ thuật (Thiết lập Server, Virtual Directory, Cấu hình Site, Kiểm thử). Tổng hợp toàn bộ Báo cáo và Slide.</td>
-                                            <td>**Tổng hợp**</td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>Lê Thị Phương Linh</td>
-                                            <td>Hỗ trợ cài đặt môi trường</td>
-                                            <td>Hỗ trợ kiểm tra môi trường, theo dõi quá trình cài đặt IIS và FTP, chụp ảnh minh chứng.</td>
-                                            <td>Hỗ trợ</td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>Lê Thị Thuý Hường</td>
-                                            <td>Ghi chép & Phân tích</td>
-                                            <td>Ghi lại quy trình thiết lập quyền truy cập và cấu hình user, giải thích vai trò từng bước trong báo cáo.</td>
-                                            <td>Phần 3</td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>Bùi Đoàn Quốc Huy</td>
-                                            <td>Quản lý người dùng</td>
-                                            <td>Hỗ trợ tạo tài khoản thử nghiệm, test truy cập FTP từ máy client và báo cáo kết quả.</td>
-                                            <td>Phần 4</td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>Đoàn Phi Hồng</td>
-                                            <td>Thử nghiệm và vận hành</td>
-                                            <td>Hỗ trợ upload file, kiểm tra truy cập, thu thập ảnh chụp màn hình minh họa cho bài làm.</td>
-                                            <td>Phần 5</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+        <section class="py-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="project-description">
+                            <p class="lead">Dự án này mô phỏng việc **xây dựng và vận hành một FTP Server** trên nền tảng Windows 11 sử dụng **Internet Information Services (IIS)**. Mục tiêu là tạo ra một "nhà kho kỹ thuật số" an toàn và dễ quản lý, cho phép chia sẻ dữ liệu hiệu quả trong môi trường mạng nội bộ (LAN) của nhóm.</p>
+                            
+                            <h2 class="section-title mt-4 mb-3">Tóm Tắt Vai Trò Nhóm</h2>
+                            <p>Đây là chi tiết phân công trách nhiệm của các thành viên trong quá trình xây dựng và báo cáo FTP Server:</p>
+                            
+                            <div class="table-responsive">
+                                <table class="table table-bordered team-table">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th>STT</th>
+                                            <th>Thành Viên</th>
+                                            <th>Vai Trò</th>
+                                            <th>Nhiệm Vụ Cốt Lõi</th>
+                                            <th>Ghi Chú</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td>**Võ Đức Huy**</td>
+                                            <td>Nhóm trưởng - Chịu trách nhiệm chính</td>
+                                            <td>Thực hiện kỹ thuật (Thiết lập Server, Virtual Directory, Cấu hình Site, Kiểm thử). Tổng hợp toàn bộ Báo cáo và Slide.</td>
+                                            <td>**Tổng hợp**</td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td>Lê Thị Phương Linh</td>
+                                            <td>Hỗ trợ cài đặt môi trường</td>
+                                            <td>Hỗ trợ kiểm tra môi trường, theo dõi quá trình cài đặt IIS và FTP, chụp ảnh minh chứng.</td>
+                                            <td>Hỗ trợ</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td>Lê Thị Thuý Hường</td>
+                                            <td>Ghi chép & Phân tích</td>
+                                            <td>Ghi lại quy trình thiết lập quyền truy cập và cấu hình user, giải thích vai trò từng bước trong báo cáo.</td>
+                                            <td>Phần 3</td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>Bùi Đoàn Quốc Huy</td>
+                                            <td>Quản lý người dùng</td>
+                                            <td>Hỗ trợ tạo tài khoản thử nghiệm, test truy cập FTP từ máy client và báo cáo kết quả.</td>
+                                            <td>Phần 4</td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td>Đoàn Phi Hồng</td>
+                                            <td>Thử nghiệm và vận hành</td>
+                                            <td>Hỗ trợ upload file, kiểm tra truy cập, thu thập ảnh chụp màn hình minh họa cho bài làm.</td>
+                                            <td>Phần 5</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
 
-                        <div class="report-section mt-5">
-                            <h2 class="section-title mb-3">BÁO CÁO: QUÁ TRÌNH THỰC HIỆN KỸ THUẬT</h2>
+                        <div class="report-section mt-5">
+                            <h2 class="section-title mb-3">BÁO CÁO: QUÁ TRÌNH THỰC HIỆN KỸ THUẬT</h2>
 
-                            <h3>1. Giới thiệu – FTP là gì?</h3>
-                            <p><strong>FTP (File Transfer Protocol)</strong> là giao thức chuyển giao file cơ bản và quan trọng nhất, hoạt động như một dịch vụ giao hàng trong thế giới máy tính.</p>
-                            <ul>
-                                <li>**FTP Server 🏠:** Là "Nhà kho" lưu trữ file.</li>
-                                <li>**FTP Client 👤:** Là "Khách hàng" gửi yêu cầu lấy hoặc gửi file.</li>
-                                <li>**TCP/IP 🚚:** Là "Shipper" đảm bảo vận chuyển dữ liệu chính xác và không thất thoát.</li>
-                            </ul>
-                            <p class="fst-italic text-center"></p>
+                            <h3>1. Giới thiệu – FTP là gì?</h3>
+                            <p>**FTP (File Transfer Protocol)** là giao thức chuyển giao file cơ bản và quan trọng nhất, hoạt động như một dịch vụ giao hàng trong thế giới máy tính.</p>
+                            <ul>
+                                <li>**FTP Server 🏠:** Là "Nhà kho" lưu trữ file.</li>
+                                <li>**FTP Client 👤:** Là "Khách hàng" gửi yêu cầu lấy hoặc gửi file.</li>
+                                <li>**TCP/IP 🚚:** Là "Shipper" đảm bảo vận chuyển dữ liệu chính xác và không thất thoát.</li>
+                            </ul>
+                            <p class="fst-italic text-center"></p>
 
-                            <h3>2. Công cụ và Môi trường Thực hiện</h3>
-                            <div class="table-responsive">
-                                <table class="table table-sm table-striped">
-                                    <thead>
-                                        <tr><th>Thành phần</th><th>Chi tiết</th></tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr><td>Hệ điều hành</td><td>Windows 11</td></tr>
-                                        <tr><td>Công cụ chính</td><td>Internet Information Services (IIS)</td></tr>
-                                        <tr><td>Giao thức</td><td>FTP (Port mặc định: 21)</td></tr>
-                                        <tr><td>Kết nối mạng</td><td>LAN (Local Area Network)</td></tr>
-                                    </tbody>
-                                </table>
-                            </div>
+                            <h3>2. Công cụ và Môi trường Thực hiện</h3>
+                            <div class="table-responsive">
+                                <table class="table table-sm table-striped">
+                                    <thead>
+                                        <tr><th>Thành phần</th><th>Chi tiết</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr><td>Hệ điều hành</td><td>Windows 11</td></tr>
+                                        <tr><td>Công cụ chính</td><td>Internet Information Services (IIS)</td></tr>
+                                        <tr><td>Giao thức</td><td>FTP (Port mặc định: 21)</td></tr>
+                                        <tr><td>Kết nối mạng</td><td>LAN (Local Area Network)</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
 
-                            <h3>3. Các Bước Thiết Lập FTP Server Bằng IIS</h3>
-                            
-                            <h4>Bước 1 – Kích hoạt tính năng FTP trên Windows</h4>
-                            <ol>
-                                <li>Mở **Control Panel** → **Programs and Features** → **Turn Windows features on or off**.</li>
-                                <li>Tích chọn: **Internet Information Services (IIS)**, và cụ thể là **FTP Server** (bao gồm **FTP Service** và **FTP Extensibility**).</li>
-                            </ol>
-                            <p class="fst-italic text-center"></p>
+                            <h3>3. Các Bước Thiết Lập FTP Server Bằng IIS</h3>
+                            
+                            <h4>Bước 1 – Kích hoạt tính năng FTP trên Windows</h4>
+                            <ol>
+                                <li>Mở **Control Panel** → **Programs and Features** → **Turn Windows features on or off**.</li>
+                                <li>Tích chọn: **Internet Information Services (IIS)**, và cụ thể là **FTP Server** (bao gồm **FTP Service** và **FTP Extensibility**).</li>
+                            </ol>
+                            <p class="fst-italic text-center"></p>
 
-                            <h4>Bước 2 – Tạo FTP Site và Cấu hình Vật lý</h4>
-                            <ol>
-                                <li>Mở **IIS Manager** → Chuột phải vào **Sites** → **Add FTP Site**.</li>
-                                <li>Đặt tên site (ví dụ: `DaDieuChauPhiFTPsite`) và chọn thư mục vật lý chia sẻ (ví dụ: `C:\inetpub\ftproot`).</li>
-                                <li>Thiết lập IP (IP nội bộ của Server), Port (21) và bật tự động khởi động.</li>
-                                <li>Nhấn **Finish** để hoàn tất cấu hình cơ bản.</li>
-                            </ol>
-                            
-                            <h4>Bước 3 – Tạo User và Phân quyền (User Isolation)</h4>
-                            <ol>
-                                <li>Tạo User hệ thống mới (ví dụ: `HuongBel`) trong **Computer Management**.</li>
-                                <li>Tạo thư mục riêng cho User đó trong thư mục gốc (`C:\inetpub\ftproot\HuongBel`).</li>
-                                <li>**Cấp quyền NTFS:** Chuột phải vào folder User → **Security** → **Edit** → **Add User** → Cấp quyền **Full Control** cho User.</li>
-                                <li>**Giới hạn truy cập (User Isolation):** Trong **IIS Manager** → Trang chủ FTP Site → **FTP User Isolation** → Chọn **User name directory** → **Apply**. (Đảm bảo mỗi user chỉ thấy thư mục riêng của mình).</li>
-                            </ol>
+                            <h4>Bước 2 – Tạo FTP Site và Cấu hình Vật lý</h4>
+                            <ol>
+                                <li>Mở **IIS Manager** → Chuột phải vào **Sites** → **Add FTP Site**.</li>
+                                <li>Đặt tên site (ví dụ: `DaDieuChauPhiFTPsite`) và chọn thư mục vật lý chia sẻ (ví dụ: `C:\inetpub\ftproot`).</li>
+                                <li>Thiết lập IP (IP nội bộ của Server), Port (21) và bật tự động khởi động.</li>
+                                <li>Nhấn **Finish** để hoàn tất cấu hình cơ bản.</li>
+                            </ol>
+                            
+                            <h4>Bước 3 – Tạo User và Phân quyền (User Isolation)</h4>
+                            <ol>
+                                <li>Tạo User hệ thống mới (ví dụ: `HuongBel`) trong **Computer Management**.</li>
+                                <li>Tạo thư mục riêng cho User đó trong thư mục gốc (`C:\inetpub\ftproot\HuongBel`).</li>
+                                <li>**Cấp quyền NTFS:** Chuột phải vào folder User → **Security** → **Edit** → **Add User** → Cấp quyền **Full Control** cho User.</li>
+                                <li>**Giới hạn truy cập (User Isolation):** Trong **IIS Manager** → Trang chủ FTP Site → **FTP User Isolation** → Chọn **User name directory** → **Apply**. (Đảm bảo mỗi user chỉ thấy thư mục riêng của mình).</li>
+                            </ol>
 
-                            <h4>Bước 4 – Cấu hình Firewall & Passive Mode</h4>
-                            <ol>
-                                <li>**Cấu hình Passive Port trong IIS:** Quay lại trang chủ IIS → **FTP Firewall Support** → Nhập dải port cho **Data Channel Port Range** (ví dụ: `5000-6000`).</li>
-                                <li>**Cấu hình Firewall trong Windows:** Mở **Windows Defender Firewall** → **Advanced Security** → **Inbound Rules**.
-                                    <ul>
-                                        <li>Bật **FTP Server (FTP Traffic-In)** (Port 21).</li>
-                                        <li>Bật **FTP Server Passive (FTP Passive Traffic-In)** (cho phép dải port 5000–6000).</li>
-                                    </ul>
-                                </li>
-                            </ol>
-                            <p>Việc này đảm bảo server hoạt động an toàn và đúng chuẩn **Passive Mode**.</p>
-                            
-                            <h3>4. Kiểm Tra Kết Nối và Kết Luận</h3>
-                            <p>Nhóm đã tiến hành kiểm tra kết nối từ máy client bằng các công cụ:</p>
-                            <ul>
-                                <li>**File Explorer:** Truy cập `ftp://<IP_của_Server>`.</li>
-                                <li>**Command Prompt** và **FileZilla Client**.</li>
-                            </ul>
-                            <p class="fst-italic text-center"></p>
-                            
-                            <div class="alert alert-success mt-4">
-                                <h4 class="alert-heading">KẾT LUẬN CUỐI CÙNG</h4>
-                                <p>Nhóm đã dựng thành công FTP Server bằng IIS trên Windows 11, với đầy đủ các cấu hình về user, phân quyền, mở port Passive. Kết nối hoạt động ổn định và bảo mật trong mạng nội bộ.</p>
-                            </div>
-                            
-                            <p class="mt-4">
-                                **Wedsite riêng của DDCP đã ra mắt:** <a href="https://blogs.mtdv.me/blog/posts/dadieuchauphistore" target="_blank">https://blogs.mtdv.me/blog/posts/dadieuchauphistore</a>
-                            </p>
-                        </div>
-                    </div>
+                            <h4>Bước 4 – Cấu hình Firewall & Passive Mode</h4>
+                            <ol>
+                                <li>**Cấu hình Passive Port trong IIS:** Quay lại trang chủ IIS → **FTP Firewall Support** → Nhập dải port cho **Data Channel Port Range** (ví dụ: `5000-6000`).</li>
+                                <li>**Cấu hình Firewall trong Windows:** Mở **Windows Defender Firewall** → **Advanced Security** → **Inbound Rules**.
+                                    <ul>
+                                        <li>Bật **FTP Server (FTP Traffic-In)** (Port 21).</li>
+                                        <li>Bật **FTP Server Passive (FTP Passive Traffic-In)** (cho phép dải port 5000–6000).</li>
+                                    </ul>
+                                </li>
+                            </ol>
+                            <p>Việc này đảm bảo server hoạt động an toàn và đúng chuẩn **Passive Mode**.</p>
+                            
+                            <h3>4. Kiểm Tra Kết Nối và Kết Luận</h3>
+                            <p>Nhóm đã tiến hành kiểm tra kết nối từ máy client bằng các công cụ:</p>
+                            <ul>
+                                <li>**File Explorer:** Truy cập `ftp://<IP_của_Server>`.</li>
+                                <li>**Command Prompt** và **FileZilla Client**.</li>
+                            </ul>
+                            <p class="fst-italic text-center"></p>
+                            
+                            <div class="alert alert-success mt-4">
+                                <h4 class="alert-heading">KẾT LUẬN CUỐI CÙNG</h4>
+                                <p>Nhóm đã dựng thành công FTP Server bằng IIS trên Windows 11, với đầy đủ các cấu hình về user, phân quyền, mở port Passive. Kết nối hoạt động ổn định và bảo mật trong mạng nội bộ.</p>
+                            </div>
+                            
+                            <p class="mt-4">
+                                **Wedsite riêng của DDCP đã ra mắt:** <a href="https://blogs.mtdv.me/blog/posts/dadieuchauphistore" target="_blank">https://blogs.mtdv.me/blog/posts/dadieuchauphistore</a>
+                            </p>
+                        </div>
+                    </div>
 
-                    <div class="col-lg-4">
-                        <div class="sticky-top" style="top: 100px;">
-                            <h2 class="section-title mb-3" style="color: var(--color-primary);">THÔNG TIN</h2>
-                            <div class="meta-data-card mb-4">
-                                <p><strong>Dịch vụ:</strong> Quản trị Mạng & Kỹ thuật Server</p>
-                                <p><strong>Nền tảng:</strong> Windows Server / IIS</p>
-                                <p><strong>Lĩnh vực:</strong> Chia sẻ & Vận chuyển File</p>
-                                <p><strong>Thời gian:</strong> 21/10/2025</p>
-                                <p><strong>Vai trò chính:</strong> Vận hành & Bảo mật</p>
-                                <hr>
-                                <p class="mb-1 fw-bold text-uppercase">Công cụ & Giao thức</p>
-                                <span class="tech-stack-icon"><i class="fas fa-server" title="IIS"></i></span>
-                                <span class="tech-stack-icon"><i class="fas fa-network-wired" title="LAN"></i></span>
-                                <span class="tech-stack-icon"><i class="fas fa-shield-alt" title="Firewall"></i></span>
-                                <span class="tech-stack-icon"><i class="fas fa-user-lock" title="User Isolation"></i></span>
-                            </div>
+                    <div class="col-lg-4">
+                        <div class="sticky-top" style="top: 100px;">
+                            <h2 class="section-title mb-3" style="color: var(--color-primary);">THÔNG TIN</h2>
+                            <div class="meta-data-card mb-4">
+                                <p><strong>Dịch vụ:</strong> Quản trị Mạng & Kỹ thuật Server</p>
+                                <p><strong>Nền tảng:</strong> Windows Server / IIS</p>
+                                <p><strong>Lĩnh vực:</strong> Chia sẻ & Vận chuyển File</p>
+                                <p><strong>Thời gian:</strong> 21/10/2025</p>
+                                <p><strong>Vai trò chính:</strong> Vận hành & Bảo mật</p>
+                                <hr>
+                                <p class="mb-1 fw-bold text-uppercase">Công cụ & Giao thức</p>
+                                <span class="tech-stack-icon"><i class="fas fa-server" title="IIS"></i></span>
+                                <span class="tech-stack-icon"><i class="fas fa-network-wired" title="LAN"></i></span>
+                                <span class="tech-stack-icon"><i class="fas fa-shield-alt" title="Firewall"></i></span>
+                                <span class="tech-stack-icon"><i class="fas fa-user-lock" title="User Isolation"></i></span>
+                            </div>
 
-                            <a href="../projects.html" class="btn btn-primary w-100 mt-3">
-                                <i class="fas fa-arrow-left me-2"></i> Quay lại Portfolio
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+                            <a href="../projects.html" class="btn btn-primary w-100 mt-3">
+                                <i class="fas fa-arrow-left me-2"></i> Quay lại Portfolio
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <footer class="footer" style="background-color: var(--color-secondary); color: var(--color-light);">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <p class="mb-0" style="color: var(--color-light);">&copy; 2025 A.O.2 LABS - Đà Điểu Châu Phi. All Rights Reserved.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <div class="social-icons">
-                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-twitter"></i></a>
-                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-behance"></i></a>
-                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-dribbble"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <footer class="footer" style="background-color: var(--color-secondary); color: var(--color-light);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="mb-0" style="color: var(--color-light);">&copy; 2025 A.O.2 LABS - Đà Điểu Châu Phi. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
