@@ -12,6 +12,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css"> 
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         /* CSS Tùy chỉnh nhỏ để tối ưu hiển thị */
@@ -21,7 +23,7 @@
         .service-list li { margin-bottom: 10px; font-weight: 500; }
         
         .small-hero { 
-            height: 80vh; /* Tăng chiều cao lên 80% viewport */
+            height: 80vh; 
             min-height: 450px; 
             background-image: url('https://images.unsplash.com/photo-1510511977934-2e99a4c8a2cc?w=1920&h=1080&fit=crop'); 
             background-attachment: scroll; 
@@ -32,8 +34,8 @@
             justify-content: center;
         }
         .small-hero .hero-content { 
-            padding-top: 0; /* Loại bỏ padding cũ */
-            margin-top: -50px; /* Dịch chuyển nội dung lên trên */
+            padding-top: 0; 
+            margin-top: -50px; 
         } 
 
         .service-detail-card {
@@ -107,7 +109,7 @@
     <main>
         <section id="services-hero" class="hero-section small-hero">
             <div class="hero-overlay"></div>
-            <div class="hero-content">
+            <div class="hero-content" data-aos="fade-up">
                 <h1 class="hero-title">Giải Pháp Sáng Tạo & Kỹ Thuật Độc Đáo.</h1>
                 <p class="hero-subtitle">5 lĩnh vực cốt lõi định hình nên năng lực vượt trội của Đà Điểu Châu Phi.</p>
                 <a href="#core-services" class="btn btn-primary btn-hero">Khám Phá Chi Tiết</a>
@@ -115,14 +117,14 @@
         </section>
         <section id="core-services" class="py-5 services-section">
             <div class="container">
-                <div class="section-header text-center mb-5">
+                <div class="section-header text-center mb-5" data-aos="fade-down">
                     <h2 class="section-title">NĂM LĨNH VỰC CỐT LÕI</h2>
                     <div class="title-underline"></div>
                 </div>
                 
                 <div class="row g-4">
                     <div class="col-lg-4 col-md-6">
-                        <div class="service-detail-card bg-white">
+                        <div class="service-detail-card bg-white" data-aos="zoom-in-up" data-aos-delay="100">
                             <div class="detail-icon"><i class="fas fa-print"></i></div>
                             <h3 class="detail-title">1. Đồ Họa & Ấn Phẩm</h3>
                             <p style="color: var(--color-gray);">Tạo ra các sản phẩm đồ họa và ấn phẩm thương hiệu sẵn sàng để in ấn và sử dụng. Đảm bảo chất lượng cao nhất cho mọi sản phẩm vật lý và kỹ thuật số.</p>
@@ -135,7 +137,7 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6">
-                        <div class="service-detail-card bg-white">
+                        <div class="service-detail-card bg-white" data-aos="zoom-in-up" data-aos-delay="200">
                             <div class="detail-icon"><i class="fas fa-laptop-code"></i></div>
                             <h3 class="detail-title">2. UI/UX Design</h3>
                             <p style="color: var(--color-gray);">Thiết kế trải nghiệm người dùng tối ưu. Giao diện trực quan, đẹp mắt cho Website, Web App và Mobile App, tập trung vào hiệu suất và chuyển đổi.</p>
@@ -148,7 +150,7 @@
                     </div>
                     
                     <div class="col-lg-4 col-md-6">
-                        <div class="service-detail-card bg-white">
+                        <div class="service-detail-card bg-white" data-aos="zoom-in-up" data-aos-delay="300">
                             <div class="detail-icon"><i class="fas fa-camera-retro"></i></div>
                             <h3 class="detail-title">3. Content Creation</h3>
                             <p style="color: var(--color-gray);">Sản xuất nội dung thị giác thu hút. Kể câu chuyện thương hiệu mạnh mẽ qua hình ảnh, video chất lượng cao, tối ưu cho các kênh Social Media và Marketing.</p>
@@ -161,7 +163,7 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6">
-                        <div class="service-detail-card bg-white">
+                        <div class="service-detail-card bg-white" data-aos="zoom-in-up" data-aos-delay="400">
                             <div class="detail-icon"><i class="fas fa-film" style="color: #FFC107;"></i></div>
                             <h3 class="detail-title">4. Animation & Motion</h3>
                             <p style="color: var(--color-gray); font-weight: 600;">Mang sự sống vào thương hiệu của bạn! Chuyên nghiệp trong việc tạo ra Motion Graphics và Animation 2D/3D mượt mà, phục vụ quảng cáo và giải thích sản phẩm.</p>
@@ -174,7 +176,7 @@
                     </div>
 
                     <div class="col-lg-4 col-md-6">
-                        <div class="service-detail-card bg-white">
+                        <div class="service-detail-card bg-white" data-aos="zoom-in-up" data-aos-delay="500">
                             <div class="detail-icon"><i class="fas fa-code"></i></div>
                             <h3 class="detail-title">5. Front-end Web Dev</h3>
                             <p style="color: var(--color-gray);">Biến thiết kế thành mã nguồn hoạt động. Code HTML5, CSS3, JavaScript sạch, chuẩn, đảm bảo tốc độ tải nhanh, hiển thị tốt trên mọi thiết bị (Responsive).</p>
@@ -188,7 +190,7 @@
                 </div>
             </div>
         </section>
-        <section class="py-5 text-center bg-dark-section">
+        <section class="py-5 text-center bg-dark-section" data-aos="fade-in">
             <div class="container">
                 <h2 class="hero-title mb-4">SẴN SÀNG KHỞI CHẠY DỰ ÁN CỦA BẠN?</h2>
                 <p class="lead mb-4" style="color: var(--color-primary);">Liên hệ với chúng tôi để bắt đầu hành trình biến ý tưởng thành sản phẩm thị giác bùng nổ!</p>
@@ -216,5 +218,14 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200, 
+            once: true 
+        });
+    </script>
+    
     </body>
 </html>
