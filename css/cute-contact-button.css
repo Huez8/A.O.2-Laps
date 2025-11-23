@@ -16,27 +16,23 @@
 /* 2. Thiết lập cơ bản cho Nút Liên Hệ Cố Định */
 /* -------------------------------------- */
 .contact-fixed-btn.ostrich-btn {
-    /* Vị trí cố định */
     position: fixed;
     bottom: 25px; 
     right: 25px;
     z-index: 1050; 
-    
-    /* Kích thước & Thiết kế */
     width: 55px; 
     height: 55px;
+    padding: 0; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: #ffc107; 
     color: #212529; 
     border-radius: 50%; 
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
     font-size: 1.6rem; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
     text-decoration: none;
     cursor: pointer;
-    
-    /* Hiệu ứng chuyển động */
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     animation: cute-bounce 2s ease-in-out infinite; 
 }
@@ -49,51 +45,37 @@
 }
 
 /* -------------------------------------- */
-/* 3. Thiết lập Bubble Text (Bong bóng thoại) */
+/* 3. Style cho Bong Bóng Lời Thoại (Bubble Text) */
 /* -------------------------------------- */
-.ostrich-btn-bubble {
+.contact-bubble {
+    /* Vị trí tương đối với nút */
     position: absolute;
-    /* Đặt bubble lên trên và hơi sang trái nút */
-    bottom: calc(100% + 15px); 
-    right: 50%; 
-    transform: translateX(50%); /* Căn giữa theo chiều ngang của nút */
+    bottom: 65px; /* Nằm phía trên nút */
+    right: 5px; 
     
-    width: 200px; /* Chiều rộng cố định */
-    padding: 8px 12px;
-    background-color: #fff; /* Nền trắng */
+    /* Thiết kế Bong bóng */
+    background-color: #fff;
     color: #333;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 0.85rem;
-    line-height: 1.3;
-    text-align: center;
+    padding: 8px 12px;
+    border-radius: 18px 18px 18px 4px; /* Tạo hình dạng như bong bóng truyện tranh */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
     font-weight: 600;
+    line-height: 1.2;
+    white-space: nowrap; /* Giữ text trên 1 dòng */
     
-    /* Mũi tên trỏ xuống */
-    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.2));
-    
-    /* Ẩn ban đầu và hiệu ứng chuyển động */
-    opacity: 0;
+    /* Ẩn/Hiện và Transition */
+    opacity: 0; /* Mặc định ẩn */
     visibility: hidden;
-    transition: opacity 0.3s, transform 0.3s;
-    transform-origin: bottom center; /* Hiệu ứng xuất hiện từ dưới lên */
+    transition: opacity 0.3s, visibility 0.3s, transform 0.3s;
+    transform: translateY(10px); /* Bắt đầu từ dưới đi lên */
+    
+    z-index: 1040; /* Dưới nút một chút */
 }
 
-/* Tạo mũi tên bằng pseudo-element */
-.ostrich-btn-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -10px; /* Đặt dưới đáy */
-    right: 50%;
-    transform: translateX(50%);
-    border-width: 10px 10px 0; /* Chiều cao và chiều rộng của mũi tên */
-    border-style: solid;
-    border-color: #fff transparent transparent transparent; /* Màu trắng cho mũi tên */
-}
-
-/* Class hiển thị bubble */
-.ostrich-btn-bubble.show {
+/* Class hiện bong bóng */
+.contact-bubble.show {
     opacity: 1;
     visibility: visible;
-    transform: translateX(50%) translateY(0);
+    transform: translateY(0);
 }
