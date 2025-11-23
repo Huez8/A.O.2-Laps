@@ -5,61 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Chi tiết Dự án: Xây dựng và vận hành FTP Server bằng IIS trên Windows 11 của A.O.2 LAPS.">
     <title>Dự Án Chi Tiết | FTP Server DaDieuChauPhi</title>
-    
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../css/styles.css"> 
+    <link rel="stylesheet" href="../css/styles.css"> 
 
     <style>
-        /* CSS Tùy chỉnh cho trang chi tiết */
+        /* CSS Tùy chỉnh cho trang chi tiết */
         :root {
-            /* Giả định màu chủ đạo, nếu chưa có trong styles.css */
             --color-primary: #ffc107; /* Màu vàng */
             --color-secondary: #212529; /* Màu đen/xám tối */
             --color-light: #f8f9fa;
         }
 
-        .project-header-banner {
-            /* SỬ DỤNG ẢNH BẠN ĐÃ TẢI LÊN */
-            background-image: url('uploaded:image_c2dafe.png-27e17766-1a7b-4038-ad8a-3a8e30127e75'); 
-            background-size: cover;
-            background-position: center 30%; 
-            height: 400px; 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-        .project-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7); /* Lớp phủ đen 70% */
-        }
-        .project-title-box {
-            z-index: 1;
-            color: white;
-            text-align: center;
-            padding-top: 5rem; 
-        }
-        .project-title-box h1 {
-            font-family: 'Oswald', sans-serif;
-            font-size: 3.5rem; 
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 0;
-        }
-        .project-title-box p {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            letter-spacing: 2px;
-        }
+        .project-header-banner {
+            background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&h=600&q=80'); /* Ảnh Unsplash: Server/Code */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+        }
+        .project-title-box {
+            z-index: 1;
+            color: white;
+            text-align: center;
+        }
+        .project-title-box h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
         .meta-data-card {
             background-color: #f8f9fa;
             border-left: 5px solid var(--color-primary);
@@ -93,14 +82,6 @@
         .team-table th:first-child, .team-table td:first-child {
             width: 5%;
         }
-        .report-illustration {
-            max-width: 100%;
-            height: auto;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            margin: 15px auto;
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -124,23 +105,28 @@
         </div>
     </nav>
     <main>
-                <section class="project-header-banner">
+        <section class="project-header-banner">
             <div class="project-overlay"></div>
             <div class="project-title-box">
                 <p class="text-uppercase fw-bold mb-2" style="color: var(--color-primary);">Kỹ Thuật & Mạng Máy Tính</p>
                 <h1>DỊCH VỤ VẬN CHUYỂN FILE FTP (NHÓM 2)</h1>
             </div>
         </section>
-                <section class="py-5">
+        
+
+[Image of server racks and networking equipment]
+
+
+        <section class="py-5">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="project-description">
-                            <p class="lead">Dự án này mô phỏng việc xây dựng và vận hành một **FTP Server** trên nền tảng **Windows 11** sử dụng **Internet Information Services (IIS)**. Mục tiêu là tạo ra một "nhà kho kỹ thuật số" an toàn và dễ quản lý, cho phép chia sẻ dữ liệu hiệu quả trong môi trường mạng nội bộ (LAN) của nhóm.</p>
-                            
+                            <p class="lead">Dự án này mô phỏng việc **xây dựng và vận hành một FTP Server** trên nền tảng Windows 11 sử dụng **Internet Information Services (IIS)**. Mục tiêu là tạo ra một "nhà kho kỹ thuật số" an toàn và dễ quản lý, cho phép chia sẻ dữ liệu hiệu quả trong môi trường mạng nội bộ (LAN) của nhóm.</p>
+                            
                             <h2 class="section-title mt-4 mb-3">Tóm Tắt Vai Trò Nhóm</h2>
                             <p>Đây là chi tiết phân công trách nhiệm của các thành viên trong quá trình xây dựng và báo cáo FTP Server:</p>
-                            
+                            
                             <div class="table-responsive">
                                 <table class="table table-bordered team-table">
                                     <thead class="bg-light">
@@ -155,10 +141,10 @@
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>Võ Đức Huy</td>
+                                            <td>**Võ Đức Huy**</td>
                                             <td>Nhóm trưởng - Chịu trách nhiệm chính</td>
                                             <td>Thực hiện kỹ thuật (Thiết lập Server, Virtual Directory, Cấu hình Site, Kiểm thử). Tổng hợp toàn bộ Báo cáo và Slide.</td>
-                                            <td>Tổng hợp</td>
+                                            <td>**Tổng hợp**</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
@@ -225,16 +211,19 @@
                             <h3>1. Giới thiệu – FTP là gì?</h3>
                             <p><strong>FTP (File Transfer Protocol)</strong> là giao thức chuyển giao file cơ bản và quan trọng nhất, hoạt động như một dịch vụ giao hàng trong thế giới máy tính.</p>
                             <ul>
-                                <li>**FTP Server** 🏠: Là "Nhà kho" lưu trữ file.</li>
-                                <li>**FTP Client** 👤: Là "Khách hàng" gửi yêu cầu lấy hoặc gửi file.</li>
-                                <li>**TCP/IP** 🚚: Là "Shipper" đảm bảo vận chuyển dữ liệu chính xác và không thất thoát.</li>
+                                <li>**FTP Server 🏠:** Là "Nhà kho" lưu trữ file.</li>
+                                <li>**FTP Client 👤:** Là "Khách hàng" gửi yêu cầu lấy hoặc gửi file.</li>
+                                <li>**TCP/IP 🚚:** Là "Shipper" đảm bảo vận chuyển dữ liệu chính xác và không thất thoát.</li>
                             </ul>
                             <p class="fst-italic text-center">
-                                <img src="uploaded:image_7bf540.png-49dd2683-c283-4f4b-ac5e-796da559e9ff" alt="Ảnh minh họa mô hình FTP Client Server" class="report-illustration">
+                                
+
+[Image of FTP client-server model diagram]
+
                             </p>
 
                             <h3>2. Công cụ và Môi trường Thực hiện</h3>
-                            <div class="table-responsive">
+                            <div class="table-responsive">
                                 <table class="table table-sm table-striped">
                                     <thead>
                                         <tr><th>Thành phần</th><th>Chi tiết</th></tr>
@@ -249,79 +238,70 @@
                             </div>
 
                             <h3>3. Các Bước Thiết Lập FTP Server Bằng IIS</h3>
-                            
+                            
                             <h4>Bước 1 – Kích hoạt tính năng FTP trên Windows</h4>
                             <ol>
-                                <li>Mở **Control Panel** → Programs and Features → **Turn Windows features on or off**.</li>
-                                <li>Tích chọn: **Internet Information Services (IIS)**, và cụ thể là **FTP Server** (bao gồm FTP Service và FTP Extensibility).</li>
+                                <li>Mở **Control Panel** → **Programs and Features** → **Turn Windows features on or off**.</li>
+                                <li>Tích chọn: **Internet Information Services (IIS)**, và cụ thể là **FTP Server** (bao gồm **FTP Service** và **FTP Extensibility**).</li>
                             </ol>
                             <p class="fst-italic text-center">
-                                <img src="uploaded:image_7bf975.png-27a3531d-aae1-4b64-9dab-51af2dd608c3" alt="Kích hoạt tính năng FTP Server trong Windows Features" class="report-illustration">
+                                
                             </p>
 
                             <h4>Bước 2 – Tạo FTP Site và Cấu hình Vật lý</h4>
                             <ol>
-                                <li>Mở **IIS Manager** → Chuột phải vào Sites → **Add FTP Site**.</li>
+                                <li>Mở **IIS Manager** → Chuột phải vào **Sites** → **Add FTP Site**.</li>
                                 <li>Đặt tên site (ví dụ: `DaDieuChauPhiFTPsite`) và chọn thư mục vật lý chia sẻ (ví dụ: `C:\inetpub\ftproot`).</li>
+                                
                                 <li>Thiết lập IP (IP nội bộ của Server), Port (21) và bật tự động khởi động.</li>
-                                <li>Nhấn Finish để hoàn tất cấu hình cơ bản.</li>
+                                
+                                <li>Nhấn **Finish** để hoàn tất cấu hình cơ bản.</li>
                             </ol>
-                            <p class="fst-italic text-center">
-                                <img src="uploaded:image_7c4eb4.png-f76c4c29-1486-4168-bf79-b9ef3b789206" alt="Cấu hình thông tin cơ bản và đường dẫn vật lý cho FTP Site" class="report-illustration">
-                            </p>
-                            
+                            
                             <h4>Bước 3 – Tạo User và Phân quyền (User Isolation)</h4>
                             <ol>
-                                <li>Tạo **User hệ thống mới** (ví dụ: `HuongBel`) trong Computer Management.</li>
+                                <li>Tạo User hệ thống mới (ví dụ: `HuongBel`) trong **Computer Management**.</li>
                                 <li>Tạo thư mục riêng cho User đó trong thư mục gốc (`C:\inetpub\ftproot\HuongBel`).</li>
-                                <li>Cấp **quyền NTFS**: Chuột phải vào folder User → Security → Edit → Add User → Cấp quyền **Full Control** cho User.
-                                    <p class="fst-italic text-center">
-                                        <img src="uploaded:image_7c4ef4.png-dc3303cb-6e51-4800-bcf8-52953b2f357f" alt="Cấp quyền NTFS cho User FTP" class="report-illustration">
-                                    </p>
+                                <li>**Cấp quyền NTFS:** Chuột phải vào folder User → **Security** → **Edit** → **Add User** → Cấp quyền **Full Control** cho User.
+                                    
                                 </li>
-                                <li>Giới hạn truy cập (**User Isolation**): Trong IIS Manager → Trang chủ FTP Site → FTP User Isolation → Chọn **User name directory** → Apply. (Đảm bảo mỗi user chỉ thấy thư mục riêng của mình).
-                                    <p class="fst-italic text-center">
-                                        <img src="uploaded:image_7c5277.png-26ca7dde-6c2b-4a86-9431-284cf0c6f6c5" alt="Cấu hình giới hạn truy cập thư mục riêng (User Isolation)" class="report-illustration">
-                                    </p>
+                                <li>**Giới hạn truy cập (User Isolation):** Trong **IIS Manager** → Trang chủ FTP Site → **FTP User Isolation** → Chọn **User name directory** → **Apply**. (Đảm bảo mỗi user chỉ thấy thư mục riêng của mình).
+                                    
                                 </li>
                             </ol>
 
                             <h4>Bước 4 – Cấu hình Firewall & Passive Mode</h4>
                             <ol>
-                                <li>Cấu hình **Passive Port trong IIS**: Quay lại trang chủ IIS → **FTP Firewall Support** → Nhập dải port cho Data Channel Port Range (ví dụ: `5000-6000`).
-                                    <p class="fst-italic text-center">
-                                        <img src="uploaded:image_864f82.png-087f402b-16a9-4d35-aae2-42001d798d7c" alt="Thiết lập dải port Passive trong IIS" class="report-illustration">
-                                    </p>
+                                <li>**Cấu hình Passive Port trong IIS:** Quay lại trang chủ IIS → **FTP Firewall Support** → Nhập dải port cho **Data Channel Port Range** (ví dụ: `5000-6000`).
+                                    
                                 </li>
-                                <li>Cấu hình **Firewall trong Windows**: Mở Windows Defender Firewall → Advanced Security → Inbound Rules.
+                                <li>**Cấu hình Firewall trong Windows:** Mở **Windows Defender Firewall** → **Advanced Security** → **Inbound Rules**.
                                     <ul>
                                         <li>Bật **FTP Server (FTP Traffic-In)** (Port 21).</li>
                                         <li>Bật **FTP Server Passive (FTP Passive Traffic-In)** (cho phép dải port 5000–6000).</li>
+                                        
                                     </ul>
-                                    <p class="fst-italic text-center">
-                                        <img src="uploaded:image_86531f.png-654c3213-5c3e-4f17-b2d0-9cb56c030e4b" alt="Thiết lập Inbound Rules trong Windows Firewall" class="report-illustration">
-                                    </p>
                                 </li>
                             </ol>
-                            <p>Việc này đảm bảo server hoạt động an toàn và đúng chuẩn **Passive Mode**, cho phép kết nối từ Client xuyên qua Firewall.</p>
-                            
+                            <p>Việc này đảm bảo server hoạt động an toàn và đúng chuẩn **Passive Mode**.</p>
+                            
                             <h3>4. Kiểm Tra Kết Nối và Kết Luận</h3>
                             <p>Nhóm đã tiến hành kiểm tra kết nối từ máy client bằng các công cụ:</p>
                             <ul>
-                                <li>**File Explorer**: Truy cập `ftp://<IP_của_Server>`.</li>
+                                <li>**File Explorer:** Truy cập `ftp://<IP_của_Server>`.</li>
                                 <li>**Command Prompt** và **FileZilla Client**.</li>
                             </ul>
                             <p class="fst-italic text-center">
-                                <img src="uploaded:image_86c435.png-8ba53218-e933-4679-bdb8-7bad4d95fbe1" alt="Kiểm tra kết nối FTP thành công bằng FileZilla hoặc File Explorer" class="report-illustration">
+                                
                             </p>
-                            
+                            
                             <div class="alert alert-success mt-4">
                                 <h4 class="alert-heading">KẾT LUẬN CUỐI CÙNG</h4>
-                                <p>Nhóm đã dựng thành công **FTP Server bằng IIS** trên Windows 11, với đầy đủ các cấu hình về user, phân quyền, mở port Passive. Kết nối hoạt động ổn định và bảo mật trong mạng nội bộ.</p>
+                                <p>Nhóm đã dựng thành công FTP Server bằng IIS trên Windows 11, với đầy đủ các cấu hình về user, phân quyền, mở port Passive. Kết nối hoạt động ổn định và bảo mật trong mạng nội bộ.</p>
                             </div>
-                            
+                            
                             <p class="mt-4">
-                                Wedsite riêng của DDCP đã ra mắt: <a href="https://blogs.mtdv.me/blog/posts/dadieuchauphistore" target="_blank">https://blogs.mtdv.me/blog/posts/dadieuchauphistore</a>
+                                **Wedsite riêng của DDCP đã ra mắt:** <a href="https://blogs.mtdv.me/blog/posts/dadieuchauphistore" target="_blank">https://blogs.mtdv.me/blog/posts/dadieuchauphistore</a>
                             </p>
                         </div>
                     </div>
