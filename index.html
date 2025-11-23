@@ -1,97 +1,273 @@
-// Trong file: js/contact-bubble.js
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A.O.2 LAPS - Đà Điểu Châu Phi - Thiết Kế Không Giới Hạn">
+    <title>A.O.2 LABS - Đà Điểu Châu Phi</title>
 
-document.addEventListener('DOMContentLoaded', function() {
-    const bubble = document.getElementById('cuteBubble');
-    const contactBtn = document.getElementById('contactBtn');
-    
-    // Thoát nếu các phần tử HTML cần thiết không được tìm thấy
-    if (!bubble || !contactBtn) {
-        return;
-    }
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="css/styles.css">
+    
+        <link rel="stylesheet" href="css/cute-contact-button.css">
+    
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+</head>
+<body>
 
-    // ################ DANH SÁCH CÂU THOẠI (16 CÂU ĐA DẠNG) ################
-    const messages = [
-        // Kêu gọi hành động (CTA) & Tư vấn chuyên nghiệp
-        'Bạn đang tìm kiếm ý tưởng đột phá? Nhấp vào đây để trò chuyện ngay!',
-        'Cần báo giá nhanh? Bấm vào đây, tụi mình phản hồi chỉ trong 30 phút!',
-        'Đừng ngần ngại! Bạn có câu hỏi? Nhấn vào đây để kết nối với A.O.2 LABS.',
-        'Sẵn sàng để dự án của bạn "cất cánh"? Bấm ngay để gặp team Đà Điểu!',
-        
-        // Hài hước & Xàm xí (Tăng tính tự nhiên và thu hút)
-        'Đà điểu đã sẵn sàng lắng nghe bạn! (Đừng lo, tụi mình không cắn đâu 😉)',
-        'Ê ê, bạn ơi! Bấm vào đây nè, mình có chuyện muốn nói riêng với bạn!',
-        'Alo, alo? Thấy cái nút tròn chưa? Bấm vào đi rồi nói chuyện tiếp!',
-        'Hình như bạn đang tìm kiếm thứ gì đó? Nó nằm ngay dưới ngón tay bạn đó!',
-        
-        // Liên quan đến Design & Công nghệ
-        'Thích giao diện trang web này không? Nhấp vào, tụi mình thiết kế cho bạn!',
-        'Chúng ta nên nói về công nghệ. Bấm để bắt đầu cuộc phiêu lưu số!',
-        'Tụi mình giỏi Design lắm! Bạn có muốn kiểm chứng không? (Bấm vào!)',
-        'Cần một chút "phép thuật" cho thương hiệu? Bấm để khám phá A.O.2 LABS!',
-
-        // Ngắn gọn & Thân thiện
-        'Hello! Tụi mình ở đây để giúp bạn.',
-        'Nhấp vào mình nè! Mình có quà tặng Free Ebook cho bạn!',
-        'Thời tiết hôm nay đẹp nhỉ? Bấm vào để làm việc cùng nhau!',
-        'Bấm vào đây để trở thành người bạn thân của Đà Điểu nhé! 🦢'
-    ];
-
-    // --- CẤU HÌNH THỜI GIAN ---
-    const DISPLAY_DURATION = 4000; // 4 giây (Phải khớp với animation trong CSS)
-    const REPEAT_CYCLE = 10000;    // Tổng chu kỳ lặp lại: 10 giây/lần
-
-    let currentMessageIndex = -1; // Biến để theo dõi câu thoại cuối cùng
-
-    // --- 1. HÀM CHỌN CÂU THOẠI NGẪU NHIÊN KHÔNG LẶP LẠI LIÊN TỤC ---
-    function getRandomMessage() {
-        let randomIndex;
-        do {
-            // Chọn số ngẫu nhiên từ 0 đến length-1
-            randomIndex = Math.floor(Math.random() * messages.length);
-        } while (randomIndex === currentMessageIndex); // Đảm bảo câu mới khác câu cũ
-
-        currentMessageIndex = randomIndex;
-        return messages[randomIndex];
-    }
-
-    // --- 2. HÀM HIỂN THỊ BUBBLE VÀ TỰ ẨN ---
-    function showBubble() {
-        // Lấy câu ngẫu nhiên mới và đặt nội dung
-        bubble.textContent = getRandomMessage(); 
-        
-        // Kích hoạt animation CSS (thêm class 'show')
-        bubble.classList.add('show');
-        
-        // Tự động ẩn bubble sau DISPLAY_DURATION
-        setTimeout(() => {
-             bubble.classList.remove('show');
-        }, DISPLAY_DURATION); 
-    }
-
-    // --- 3. THIẾT LẬP LẶP LẠI (10 GIÂY/LẦN) ---
-    // Lưu trữ interval để có thể xóa (clearInterval) khi người dùng tương tác
-    window.bubbleInterval = setInterval(showBubble, REPEAT_CYCLE); 
-
-    // Hiển thị lần đầu khi load trang (sau 3 giây)
-    setTimeout(showBubble, 3000); 
-
-    // --- 4. HIỆU ỨNG KHI CLICK (Dừng lặp và chuyển trang) ---
-    contactBtn.addEventListener('click', function(e) {
-        // Ngăn chặn chuyển trang ngay lập tức
-        e.preventDefault(); 
-        
-        // Vô hiệu hóa interval để bubble text không đổi nữa
-        clearInterval(window.bubbleInterval); 
-
-        // Hiển thị thông báo chuyển trang
-        bubble.classList.remove('show');
-        bubble.textContent = 'Tuyệt vời! Đang chuyển đến trang Liên Hệ...';
-        void bubble.offsetWidth; // Force reflow để animation reset
-        bubble.classList.add('show');
-        
-        // Đợi 1.5 giây rồi mới chuyển trang
-        setTimeout(() => {
-            window.location.href = contactBtn.href;
-        }, 1500); 
-    });
-});
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-transparent" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html#home">
+                <span class="brand-text">A.O.2 LABS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Dịch Vụ</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Dự Án</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#gapgo">Gặp Gỡ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section id="home" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Chào Mừng Đến Với A.O.2 LABS!</h1>
+            <p class="hero-subtitle">Nâng tầm thương hiệu của bạn với thiết kế đột phá và chiến lược số thông minh.</p>
+            <a href="projects.html" class="btn btn-primary btn-hero" data-aos="fade-up" data-aos-delay="500">Xem Portfolio Dự Án</a>
+        </div>
+    </section>
+    <section id="dichvu" class="services-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-down">
+                <h2 class="section-title">Tụi Mình Giỏi Món Gì?</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-icon"><i class="fas fa-palette"></i></div>
+                        <h3 class="service-title">Thiết Kế Đồ Họa</h3>
+                        <p class="service-description">Branding đỉnh cao, từ logo đến identity hoàn chỉnh. Tụi mình tạo nên dấu ấn thương hiệu độc đáo, khác biệt và đáng nhớ cho doanh nghiệp của bạn.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="300">
+                        <div class="service-icon"><i class="fas fa-laptop-code"></i></div>
+                        <h3 class="service-title">UI/UX Design</h3>
+                        <p class="service-description">Thiết kế website và app với trải nghiệm người dùng mượt mà. Interface đẹp mắt, dễ sử dụng, và tối ưu chuyển đổi cho mọi nền tảng.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="500">
+                        <div class="service-icon"><i class="fas fa-camera-retro"></i></div>
+                        <h3 class="service-title">Content Creation</h3>
+                        <p class="service-description">Visual content bắt mắt cho social media và marketing. Từ ảnh, video đến motion graphics - tất cả đều chất lượng cao và thu hút.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="700">
+                        <div class="service-icon"><i class="fas fa-code"></i></div>
+                        <h3 class="service-title">Front-end Web</h3>
+                        <p class="service-description">Code website responsive, tốc độ nhanh và chuẩn SEO. Biến design thành sản phẩm thật với HTML, CSS, JavaScript hiện đại.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="duan" class="portfolio-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-down">
+                <h2 class="section-title">Dự Án Đã Chạy</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="100">
+                        <a href="projects.html" style="text-decoration: none;">
+                            <img src="https://plus.unsplash.com/premium_photo-1683140640468-9e428f4257b8?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project 1">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <h3 class="portfolio-title">Xây Dựng & Vận Hành FTP Server</h3>
+                                    <p class="portfolio-category">MComputer Networking</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="300">
+                        <a href="projects.html" style="text-decoration: none;">
+                            <img src="https://images.unsplash.com/photo-1763568258429-b3c7634a764d?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Project 2">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <h3 class="portfolio-title">Phát Triển App Cơ Bản (MIT App Inventor)</h3>
+                                    <p class="portfolio-category">UI/UX Design</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="500">
+                        <a href="projects.html" style="text-decoration: none;">
+                            <img src="https://static.vecteezy.com/system/resources/thumbnails/006/360/602/small/open-cardboard-box-on-floor-background-high-angle-view-of-an-empty-cardboard-box-or-parcel-box-free-photo.JPG" alt="Project 3">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <h3 class="portfolio-title">Dự Án 3: Phát Triển Wed Cục Bộ</h3>
+                                    <p class="portfolio-category">Wed Devoloment</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="100">
+                        <a href="projects.html" style="text-decoration: none;">
+                            <img src="https://static.vecteezy.com/system/resources/thumbnails/006/360/602/small/open-cardboard-box-on-floor-background-high-angle-view-of-an-empty-cardboard-box-or-parcel-box-free-photo.JPG" alt="Project 4">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <h3 class="portfolio-title">Dự Án 4: [Sẽ cập nhật sau]</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="300">
+                        <a href="projects.html" style="text-decoration: none;">
+                            <img src="https://static.vecteezy.com/system/resources/thumbnails/006/360/602/small/open-cardboard-box-on-floor-background-high-angle-view-of-an-empty-cardboard-box-or-parcel-box-free-photo.JPG" alt="Project 5">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <h3 class="portfolio-title">Dự Án 5: [Sẽ cập nhật sau]</h3>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="portfolio-card" data-aos="zoom-in" data-aos-delay="500">
+                        <a href="projects.html" style="text-decoration: none;">
+                            <img src="https://static.vecteezy.com/system/resources/thumbnails/006/360/602/small/open-cardboard-box-on-floor-background-high-angle-view-of-an-empty-cardboard-box-or-parcel-box-free-photo.JPG" alt="Project 6">
+                            <div class="portfolio-overlay">
+                                <div class="portfolio-content">
+                                    <h3 class="portfolio-title">Dự Án 6: [Sẽ cập nhật sau]</h3>
+                                </div>
+                            </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="gapgo" class="team-section py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-down">
+                <h2 class="section-title">Gặp Gỡ Team Đà Điểu</h2>
+                <div class="title-underline"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card" data-aos="fade-left" data-aos-delay="100">
+                        <img src="https://st.depositphotos.com/1898481/3818/i/450/depositphotos_38183523-stock-photo-unnamed.jpg" alt="Team Member 1">
+                        <div class="team-content">
+                            <h3 class="team-name">Đức Huy (Leader)</h3>
+                            <p class="team-role">Graphic Designer, UI/UX Design & Content Creator</p>
+                            <p class="team-bio">Đam mê design, hiện đã 17 và vẫn mê mệt với từng đường nét. Chuyên biến ý tưởng điên rồ thành sản phẩm chất lượng.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card" data-aos="fade-left" data-aos-delay="300">
+                        <img src="https://st.depositphotos.com/1898481/3818/i/450/depositphotos_38183523-stock-photo-unnamed.jpg" alt="Team Member 2">
+                        <div class="team-content">
+                            <h3 class="team-name">Quốc Huy</h3>
+                            <p class="team-role">Graphic Designer</p>
+                            <p class="team-bio">Nghiện đồ ngọt nhưng gầy. Đam mê thiết kế Luôn đặt trải nghiệm người dùng lên hàng đầu, thiết kế không chỉ đẹp mà còn phải dễ xài.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card" data-aos="fade-left" data-aos-delay="500">
+                        <img src="https://st.depositphotos.com/1898481/3818/i/450/depositphotos_38183523-stock-photo-unnamed.jpg" alt="Team Member 3">
+                        <div class="team-content">
+                            <h3 class="team-name">Phương Linh</h3>
+                            <p class="team-role">Graphic Designer</p>
+                            <p class="team-bio">Con người hiền lành, món yêu thích là các món sườn. Yêu đồ hoạ và thích những thứ animate mượt như lụa.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card" data-aos="fade-left" data-aos-delay="700">
+                        <img src="https://st.depositphotos.com/1898481/3818/i/450/depositphotos_38183523-stock-photo-unnamed.jpg" alt="Team Member 4">
+                        <div class="team-content">
+                            <h3 class="team-name">Thuý Hường</h3>
+                            <p class="team-role">Graphic Designer</p>
+                            <p class="team-bio">Chỉnh màu sắc, thường xuyên đưa ra ý tưởng mới. Chuyên tạo content viral và biết cách kể câu chuyện qua hình ảnh.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2025 A.O.2 LABS - Đà Điểu Châu Phi. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" data-aos="flip-up" data-aos-delay="0"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon" data-aos="flip-up" data-aos-delay="100"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon" data-aos="flip-up" data-aos-delay="200"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon" data-aos="flip-up" data-aos-delay="300"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-icon" data-aos="flip-up" data-aos-delay="400"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+        <a href="contact.html" class="contact-fixed-btn" title="Liên hệ ngay với A.O.2 LABS" id="contactBtn">
+                <div class="cute-bubble" id="cuteBubble">
+            Cần ý tưởng đột phá? Nhấp vào để khai phá tiềm năng dự án của bạn.
+        </div>
+        <div class="ostrich-btn-inner">
+            <i class="fas fa-crow"></i> 
+        </div>
+    </a>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="js/script.js"></script>
+    
+        <script src="js/contact-bubble.js"></script> 
+    
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            disable: 'mobile', 
+            duration: 1200,   
+            easing: 'ease-out-cubic',
+            once: true,     
+        });
+    </script>
+    
+</body>
+</html>
