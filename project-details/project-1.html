@@ -15,14 +15,8 @@
 
     <style>
         /* CSS Tùy chỉnh cho trang chi tiết */
-        :root {
-            --color-primary: #ffc107; /* Màu vàng */
-            --color-secondary: #212529; /* Màu đen/xám tối */
-            --color-light: #f8f9fa;
-        }
-
         .project-header-banner {
-            background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&h=600&q=80'); /* Ảnh Unsplash: Server/Code */
+            background-image: url('https://images.unsplash.com/photo-1542831371-29b0f74f9713?w=1920&h=600&fit=crop'); /* Ảnh minh họa server/network */
             background-size: cover;
             background-position: center;
             height: 400px;
@@ -112,10 +106,6 @@
                 <h1>DỊCH VỤ VẬN CHUYỂN FILE FTP (NHÓM 2)</h1>
             </div>
         </section>
-        
-
-[Image of server racks and networking equipment]
-
 
         <section class="py-5">
             <div class="container">
@@ -173,38 +163,12 @@
                                             <td>Thử nghiệm và vận hành</td>
                                             <td>Hỗ trợ upload file, kiểm tra truy cập, thu thập ảnh chụp màn hình minh họa cho bài làm.</td>
                                             <td>Phần 5</td>
-                                        </tr>
+                                    </tr>
                                     </tbody>
                                 </table>
                             </div>
                         </div>
 
-                    <div class="col-lg-4">
-                        <div class="sticky-top" style="top: 100px;">
-                            <h2 class="section-title mb-3" style="color: var(--color-primary);">THÔNG TIN</h2>
-                            <div class="meta-data-card mb-4">
-                                <p><strong>Dịch vụ:</strong> Quản trị Mạng & Kỹ thuật Server</p>
-                                <p><strong>Nền tảng:</strong> Windows Server / IIS</p>
-                                <p><strong>Lĩnh vực:</strong> Chia sẻ & Vận chuyển File</p>
-                                <p><strong>Thời gian:</strong> 21/10/2025</p>
-                                <p><strong>Vai trò chính:</strong> Vận hành & Bảo mật</p>
-                                <hr>
-                                <p class="mb-1 fw-bold text-uppercase">Công cụ & Giao thức</p>
-                                <span class="tech-stack-icon"><i class="fas fa-server" title="IIS"></i></span>
-                                <span class="tech-stack-icon"><i class="fas fa-network-wired" title="LAN"></i></span>
-                                <span class="tech-stack-icon"><i class="fas fa-shield-alt" title="Firewall"></i></span>
-                                <span class="tech-stack-icon"><i class="fas fa-user-lock" title="User Isolation"></i></span>
-                            </div>
-
-                            <a href="../projects.html" class="btn btn-primary w-100 mt-3">
-                                <i class="fas fa-arrow-left me-2"></i> Quay lại Portfolio
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-                                <div class="row">
-                    <div class="col-lg-12">
                         <div class="report-section mt-5">
                             <h2 class="section-title mb-3">BÁO CÁO: QUÁ TRÌNH THỰC HIỆN KỸ THUẬT</h2>
 
@@ -215,12 +179,7 @@
                                 <li>**FTP Client 👤:** Là "Khách hàng" gửi yêu cầu lấy hoặc gửi file.</li>
                                 <li>**TCP/IP 🚚:** Là "Shipper" đảm bảo vận chuyển dữ liệu chính xác và không thất thoát.</li>
                             </ul>
-                            <p class="fst-italic text-center">
-                                
-
-[Image of FTP client-server model diagram]
-
-                            </p>
+                            <p class="fst-italic text-center"></p>
 
                             <h3>2. Công cụ và Môi trường Thực hiện</h3>
                             <div class="table-responsive">
@@ -244,17 +203,13 @@
                                 <li>Mở **Control Panel** → **Programs and Features** → **Turn Windows features on or off**.</li>
                                 <li>Tích chọn: **Internet Information Services (IIS)**, và cụ thể là **FTP Server** (bao gồm **FTP Service** và **FTP Extensibility**).</li>
                             </ol>
-                            <p class="fst-italic text-center">
-                                
-                            </p>
+                            <p class="fst-italic text-center"></p>
 
                             <h4>Bước 2 – Tạo FTP Site và Cấu hình Vật lý</h4>
                             <ol>
                                 <li>Mở **IIS Manager** → Chuột phải vào **Sites** → **Add FTP Site**.</li>
                                 <li>Đặt tên site (ví dụ: `DaDieuChauPhiFTPsite`) và chọn thư mục vật lý chia sẻ (ví dụ: `C:\inetpub\ftproot`).</li>
-                                
                                 <li>Thiết lập IP (IP nội bộ của Server), Port (21) và bật tự động khởi động.</li>
-                                
                                 <li>Nhấn **Finish** để hoàn tất cấu hình cơ bản.</li>
                             </ol>
                             
@@ -262,24 +217,17 @@
                             <ol>
                                 <li>Tạo User hệ thống mới (ví dụ: `HuongBel`) trong **Computer Management**.</li>
                                 <li>Tạo thư mục riêng cho User đó trong thư mục gốc (`C:\inetpub\ftproot\HuongBel`).</li>
-                                <li>**Cấp quyền NTFS:** Chuột phải vào folder User → **Security** → **Edit** → **Add User** → Cấp quyền **Full Control** cho User.
-                                    
-                                </li>
-                                <li>**Giới hạn truy cập (User Isolation):** Trong **IIS Manager** → Trang chủ FTP Site → **FTP User Isolation** → Chọn **User name directory** → **Apply**. (Đảm bảo mỗi user chỉ thấy thư mục riêng của mình).
-                                    
-                                </li>
+                                <li>**Cấp quyền NTFS:** Chuột phải vào folder User → **Security** → **Edit** → **Add User** → Cấp quyền **Full Control** cho User.</li>
+                                <li>**Giới hạn truy cập (User Isolation):** Trong **IIS Manager** → Trang chủ FTP Site → **FTP User Isolation** → Chọn **User name directory** → **Apply**. (Đảm bảo mỗi user chỉ thấy thư mục riêng của mình).</li>
                             </ol>
 
                             <h4>Bước 4 – Cấu hình Firewall & Passive Mode</h4>
                             <ol>
-                                <li>**Cấu hình Passive Port trong IIS:** Quay lại trang chủ IIS → **FTP Firewall Support** → Nhập dải port cho **Data Channel Port Range** (ví dụ: `5000-6000`).
-                                    
-                                </li>
+                                <li>**Cấu hình Passive Port trong IIS:** Quay lại trang chủ IIS → **FTP Firewall Support** → Nhập dải port cho **Data Channel Port Range** (ví dụ: `5000-6000`).</li>
                                 <li>**Cấu hình Firewall trong Windows:** Mở **Windows Defender Firewall** → **Advanced Security** → **Inbound Rules**.
                                     <ul>
                                         <li>Bật **FTP Server (FTP Traffic-In)** (Port 21).</li>
                                         <li>Bật **FTP Server Passive (FTP Passive Traffic-In)** (cho phép dải port 5000–6000).</li>
-                                        
                                     </ul>
                                 </li>
                             </ol>
@@ -291,9 +239,7 @@
                                 <li>**File Explorer:** Truy cập `ftp://<IP_của_Server>`.</li>
                                 <li>**Command Prompt** và **FileZilla Client**.</li>
                             </ul>
-                            <p class="fst-italic text-center">
-                                
-                            </p>
+                            <p class="fst-italic text-center"></p>
                             
                             <div class="alert alert-success mt-4">
                                 <h4 class="alert-heading">KẾT LUẬN CUỐI CÙNG</h4>
@@ -303,6 +249,29 @@
                             <p class="mt-4">
                                 **Wedsite riêng của DDCP đã ra mắt:** <a href="https://blogs.mtdv.me/blog/posts/dadieuchauphistore" target="_blank">https://blogs.mtdv.me/blog/posts/dadieuchauphistore</a>
                             </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="sticky-top" style="top: 100px;">
+                            <h2 class="section-title mb-3" style="color: var(--color-primary);">THÔNG TIN</h2>
+                            <div class="meta-data-card mb-4">
+                                <p><strong>Dịch vụ:</strong> Quản trị Mạng & Kỹ thuật Server</p>
+                                <p><strong>Nền tảng:</strong> Windows Server / IIS</p>
+                                <p><strong>Lĩnh vực:</strong> Chia sẻ & Vận chuyển File</p>
+                                <p><strong>Thời gian:</strong> 21/10/2025</p>
+                                <p><strong>Vai trò chính:</strong> Vận hành & Bảo mật</p>
+                                <hr>
+                                <p class="mb-1 fw-bold text-uppercase">Công cụ & Giao thức</p>
+                                <span class="tech-stack-icon"><i class="fas fa-server" title="IIS"></i></span>
+                                <span class="tech-stack-icon"><i class="fas fa-network-wired" title="LAN"></i></span>
+                                <span class="tech-stack-icon"><i class="fas fa-shield-alt" title="Firewall"></i></span>
+                                <span class="tech-stack-icon"><i class="fas fa-user-lock" title="User Isolation"></i></span>
+                            </div>
+
+                            <a href="../projects.html" class="btn btn-primary w-100 mt-3">
+                                <i class="fas fa-arrow-left me-2"></i> Quay lại Portfolio
+                            </a>
                         </div>
                     </div>
                 </div>
