@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // --- CẤU HÌNH THỜI GIAN ---
     const DISPLAY_DURATION = 4000; // 4 giây (Phải khớp với animation trong CSS)
-    const REPEAT_CYCLE = 10000;    // Tổng chu kỳ lặp lại: 10 giây/lần
+    const REPEAT_CYCLE = 15000;    // Tổng chu kỳ lặp lại: 10 giây/lần
 
     let currentMessageIndex = -1; // Biến để theo dõi câu thoại cuối cùng
 
