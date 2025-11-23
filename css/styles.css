@@ -1,334 +1,377 @@
 :root {
-    /* MÀU GỐC CỦA BẠN (Đã thay Đỏ bằng Vàng Kim) */
-    --color-primary: #FFC300; /* Thay #FF0000 (Đỏ) bằng Vàng Kim */
-    /* MÀU CHỦ ĐẠO MỚI: VÀNG CAM HIỆN ĐẠI (#FFC107) */
+    /* MÀU CHỦ ĐẠO: VÀNG CAM HIỆN ĐẠI */
     --color-primary: #FFC107;
---color-secondary: #0D1328;
---color-light: #FFFFFF;
---color-dark: #1a1a1a;
---color-gray: #6c757d;
-    --transition-speed: 0.4s;
-    --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    --transition-speed: 0.4s; /* Tăng nhẹ thời gian chuyển đổi */
-    --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Hàm Easing mượt mà, có gia tốc/giảm tốc */
---anime-duration: 0.7s;
-    --border-radius-modern: 8px; /* Thêm biến Bo Cong Mới */
-    --modern-radius: 12px; /* Thêm biến cho bo cong hiện đại */
+    --color-secondary: #0D1328;
+    --color-light: #FFFFFF;
+    --color-dark: #1a1a1a;
+    --color-gray: #6c757d;
+    
+    /* THÔNG SỐ ANIMATION & TRANSITION */
+    --transition-speed: 0.4s; 
+    --anime-easing: cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    --anime-duration: 0.7s;
+    
+    /* THÔNG SỐ GIAO DIỆN */
+    --border-radius-modern: 8px;
+    --modern-radius: 12px;
 }
 
-* {
-@@ -46,7 +46,7 @@ h1, h2, h3, h4, h5, h6 {
+/* ---------------------------------------------------- */
+/* 1. KHAI BÁO FONT CHỮ (Cần thêm vào nếu chưa có) */
+/* ---------------------------------------------------- */
+
+/* Cần thêm font-family vào đây để sửa lỗi hiển thị font trên các tiêu đề */
+/* * {
+    font-family: 'Montserrat', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Oswald', sans-serif;
+} */
+
+
+/* ---------------------------------------------------- */
+/* 2. THANH ĐIỀU HƯỚNG (NAVBAR) */
+/* ---------------------------------------------------- */
 
 .navbar-solid {
-background-color: var(--color-secondary) !important;
+    background-color: var(--color-secondary) !important;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow mạnh hơn */
-padding: 1rem 0;
+    padding: 1rem 0;
 }
 
-@@ -69,8 +69,8 @@ h1, h2, h3, h4, h5, h6 {
-left: 0;
-width: 60%;
-height: 3px;
-    background-color: var(--color-primary); /* Đã đổi màu */
-    transform: skewX(-5deg);
-    background-color: var(--color-primary);
+.title-underline {
+    position: relative;
+    margin: 0 auto 2rem auto;
+    width: 100px;
+    height: 4px;
+}
+
+.title-underline::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60%;
+    height: 3px;
+    background-color: var(--color-primary); 
     transform: skewX(-5deg); /* Thêm hiệu ứng xiên nhẹ */
 }
 
 .nav-link {
-@@ -81,32 +81,30 @@ h1, h2, h3, h4, h5, h6 {
-margin: 0 0.5rem;
-padding: 0.5rem 1rem !important;
-color: var(--color-light) !important;
-    transition: all var(--transition-speed) var(--anime-easing);
-    transition: all var(--transition-speed) var(--anime-easing); /* Áp dụng Anime Easing */
-position: relative;
-    /* ÁP DỤNG BO CONG NHẸ */
+    font-weight: 600;
+    margin: 0 0.5rem;
+    padding: 0.5rem 1rem !important;
+    color: var(--color-light) !important;
+    transition: all var(--transition-speed) var(--anime-easing); 
+    position: relative;
     border-radius: var(--border-radius-modern); 
 }
 
 .nav-link::before {
-content: '';
-position: absolute;
-bottom: 0;
-left: 50%;
-    transform: translateX(-50%) scaleX(0);
-    transform: translateX(-50%) scaleX(0); /* Bắt đầu từ 0 và dùng scaleX */
-width: 100%;
-height: 2px;
-    background-color: var(--color-primary); /* Đã đổi màu */
-    background-color: var(--color-primary);
-transition: transform var(--transition-speed) var(--anime-easing);
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0); 
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-primary); 
+    transition: transform var(--transition-speed) var(--anime-easing);
 }
 
 .nav-link:hover::before,
 .nav-link.active::before {
-    transform: translateX(-50%) scaleX(0.8);
-    transform: translateX(-50%) scaleX(0.8); /* Phóng to lên 80% */
+    transform: translateX(-50%) scaleX(0.8); 
 }
 
 .nav-link:hover {
-    color: var(--color-primary) !important; /* Đã đổi màu */
-    transform: translateY(-2px);
-    color: var(--color-primary) !important;
-    transform: translateY(-2px); /* Nhấc lên nhẹ nhàng */
+    color: var(--color-primary) !important; 
+    transform: translateY(-2px); 
 }
 
 /* ---------------------------------------------------- */
-@@ -130,8 +128,8 @@ h1, h2, h3, h4, h5, h6 {
-left: 0;
-width: 100%;
-height: 100%;
-    /* Đã cập nhật lớp phủ màu (Đỏ -> Vàng Kim) */
-    background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 195, 0, 0.3)); 
-    /* Đã cập nhật Gradient để hòa hợp màu Vàng Cam */
+/* 3. HERO SECTION */
+/* ---------------------------------------------------- */
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Đã cập nhật Gradient Vàng Cam */
     background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 193, 7, 0.3));
 }
 
 .hero-content {
-@@ -147,15 +145,15 @@ h1, h2, h3, h4, h5, h6 {
-font-weight: 900;
-margin-bottom: 1.5rem;
-text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    color: var(--color-light);
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
     animation: fadeInUp var(--anime-duration) var(--anime-easing);
-    animation: fadeInUp var(--anime-duration) var(--anime-easing); /* Áp dụng Animation mới */
 }
 
 .hero-subtitle {
-font-size: 1.5rem;
-font-weight: 300;
-margin-bottom: 2.5rem;
-letter-spacing: 1px;
+    font-size: 1.5rem;
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+    letter-spacing: 1px;
     animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.15s backwards;
-    animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.15s backwards; /* Delay 150ms */
 }
 
 .btn-hero {
-@@ -165,24 +163,23 @@ h1, h2, h3, h4, h5, h6 {
-text-transform: uppercase;
-letter-spacing: 2px;
-border: none;
-    background-color: var(--color-primary); /* Đã đổi màu */
-    color: var(--color-secondary); /* Đổi màu chữ sang màu tối để nổi bật trên nền vàng */
-    transition: all 0.5s var(--anime-easing);
-    animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.3s backwards;
-    /* ĐÃ THÊM BO CONG NHẸ */
-    border-radius: var(--border-radius-modern); 
-    /* Đã cập nhật Shadow */
-    box-shadow: 0 5px 15px rgba(255, 195, 0, 0.4); 
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 1rem 2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    border: none;
     background-color: var(--color-primary);
     color: var(--color-dark); /* Đã đổi màu chữ thành tối để tương phản với nền vàng */
-    transition: all 0.5s var(--anime-easing); /* Transition dài hơn cho nút */
-    animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.3s backwards; /* Delay 300ms */
-    /* Đã cập nhật Shadow cho màu Vàng Cam */
+    transition: all 0.5s var(--anime-easing); 
+    animation: fadeInUp var(--anime-duration) var(--anime-easing) 0.3s backwards; 
     box-shadow: 0 5px 15px rgba(255, 193, 7, 0.4); 
-    border-radius: var(--modern-radius); /* Bo cong hiện đại */
+    border-radius: var(--modern-radius); 
 }
 
 .btn-hero:hover {
-    transform: translateY(-5px) scale(1.02);
-    /* Đã cập nhật Shadow và màu hover */
-    box-shadow: 0 10px 30px rgba(255, 195, 0, 0.6);
-    background-color: #e6b200; /* Vàng đậm hơn khi hover */
-    transform: translateY(-5px) scale(1.02); /* Nhấc lên và phóng to nhẹ */
-    /* Đã cập nhật Shadow cho màu Vàng Cam */
+    transform: translateY(-5px) scale(1.02); 
     box-shadow: 0 10px 30px rgba(255, 193, 7, 0.6);
     background-color: #e6b000; /* Màu vàng đậm hơn khi hover */
 }
 
 /* Keyframes giữ nguyên như bạn đã định nghĩa */
-/* Keyframes mới: Kết hợp dịch chuyển, phóng to và làm mờ để tạo hiệu ứng "xuất hiện" */
 @keyframes fadeInUp {
-from {
-opacity: 0;
-@@ -225,25 +222,24 @@ h1, h2, h3, h4, h5, h6 {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 20px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+
+/* ---------------------------------------------------- */
+/* 4. SERVICES & PORTFOLIO */
+/* ---------------------------------------------------- */
+
+.section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+}
+
 .title-underline {
-width: 100px;
-height: 4px;
-    background-color: var(--color-primary); /* Đã đổi màu */
+    width: 100px;
+    height: 4px;
     background-color: var(--color-primary);
-margin: 0 auto;
+    margin: 0 auto;
 }
 
 .service-card {
-background-color: var(--color-light);
-padding: 2.5rem 1.5rem;
-    /* ĐÃ THÊM BO CONG NHẸ */
-    border-radius: var(--border-radius-modern); 
-    border-radius: var(--modern-radius); /* Bo cong hiện đại */
-text-align: center;
-    transition: all var(--transition-speed) var(--anime-easing);
-    transition: all var(--transition-speed) var(--anime-easing); /* Áp dụng Anime Easing */
-height: 100%;
-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    background-color: var(--color-light);
+    padding: 2.5rem 1.5rem;
+    border-radius: var(--modern-radius); 
+    text-align: center;
+    transition: all var(--transition-speed) var(--anime-easing); 
+    height: 100%;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
 .service-card:hover {
-    transform: translateY(-15px);
-    /* Đã cập nhật Shadow */
-    box-shadow: 0 15px 40px rgba(255, 195, 0, 0.3);
     transform: translateY(-15px); /* Nhấc lên mạnh hơn */
-    /* Đã cập nhật Shadow cho màu Vàng Cam */
     box-shadow: 0 15px 40px rgba(255, 193, 7, 0.3); 
 }
 
 .service-icon {
-@@ -253,16 +249,16 @@ h1, h2, h3, h4, h5, h6 {
-display: flex;
-align-items: center;
-justify-content: center;
-    /* Đã cập nhật Gradient Vàng Kim */
-    background: linear-gradient(135deg, var(--color-primary), #e6b200); 
-    /* Đã cập nhật Gradient cho màu Vàng Cam */
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 1.5rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: linear-gradient(135deg, var(--color-primary), #e6b000);
-border-radius: 50%;
-    color: var(--color-secondary); /* Đổi màu icon sang màu tối để nổi bật */
+    border-radius: 50%;
     color: var(--color-dark); /* Đổi màu chữ icon thành tối để tương phản */
-font-size: 2rem;
-    transition: all 0.7s var(--anime-easing);
-    transition: all 0.7s var(--anime-easing); /* Tăng thời gian chuyển động */
+    font-size: 2rem;
+    transition: all 0.7s var(--anime-easing); 
 }
 
 .service-card:hover .service-icon {
-    transform: rotate(360deg) scale(1.1);
-    transform: rotate(360deg) scale(1.1); /* Xoay toàn bộ 360 độ và zoom nhẹ */
+    transform: rotate(360deg) scale(1.1); 
 }
 
 .service-title {
-@@ -281,8 +277,7 @@ h1, h2, h3, h4, h5, h6 {
-.portfolio-card {
-position: relative;
-overflow: hidden;
-    /* ĐÃ THÊM BO CONG NHẸ */
-    border-radius: var(--border-radius-modern); 
-    border-radius: var(--modern-radius); /* Bo cong hiện đại */
-cursor: pointer;
-height: 350px;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
 }
-@@ -291,7 +286,7 @@ h1, h2, h3, h4, h5, h6 {
-width: 100%;
-height: 100%;
-object-fit: cover;
-    transition: all 0.7s var(--anime-easing);
-    transition: all 0.7s var(--anime-easing); /* Transition mượt hơn cho ảnh */
+
+.portfolio-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--modern-radius); 
+    cursor: pointer;
+    height: 350px;
+}
+
+.portfolio-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.7s var(--anime-easing); 
 }
 
 .portfolio-overlay {
-@@ -300,31 +295,33 @@ h1, h2, h3, h4, h5, h6 {
-left: 0;
-width: 100%;
-height: 100%;
-    /* Đã cập nhật Overlay Vàng Kim */
-    background: linear-gradient(135deg, rgba(13, 19, 40, 0.95), rgba(255, 195, 0, 0.85)); 
-    /* Đã cập nhật Gradient cho màu Vàng Cam */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(135deg, rgba(13, 19, 40, 0.95), rgba(255, 193, 7, 0.85));
-display: flex;
-align-items: center;
-justify-content: center;
-opacity: 0;
-transition: all 0.4s var(--anime-easing);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s var(--anime-easing);
 }
 
 /* HIỆU ỨNG DESKTOP: Chỉ hiện khi HOVER */
 .portfolio-card:hover .portfolio-overlay {
-opacity: 1;
+    opacity: 1;
 }
 
 .portfolio-card:hover img {
-    transform: scale(1.15) rotate(0.5deg);
-    transform: scale(1.15) rotate(0.5deg); /* Zoom mạnh hơn và xoay nhẹ */
+    transform: scale(1.15) rotate(0.5deg); 
 }
 
 .portfolio-content {
-text-align: center;
-color: var(--color-light);
-    transform: translateY(30px);
-    transform: translateY(30px); /* Bắt đầu dịch chuyển xuống */
-opacity: 0;
-    transition: all 0.5s var(--anime-easing) 0.1s;
-    transition: all 0.5s var(--anime-easing) 0.1s; /* Xuất hiện trễ 100ms */
+    text-align: center;
+    color: var(--color-light);
+    transform: translateY(30px); 
+    opacity: 0;
+    transition: all 0.5s var(--anime-easing) 0.1s; 
 }
 
 /* HIỆU ỨNG DESKTOP: Chỉ hiện khi HOVER */
 .portfolio-card:hover .portfolio-content {
-transform: translateY(0);
-opacity: 1;
-@@ -333,30 +330,30 @@ h1, h2, h3, h4, h5, h6 {
+    transform: translateY(0);
+    opacity: 1;
+}
+
 .portfolio-title {
-font-size: 1.5rem;
-margin-bottom: 0.5rem;
-    color: var(--color-light); /* Đảm bảo chữ trắng trên nền tối */
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-light); 
 }
 
 .portfolio-category {
-font-size: 0.9rem;
-font-weight: 300;
-text-transform: uppercase;
-letter-spacing: 2px;
-    color: var(--color-primary); /* Đã đổi màu */
-    color: var(--color-primary); /* Đổi màu chữ phân loại thành Vàng Cam */
+    font-size: 0.9rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-primary); 
 }
 
+/* ---------------------------------------------------- */
+/* 5. TEAM & FOOTER */
+/* ---------------------------------------------------- */
+
 .team-card {
-background-color: var(--color-light);
-    /* ĐÃ THÊM BO CONG NHẸ */
-    border-radius: var(--border-radius-modern); 
-    border-radius: var(--modern-radius); /* Bo cong hiện đại */
-overflow: hidden;
-box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-transition: all var(--transition-speed) var(--anime-easing);
-height: 100%;
+    background-color: var(--color-light);
+    border-radius: var(--modern-radius); 
+    overflow: hidden;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all var(--transition-speed) var(--anime-easing);
+    height: 100%;
 }
 
 .team-card:hover {
-    transform: translateY(-15px);
-    /* Đã cập nhật Shadow */
-    box-shadow: 0 15px 40px rgba(255, 195, 0, 0.3);
-    transform: translateY(-15px); /* Nhấc lên mạnh hơn */
-    /* Đã cập nhật Shadow cho màu Vàng Cam */
+    transform: translateY(-15px); 
     box-shadow: 0 15px 40px rgba(255, 193, 7, 0.3);
 }
 
 .team-card img {
-@@ -395,17 +392,17 @@ h1, h2, h3, h4, h5, h6 {
-border-radius: 50%;
-transition: all var(--transition-speed) var(--anime-easing);
-text-decoration: none;
-    /* ÁP DỤNG BO CONG NHẸ CHO KHUNG NGOÀI (dù icon đã là hình tròn 50%) */
-    border-radius: var(--border-radius-modern); 
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.team-content {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.team-name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.team-role {
+    font-weight: 600;
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.footer {
+    background-color: var(--color-secondary);
+    color: var(--color-light);
+    padding: 2rem 0;
+}
+
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    border-radius: 50%;
+    transition: all var(--transition-speed) var(--anime-easing);
+    text-decoration: none;
 }
 
 .social-icon:hover {
-    background-color: var(--color-primary); /* Đã đổi màu */
-    color: var(--color-secondary); /* Đổi màu icon sang màu tối */
-    transform: translateY(-7px) rotate(5deg);
     background-color: var(--color-primary);
-    color: var(--color-dark); /* Đổi màu chữ icon thành tối để tương phản */
-    transform: translateY(-7px) rotate(5deg); /* Nhấc lên cao và xoay nhẹ */
+    color: var(--color-dark); 
+    transform: translateY(-7px) rotate(5deg); 
 }
 
-/* Điều chỉnh Media Queries */
 /* ---------------------------------------------------- */
-/* 5. MEDIA QUERIES (FIX Portfolio & Điều chỉnh chung)  */
+/* 6. MEDIA QUERIES (FIX Portfolio & Điều chỉnh chung) */
 /* ---------------------------------------------------- */
 @media (max-width: 991px) {
-.hero-title {
-font-size: 3rem;
-@@ -422,7 +419,31 @@ h1, h2, h3, h4, h5, h6 {
-/* FIX LỖI FOOTER: Căn giữa icon và thêm khoảng cách khi xuống dòng */
-.social-icons {
-justify-content: center;
-        margin-top: 1rem;
-        margin-top: 1rem; /* Thêm khoảng cách phía trên cho icon trên mobile */
+    .hero-title {
+        font-size: 3rem;
+    }
+    .hero-subtitle {
+        font-size: 1.2rem;
+    }
+    .social-icons {
+        justify-content: center;
+        margin-top: 1rem; 
     }
 
     /* ⭐⭐⭐ QUY TẮC MOBILE CHO PORTFOLIO ⭐⭐⭐ */
-    /* Trên thiết bị có chiều rộng màn hình <= 991px (mobile/tablet), lớp phủ (overlay) 
-       và nội dung (content) phải LUÔN HIỂN THỊ (opacity: 1) */
     .portfolio-card .portfolio-overlay {
         opacity: 1; /* LUÔN HIỂN THỊ LỚP PHỦ */
-        /* Giữ nguyên background để đảm bảo màu nền chuyển sắc */
         background: linear-gradient(135deg, rgba(13, 19, 40, 0.9), rgba(255, 193, 7, 0.85));
     }
     
@@ -338,12 +381,10 @@ justify-content: center;
     }
     
     .portfolio-card:hover {
-        /* Bỏ các hiệu ứng hover không cần thiết trên mobile */
         transform: none;
     }
     
     .portfolio-card:hover img {
-        /* Chỉ zoom ảnh nhẹ nhàng */
-        transform: scale(1.05); 
-}
+        transform: scale(1.05); /* Chỉ zoom ảnh nhẹ nhàng */
+    }
 }
