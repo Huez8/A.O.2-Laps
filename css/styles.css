@@ -23,7 +23,6 @@
 /* 1. KHAI BÁO FONT CHỮ (FIX LỖI CHỮ TIÊU ĐỀ) */
 /* ---------------------------------------------------- */
 
-/* Đã bỏ ghi chú (UNCOMMENT) để áp dụng font đã import trong HTML */
 * {
     font-family: 'Montserrat', sans-serif;
 }
@@ -104,16 +103,12 @@ h1, h2, h3, h4, h5, h6 {
 /* ⭐ FIX 2: ĐỊNH NGHĨA HERO SECTION & KHOẢNG CÁCH CHO NAVBAR ⭐ */
 .hero-section {
     position: relative;
-    /* Chiếm toàn bộ chiều cao màn hình trình duyệt */
     min-height: 100vh; 
     display: flex;
     align-items: center; 
     justify-content: center;
-    /* Thêm padding top để tạo khoảng trống cho Navbar fixed */
     padding-top: var(--navbar-height); 
 }
-/* ------------------------------------------------------------------- */
-
 
 .hero-overlay {
     position: absolute;
@@ -129,7 +124,7 @@ h1, h2, h3, h4, h5, h6 {
     z-index: 10;
     text-align: center;
     color: var(--color-light);
-    margin-top: 0; /* Đảm bảo không có margin âm gây lỗi tràn */
+    margin-top: 0; 
 }
 
 .hero-title {
@@ -169,7 +164,6 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #e6b000;
 }
 
-/* Keyframes giữ nguyên như bạn đã định nghĩa */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -189,7 +183,6 @@ h1, h2, h3, h4, h5, h6 {
 .section-header {
     text-align: center;
     margin-bottom: 3rem;
-    /* Đảm bảo Section này không có margin âm nào */
     margin-top: 0; 
 }
 
@@ -274,7 +267,6 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.4s var(--anime-easing);
 }
 
-/* HIỆU ỨNG DESKTOP: Chỉ hiện khi HOVER */
 .portfolio-card:hover .portfolio-overlay {
     opacity: 1;
 }
@@ -291,7 +283,6 @@ h1, h2, h3, h4, h5, h6 {
     transition: all 0.5s var(--anime-easing) 0.1s; 
 }
 
-/* HIỆU ỨNG DESKTOP: Chỉ hiện khi HOVER */
 .portfolio-card:hover .portfolio-content {
     transform: translateY(0);
     opacity: 1;
