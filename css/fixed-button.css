@@ -1,0 +1,60 @@
+/* Trong file: ../css/fixed-button.css */
+
+/* -------------------------------------- */
+/* 2.1. Thiết lập Keyframe cho hiệu ứng */
+/* -------------------------------------- */
+@keyframes ostrich-bounce {
+    0%, 100% {
+        /* Vị trí ban đầu, lắc lư nhẹ sang trái */
+        transform: translateY(0) rotate(-3deg);
+    }
+    50% {
+        /* Lắc lư nhẹ sang phải và nảy lên chút xíu */
+        transform: translateY(-5px) rotate(3deg);
+    }
+}
+
+
+/* -------------------------------------- */
+/* 2.2. Thiết lập cơ bản cho Nút */
+/* -------------------------------------- */
+.contact-fixed-btn.ostrich-btn {
+    /* Vị trí cố định */
+    position: fixed;
+    bottom: 20px; /* Đặt thấp hơn chút */
+    right: 20px;  /* Đặt sát lề hơn */
+    z-index: 1050; 
+    
+    /* Kích thước: Hơi bé chút */
+    width: 45px; 
+    height: 45px;
+    padding: 0; /* Bỏ padding cũ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Thiết kế chung */
+    background-color: var(--color-primary, #ffc107); /* Sử dụng màu Vàng chủ đạo */
+    color: #212529; /* Màu tối cho icon */
+    border-radius: 50%; 
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.3); 
+    font-size: 1.3rem; /* Kích thước icon bên trong */
+    text-decoration: none;
+    
+    /* Hiệu ứng chuyển động */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Áp dụng hiệu ứng lặp lại */
+    animation: ostrich-bounce 2s ease-in-out infinite; 
+}
+
+/* -------------------------------------- */
+/* 2.3. Hiệu ứng Hover (Di chuột vào) */
+/* -------------------------------------- */
+.contact-fixed-btn.ostrich-btn:hover {
+    background-color: #e0ac00; /* Màu đậm hơn khi hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    /* Dừng hiệu ứng lặp lại khi hover để người dùng nhấn */
+    animation: none;
+    transform: scale(1.1); /* Nảy nhẹ lên khi di chuột vào */
+}
