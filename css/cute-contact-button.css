@@ -1,92 +1,19 @@
-/* Trong file: css/cute-contact-button.css */
+/* ... (Giữ nguyên các style khác như .contact-fixed-btn, .ostrich-btn-inner) ... */
 
-/* Keyframe cho hiệu ứng lắc lư của nút */
-@keyframes cute-bounce {
-    0%, 100% { transform: translateY(0) rotate(-3deg); }
-    50% { transform: translateY(-8px) rotate(4deg); }
-}
-
-/* Keyframe cho hiệu ứng hiển thị/ẩn của bubble (5 giây) */
+/* Keyframe cho hiệu ứng hiển thị/ẩn của bubble (4 giây) */
 @keyframes fadeInOut {
     0% { opacity: 0; transform: scale(0.5); }
-    5% { opacity: 1; transform: scale(1); } /* Hiện nhanh */
-    95% { opacity: 1; transform: scale(1); } /* Giữ lại */
+    10% { opacity: 1; transform: scale(1); } /* Hiện nhanh */
+    90% { opacity: 1; transform: scale(1); } /* Giữ lại */
     100% { opacity: 0; transform: scale(0.5); } /* Ẩn nhanh */
 }
 
-/* Container chính */
-.contact-fixed-btn {
-    position: fixed; 
-    bottom: 25px; 
-    right: 25px;
-    z-index: 1050; 
-    text-decoration: none;
-    cursor: pointer;
-}
-
-/* Nút Tròn */
-.contact-fixed-btn .ostrich-btn-inner {
-    width: 55px; 
-    height: 55px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #ffc107; 
-    color: #212529; 
-    border-radius: 50%; 
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
-    font-size: 1.6rem; 
-    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
-    animation: cute-bounce 2s ease-in-out infinite; 
-    position: relative;
-}
-
-/* Hover */
-.contact-fixed-btn:hover .ostrich-btn-inner {
-    background-color: #e0ac00; 
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
-    animation: none;
-    transform: scale(1.15); 
-}
-
-/* Bubble Text */
-.cute-bubble {
-    position: absolute;
-    top: -50px; 
-    right: 60px; 
-    
-    background-color: #fff;
-    color: #343a40;
-    padding: 8px 12px;
-    border-radius: 20px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    white-space: nowrap;
-    font-size: 0.9rem;
-    font-weight: 600;
-    
-    /* Ban đầu ẩn đi và nhỏ lại */
-    opacity: 0;
-    transform: scale(0.5);
-    transition: opacity 0.5s, transform 0.5s;
-}
-
-/* Mũi tên cho bubble */
-.cute-bubble::after {
-    content: '';
-    position: absolute;
-    right: -10px; 
-    bottom: 10px;
-    width: 0;
-    height: 0;
-    border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    border-left: 10px solid #fff; /* Màu mũi tên trùng với màu nền bubble */
-}
+/* ... (Giữ nguyên các style khác như .cute-bubble, .cute-bubble::after) ... */
 
 /* Hiển thị bubble khi class 'show' được thêm vào bằng JS */
 .cute-bubble.show {
     opacity: 1;
     transform: scale(1);
-    /* Kích hoạt animation lặp lại mỗi 15s */
-    animation: fadeInOut 5s ease-in-out;
+    /* Kích hoạt animation lặp lại mỗi 10s */
+    animation: fadeInOut 4s ease-in-out; /* ĐÃ SỬA THÀNH 4s */
 }
