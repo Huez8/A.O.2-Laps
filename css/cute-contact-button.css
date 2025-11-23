@@ -1,40 +1,30 @@
 /* Trong file: css/cute-contact-button.css */
 
-/* -------------------------------------- */
-/* 1. Thiết lập Keyframe cho hiệu ứng lắc lư (chim cute) */
-/* -------------------------------------- */
+/* Keyframe cho hiệu ứng lắc lư của nút */
 @keyframes cute-bounce {
-    0%, 100% {
-        transform: translateY(0) rotate(-3deg);
-    }
-    50% {
-        transform: translateY(-8px) rotate(4deg); 
-    }
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-8px) rotate(4deg); }
 }
 
+/* Keyframe cho hiệu ứng hiển thị/ẩn của bubble (5 giây) */
 @keyframes fadeInOut {
     0% { opacity: 0; transform: scale(0.5); }
-    5% { opacity: 1; transform: scale(1); }
-    95% { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(0.5); }
+    5% { opacity: 1; transform: scale(1); } /* Hiện nhanh */
+    95% { opacity: 1; transform: scale(1); } /* Giữ lại */
+    100% { opacity: 0; transform: scale(0.5); } /* Ẩn nhanh */
 }
 
-/* -------------------------------------- */
-/* 2. Thiết lập cơ bản cho Nút Liên Hệ Cố Định */
-/* -------------------------------------- */
+/* Container chính */
 .contact-fixed-btn {
-    /* Quan trọng: Thiết lập vị trí cha cho bubble */
     position: fixed; 
     bottom: 25px; 
     right: 25px;
     z-index: 1050; 
-    
-    /* Thiết lập cho thẻ bao ngoài (anchor tag) */
     text-decoration: none;
     cursor: pointer;
 }
 
-/* Style cho nút tròn */
+/* Nút Tròn */
 .contact-fixed-btn .ostrich-btn-inner {
     width: 55px; 
     height: 55px;
@@ -48,10 +38,10 @@
     font-size: 1.6rem; 
     transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     animation: cute-bounce 2s ease-in-out infinite; 
-    position: relative; /* Dùng để hover thay đổi bubble */
+    position: relative;
 }
 
-/* Hiệu ứng Hover cho nút */
+/* Hover */
 .contact-fixed-btn:hover .ostrich-btn-inner {
     background-color: #e0ac00; 
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
@@ -59,49 +49,44 @@
     transform: scale(1.15); 
 }
 
-
-/* -------------------------------------- */
-/* 3. Style cho Bubble Text (bong bóng lời thoại) */
-/* -------------------------------------- */
+/* Bubble Text */
 .cute-bubble {
-    /* Vị trí tuyệt đối so với nút cha */
     position: absolute;
-    top: -50px; /* Đặt phía trên nút */
-    right: 60px; /* Đặt sang bên trái nút */
+    top: -50px; 
+    right: 60px; 
     
-    /* Thiết kế bubble */
     background-color: #fff;
     color: #343a40;
     padding: 8px 12px;
     border-radius: 20px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    white-space: nowrap; /* Ngăn không cho chữ xuống dòng */
+    white-space: nowrap;
     font-size: 0.9rem;
     font-weight: 600;
     
-    /* Ban đầu ẩn đi */
+    /* Ban đầu ẩn đi và nhỏ lại */
     opacity: 0;
     transform: scale(0.5);
     transition: opacity 0.5s, transform 0.5s;
 }
 
-/* Tạo mũi tên cho bubble (sử dụng pseudo-element) */
+/* Mũi tên cho bubble */
 .cute-bubble::after {
     content: '';
     position: absolute;
-    right: -10px; /* Vị trí mũi tên */
+    right: -10px; 
     bottom: 10px;
     width: 0;
     height: 0;
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
-    border-left: 10px solid #fff;
+    border-left: 10px solid #fff; /* Màu mũi tên trùng với màu nền bubble */
 }
 
-/* Class để hiển thị bubble */
+/* Hiển thị bubble khi class 'show' được thêm vào bằng JS */
 .cute-bubble.show {
     opacity: 1;
     transform: scale(1);
-    /* Dùng animation ngắn để làm nổi bật hiệu ứng bật ra */
-    animation: fadeInOut 5s;
+    /* Kích hoạt animation lặp lại mỗi 15s */
+    animation: fadeInOut 5s ease-in-out;
 }
