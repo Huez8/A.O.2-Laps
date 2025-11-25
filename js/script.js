@@ -2,7 +2,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.getElementById('mainNavbar');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    // --- Logic Thay đổi thanh Navigation (Navbar) khi cuộn ---
+    // ===========================================
+    // 1. XỬ LÝ THANH ĐIỀU HƯỚNG (NAVBAR) KHI CUỘN
+    // ===========================================
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
             navbar.classList.remove('navbar-transparent');
@@ -13,7 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // --- Logic Xử lý cuộn mượt (Smooth Scroll) và Active Link ---
+    // ===========================================
+    // 2. XỬ LÝ CUỘN MƯỢT (SMOOTH SCROLL) VÀ ĐÓNG MENU
+    // ===========================================
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -33,16 +37,15 @@ document.addEventListener('DOMContentLoaded', function() {
                         behavior: 'smooth'
                     });
                     
-                    // Đánh dấu link active
+                    // Cập nhật trạng thái Active (chỉ khi click)
                     navLinks.forEach(link => link.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Đóng Navbar trên Mobile sau khi click
+                    // Đóng Navbar trên Mobile sau khi click (Chỉ chạy nếu 'bootstrap' đã được load)
                     const navbarCollapse = document.querySelector('.navbar-collapse');
-                    if (navbarCollapse.classList.contains('show')) {
-                        // Cần đảm bảo thư viện Bootstrap đã được load để dùng new bootstrap.Collapse
+                    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
                         if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
-                            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                            const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
                             bsCollapse.hide();
                         }
                     }
@@ -51,13 +54,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // --- Logic Theo dõi vị trí cuộn để đặt Active Link ---
+    // ===========================================
+    // 3. XỬ LÝ ĐẶT ACTIVE LINK KHI CUỘN
+    // ===========================================
     window.addEventListener('scroll', function() {
         let current = '';
         const sections = document.querySelectorAll('section[id]');
         const navbarHeight = navbar.offsetHeight;
         
         sections.forEach(section => {
+            // Định vị section, offset thêm 50px
             const sectionTop = section.offsetTop - navbarHeight - 50;
             const sectionHeight = section.offsetHeight;
             
@@ -68,7 +74,6 @@ document.addEventListener('DOMContentLoaded', function() {
         
         navLinks.forEach(link => {
             link.classList.remove('active');
-            // Thêm logic kiểm tra cho link Trang Chủ, do có thể có "index.html#home" hoặc chỉ "#home"
             const linkHref = link.getAttribute('href').split('#').pop(); 
             if (linkHref === current) {
                 link.classList.add('active');
@@ -76,14 +81,16 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- KHỞI TẠO AOS (ĐỂ KHẮC PHỤC LỖI MOBILE DISPLAY) ---
-    // Loại bỏ 'disable: mobile' để đảm bảo không xung đột với Chatbot trên điện thoại.
+    // ===========================================
+    // 4. KHỞI TẠO AOS (ĐỂ KHẮC PHỤC LỖI MOBILE)
+    // ===========================================
+    // Đảm bảo thư viện AOS được khởi tạo, không có 'disable: "mobile"'
     if (typeof AOS !== 'undefined') {
         AOS.init({
             duration: 1200,    
             easing: 'ease-out-cubic',
             once: true,      
-            // Đảm bảo không có 'disable: "mobile"' ở đây.
+            // Không thêm thuộc tính 'disable: "mobile"'
         });
     }
 });
