@@ -2,29 +2,241 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Các Dịch vụ Thiết Kế, UI/UX, Content và Phát triển Front-end Web của A.O.2 LAPS - Đà Điểu Châu Phi.">
+    <title>Dịch Vụ Cốt Lõi | A.O.2 LABS</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css"> 
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
         /* CSS Tùy chỉnh nhỏ để tối ưu hiển thị */
         .primary-red-text { color: var(--color-primary); }
-        /* ... các CSS tùy chỉnh khác ... */
+        .bg-light-section { background-color: #f8f9fa; }
+        .bg-dark-section { background-color: var(--color-secondary); color: var(--color-light); }
+        .service-list li { margin-bottom: 10px; font-weight: 500; }
+        
+        .small-hero { 
+            height: 80vh; 
+            min-height: 450px; 
+            background-image: url('https://images.unsplash.com/photo-1510511977934-2e99a4c8a2cc?w=1920&h=1080&fit=crop'); 
+            background-attachment: scroll; 
+            
+            /* CĂN GIỮA DỌC BẰNG FLEXBOX */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .small-hero .hero-content { 
+            padding-top: 0; 
+            margin-top: -50px; 
+        } 
+
+        .service-detail-card {
+            padding: 2.5rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        .service-detail-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 0, 0, 0.2);
+        }
+        .detail-icon {
+            color: var(--color-primary);
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        .detail-title {
+            color: var(--color-secondary);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .step-item {
+            border-left: 3px solid var(--color-primary);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .step-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--color-primary);
+            line-height: 1;
+        }
         .step-name {
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--color-secondary);
             margin-top: -5px;
         }
-        
-        /* 🔥 BỔ SUNG FIX LỖI NAVBAR BỊ WIDGET CHE */
+
+        /* FIX LỖI NAVBAR: Đảm bảo Navbar luôn hiển thị trên cùng (kể cả widget chat) */
         #mainNavbar {
-            z-index: 1050 !important; /* Đảm bảo Navbar luôn ở trên cùng */
+            z-index: 1050 !important; 
         }
         /* ------------------------------------- */
+
     </style>
 </head>
 <body>
-    ```
 
-Với việc tăng **`z-index: 1050`** (giá trị cao hơn mặc định của Bootstrap cho `navbar-fixed-top`), Navbar của bạn sẽ luôn hiển thị ở trên cùng, ngăn không cho widget Chatbase chồng lên nó.
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-solid" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html#home">
+                <span class="brand-text">A.O.2 LABS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#home">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="services.html">Dịch Vụ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Dự Án</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html#gapgo">Gặp Gỡ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section id="services-hero" class="hero-section small-hero">
+            <div class="hero-overlay"></div>
+            <div class="hero-content" data-aos="fade-up">
+                <h1 class="hero-title">Giải Pháp Sáng Tạo & Kỹ Thuật Độc Đáo.</h1>
+                <p class="hero-subtitle">5 lĩnh vực cốt lõi định hình nên năng lực vượt trội của Đà Điểu Châu Phi.</p>
+                <a href="#core-services" class="btn btn-primary btn-hero">Khám Phá Chi Tiết</a>
+            </div>
+        </section>
+        <section id="core-services" class="py-5 services-section">
+            <div class="container">
+                <div class="section-header text-center mb-5" data-aos="fade-down">
+                    <h2 class="section-title">NĂM LĨNH VỰC CỐT LÕI</h2>
+                    <div class="title-underline"></div>
+                </div>
+                
+                <div class="row g-4">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-detail-card bg-white" data-aos="zoom-in-up" data-aos-delay="100">
+                            <div class="detail-icon"><i class="fas fa-print"></i></div>
+                            <h3 class="detail-title">1. Đồ Họa & Ấn Phẩm</h3>
+                            <p style="color: var(--color-gray);">Tạo ra các sản phẩm đồ họa và ấn phẩm thương hiệu sẵn sàng để in ấn và sử dụng. Đảm bảo chất lượng cao nhất cho mọi sản phẩm vật lý và kỹ thuật số.</p>
+                            <ul class="list-unstyled service-list small">
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Brand Identity, Logo, Guidelines</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Brochure, Catalogue, Poster, Banner</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Sản phẩm đồ họa vector/raster</li>
+                            </ul>
+                        </div>
+                    </div>
 
-Bạn có muốn tôi cung cấp lại toàn bộ code HTML đã được sửa lỗi này không?
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-detail-card bg-white" data-aos="zoom-in-up" data-aos-delay="200">
+                            <div class="detail-icon"><i class="fas fa-laptop-code"></i></div>
+                            <h3 class="detail-title">2. UI/UX Design</h3>
+                            <p style="color: var(--color-gray);">Thiết kế trải nghiệm người dùng tối ưu. Giao diện trực quan, đẹp mắt cho Website, Web App và Mobile App, tập trung vào hiệu suất và chuyển đổi.</p>
+                            <ul class="list-unstyled service-list small">
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Wireframing & Prototyping</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Responsive Interface Design</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> User Journey Mapping</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-detail-card bg-white" data-aos="zoom-in-up" data-aos-delay="300">
+                            <div class="detail-icon"><i class="fas fa-camera-retro"></i></div>
+                            <h3 class="detail-title">3. Content Creation</h3>
+                            <p style="color: var(--color-gray);">Sản xuất nội dung thị giác thu hút. Kể câu chuyện thương hiệu mạnh mẽ qua hình ảnh, video chất lượng cao, tối ưu cho các kênh Social Media và Marketing.</p>
+                            <ul class="list-unstyled service-list small">
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Video ngắn (Reels, TikTok)</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Bộ ảnh truyền thông chuyên nghiệp</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Lập chiến lược Visual Content</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-detail-card bg-white" data-aos="zoom-in-up" data-aos-delay="400">
+                            <div class="detail-icon"><i class="fas fa-film" style="color: #FFC107;"></i></div>
+                            <h3 class="detail-title">4. Animation & Motion</h3>
+                            <p style="color: var(--color-gray); font-weight: 600;">Mang sự sống vào thương hiệu của bạn! Chuyên nghiệp trong việc tạo ra Motion Graphics và Animation 2D/3D mượt mà, phục vụ quảng cáo và giải thích sản phẩm.</p>
+                            <ul class="list-unstyled service-list small">
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Explainer Videos (Video giải thích)</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Motion Graphics cho Social Ads</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Animation Logo/Intro</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="service-detail-card bg-white" data-aos="zoom-in-up" data-aos-delay="500">
+                            <div class="detail-icon"><i class="fas fa-code"></i></div>
+                            <h3 class="detail-title">5. Front-end Web Dev</h3>
+                            <p style="color: var(--color-gray);">Biến thiết kế thành mã nguồn hoạt động. Code HTML5, CSS3, JavaScript sạch, chuẩn, đảm bảo tốc độ tải nhanh, hiển thị tốt trên mọi thiết bị (Responsive).</p>
+                            <ul class="list-unstyled service-list small">
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> PSD/Figma to HTML Conversion</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Tối ưu hóa hiệu suất (Performance)</li>
+                                <li><i class="fas fa-check me-2 primary-red-text"></i> Cấu trúc Web chuẩn SEO</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-5 text-center bg-dark-section" data-aos="fade-in">
+            <div class="container">
+                <h2 class="hero-title mb-4">SẴN SÀNG KHỞI CHẠY DỰ ÁN CỦA BẠN?</h2>
+                <p class="lead mb-4" style="color: var(--color-primary);">Liên hệ với chúng tôi để bắt đầu hành trình biến ý tưởng thành sản phẩm thị giác bùng nổ!</p>
+                <a href="contact.html" class="btn btn-hero" style="background-color: #FFC107;">BẮT ĐẦU NGAY</a>
+            </div>
+        </section>
+        </main>
+
+    <footer class="footer" style="background-color: var(--color-secondary); color: var(--color-light);">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="mb-0" style="color: var(--color-light);">&copy; 2025 A.O.2 LABS - Đà Điểu Châu Phi. All Rights Reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-behance"></i></a>
+                        <a href="#" class="social-icon" style="background-color: rgba(255, 255, 255, 0.1); color: var(--color-light);"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200, 
+            once: true 
+        });
+    </script>
+    
+        <script>
+(function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="uRPpYU7vlswt5DQpc86ax";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
+    </script>
+        
+    </body>
+</html>
