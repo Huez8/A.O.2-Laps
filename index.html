@@ -14,7 +14,9 @@
     <link rel="stylesheet" href="css/styles.css">
     
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-</head>
+    
+    <link rel="manifest" href="/manifest.json">
+    </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-transparent" id="mainNavbar">
@@ -54,7 +56,7 @@
     <section id="dichvu" class="services-section py-5">
         <div class="container">
             <div class="section-header text-center mb-5" data-aos="fade-down">
-                <h2 class="section-title">Tụi Mình Giỏi Món Gì? </h2>
+                <h2 class="section-title">Tụi Mình Giỏi Món Gì? </h2>
                 <div class="title-underline"></div>
             </div>
             <div class="row g-4">
@@ -227,7 +229,6 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                    <!-- Đã thêm link liên hệ vào đây để tránh xung đột với chatbot -->
                     <p class="mb-0">&copy; 2025 A.O.2 LABS - Đà Điểu Châu Phi. All Rights Reserved. | <a href="contact.html" class="text-white text-decoration-underline" title="Liên hệ ngay với A.O.2 LABS">Liên Hệ Với Chúng Tôi</a></p>
                 </div>
                 <div class="col-md-6 text-center text-md-end">
@@ -257,10 +258,23 @@
         });
     </script>
     
-    <!-- Mã Chatbase Widget (Được giữ nguyên) -->
     <script>
     (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="uRPpYU7vlswt5DQpc86ax";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
     
-</body>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                // Đảm bảo tên tệp trùng khớp với tên tệp Service Worker bạn đã tải lên (ví dụ: 'sw.js')
+                navigator.serviceWorker.register('/sw.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registered successfully');
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+    </body>
 </html>
