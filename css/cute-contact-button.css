@@ -115,6 +115,8 @@
     /* Đảm bảo nút vẫn dễ nhấn trên mobile */
     .contact-fixed-btn {
         bottom: 15px; 
-        right: 15px;
+        /* THAY ĐỔI QUAN TRỌNG: Di chuyển sang góc dưới bên trái */
+        right: auto; 
+        left: 15px;
     }
 }
