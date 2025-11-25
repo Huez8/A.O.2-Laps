@@ -2,7 +2,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.getElementById('mainNavbar');
     const navLinks = document.querySelectorAll('.nav-link');
     
-    // --- Logic Thay đổi thanh Navigation (Navbar) khi cuộn ---
     window.addEventListener('scroll', function() {
         if (window.scrollY > 100) {
             navbar.classList.remove('navbar-transparent');
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // --- Logic Xử lý cuộn mượt (Smooth Scroll) và Active Link ---
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
@@ -33,32 +31,26 @@ document.addEventListener('DOMContentLoaded', function() {
                         behavior: 'smooth'
                     });
                     
-                    // Đánh dấu link active
                     navLinks.forEach(link => link.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Đóng Navbar trên Mobile sau khi click
                     const navbarCollapse = document.querySelector('.navbar-collapse');
                     if (navbarCollapse.classList.contains('show')) {
-                        // Cần đảm bảo thư viện Bootstrap đã được load để dùng new bootstrap.Collapse
-                        if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
-                            const bsCollapse = new bootstrap.Collapse(navbarCollapse);
-                            bsCollapse.hide();
-                        }
+                        const bsCollapse = new bootstrap.Collapse(navbarCollapse);
+                        bsCollapse.hide();
                     }
                 }
             }
         });
     });
     
-    // --- Logic Theo dõi vị trí cuộn để đặt Active Link ---
     window.addEventListener('scroll', function() {
         let current = '';
         const sections = document.querySelectorAll('section[id]');
         const navbarHeight = navbar.offsetHeight;
         
         sections.forEach(section => {
-            const sectionTop = section.offsetTop - navbarHeight - 50; // Trừ thêm 50px offset
+            const sectionTop = section.offsetTop - navbarHeight - 50;
             const sectionHeight = section.offsetHeight;
             
             if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
@@ -68,20 +60,9 @@ document.addEventListener('DOMContentLoaded', function() {
         
         navLinks.forEach(link => {
             link.classList.remove('active');
-            // Thêm logic kiểm tra cho link Trang Chủ
-            if (link.getAttribute('href') === 'index.html#' + current || link.getAttribute('href') === '#' + current) {
+            if (link.getAttribute('href') === '#' + current) {
                 link.classList.add('active');
             }
         });
     });
-
-    // --- KHỞI TẠO AOS (ĐỂ KHẮC PHỤC LỖI MOBILE DISPLAY) ---
-    // (Bỏ lệnh disable: 'mobile' để đảm bảo không xung đột)
-    if (typeof AOS !== 'undefined') {
-        AOS.init({
-            duration: 1200,    
-            easing: 'ease-out-cubic',
-            once: true,      
-        });
-    }
 });
