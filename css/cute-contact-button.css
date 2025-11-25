@@ -21,7 +21,7 @@
 /* ========================================== */
 .contact-fixed-btn {
     position: fixed; 
-    bottom: 30px; 
+    bottom: 25px; 
     right: 25px;
     z-index: 1050; /* Đảm bảo nó nằm trên mọi thứ */
     text-decoration: none;
