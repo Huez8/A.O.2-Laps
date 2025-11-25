@@ -1,1 +1,120 @@
+/* Trong file: css/cute-contact-button.css */
 
+/* Keyframe cho hiệu ứng lắc lư của nút (Tạo sự sống động cho icon) */
+@keyframes cute-bounce {
+    0%, 100% { transform: translateY(0) rotate(-3deg); }
+    50% { transform: translateY(-8px) rotate(4deg); }
+}
+
+/* * Keyframe cho hiệu ứng hiển thị/ẩn của bubble
+ * Thời gian 4 giây (4s) phải khớp với DISPLAY_DURATION trong file JS
+ */
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: scale(0.5); }
+    10% { opacity: 1; transform: scale(1); } /* Hiện nhanh */
+    90% { opacity: 1; transform: scale(1); } /* Giữ lại */
+    100% { opacity: 0; transform: scale(0.5); } /* Ẩn nhanh */
+}
+
+/* ========================================== */
+/* 1. CONTAINER CHÍNH CỐ ĐỊNH */
+/* ========================================== */
+.contact-fixed-btn {
+    position: fixed; 
+    bottom: 25px; 
+    right: 25px;
+    z-index: 1050; /* Đảm bảo nó nằm trên mọi thứ */
+    text-decoration: none;
+    cursor: pointer;
+    /* Dùng display: block để dễ quản lý */
+    display: block; 
+}
+
+/* ========================================== */
+/* 2. NÚT TRÒN (ICON ĐÀ ĐIỂU) */
+/* ========================================== */
+.contact-fixed-btn .ostrich-btn-inner {
+    width: 55px; 
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffc107; /* Màu vàng nổi bật của Bootstrap */
+    color: #212529; /* Màu chữ/icon đen */
+    border-radius: 50%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4); 
+    font-size: 1.6rem; 
+    transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+    /* Kích hoạt hiệu ứng lắc lư */
+    animation: cute-bounce 2s ease-in-out infinite; 
+    position: relative;
+}
+
+/* Hiệu ứng khi di chuột qua */
+.contact-fixed-btn:hover .ostrich-btn-inner {
+    background-color: #e0ac00; /* Vàng đậm hơn */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    animation: none; /* Dừng lắc khi di chuột qua */
+    transform: scale(1.15); /* Phóng to nhẹ */
+}
+
+/* ========================================== */
+/* 3. BUBBLE TEXT (LỜI THOẠI) */
+/* ========================================== */
+.cute-bubble {
+    position: absolute;
+    top: -55px; /* Đặt cao hơn nút */
+    right: 60px; /* Đặt sang phải nút */
+    
+    background-color: #fff;
+    color: #343a40;
+    padding: 8px 12px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    white-space: nowrap; /* Giữ nội dung trên một dòng */
+    font-size: 0.9rem;
+    font-weight: 600;
+    
+    /* Ban đầu ẩn đi và nhỏ lại */
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.5s, transform 0.5s;
+}
+
+/* Mũi tên cho bubble (Talk bubble pointer) */
+.cute-bubble::after {
+    content: '';
+    position: absolute;
+    right: -10px; /* Vị trí mũi tên bên phải bubble */
+    bottom: 10px;
+    width: 0;
+    height: 0;
+    /* Tạo hình tam giác bằng border */
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-left: 10px solid #fff; /* Màu mũi tên trùng với màu nền bubble */
+}
+
+/* Hiển thị bubble khi class 'show' được thêm vào bằng JS */
+.cute-bubble.show {
+    opacity: 1;
+    transform: scale(1);
+    /* Kích hoạt animation đã định nghĩa (4 giây) */
+    animation: fadeInOut 4s ease-in-out; 
+}
+
+/* ========================================== */
+/* 4. TỐI ƯU TRÊN THIẾT BỊ DI ĐỘNG */
+/* ========================================== */
+@media (max-width: 768px) {
+    /* Ẩn bubble text trên mobile để tránh che khuất màn hình */
+    .cute-bubble {
+        display: none !important;
+    }
+
+    /* Đảm bảo nút vẫn dễ nhấn trên mobile */
+    .contact-fixed-btn {
+        bottom: 15px; 
+        right: 15px;
+    }
+}
