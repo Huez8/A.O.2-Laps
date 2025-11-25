@@ -5,21 +5,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>A.O.2 LABS Chat Assistant</title>
     <style>
-        /* Đảm bảo toàn bộ trang HTML sử dụng 100% viewport và không cuộn */
+        /* CSS CHUNG */
         body, html {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
+            /* Vẫn giữ hidden để ngăn cuộn trang chính */
             overflow: hidden; 
         }
-        /* Iframe buộc phải chiếm toàn bộ không gian của body */
+
+        /* KHẮC PHỤC CHÍNH CHO IFRAME TRÊN MOBILE */
         #chatbot-frame {
             width: 100%;
             height: 100%;
             border: none;
             display: block;
-            /* Loại bỏ min-height: 100vh vì height: 100% đã được áp dụng */
+            
+            /* Tăng cường khả năng hiển thị trên iOS/Android */
+            min-height: 100vh; /* Đảm bảo nó chiếm ít nhất 100% chiều cao viewport */
+        }
+        
+        /* Đảm bảo chiều cao đầy đủ trên desktop và màn hình lớn (>= 768px) */
+        @media (min-width: 768px) {
+            #chatbot-frame {
+                height: 100%; 
+            }
         }
     </style>
 </head>
@@ -29,7 +40,8 @@
         src="https://www.chatbase.co/chatbot-iframe/uRPpYU7vlswt5DQpc86ax"
         frameborder="0"
         allowfullscreen="true" 
-        sandbox="allow-scripts allow-same-origin" 
+        sandbox="allow-scripts allow-same-origin allow-popups" 
+        loading="eager"
     ></iframe>
 </body>
 </html>
