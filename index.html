@@ -16,7 +16,37 @@
     <link rel="stylesheet" href="css/cute-contact-button.css">
     
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-</head>
+
+    <style>
+        /* Ngăn chặn mọi cuộn ngang không mong muốn trên toàn bộ trang */
+        body, html {
+            overflow-x: hidden; 
+        }
+
+        /* Đảm bảo Navbar container không vượt quá 100% chiều rộng viewport */
+        .navbar {
+            width: 100%;
+            max-width: 100%;
+        }
+
+        /* Áp dụng các fix cụ thể cho chế độ mobile của Bootstrap (dưới 992px) */
+        @media (max-width: 991.98px) {
+            /* Xóa padding ngang của container trong Navbar để tối đa hóa không gian */
+            .navbar .container {
+                padding-left: var(--bs-gutter-x, 0.75rem); /* Giữ lại padding mặc định của Bootstrap */
+                padding-right: var(--bs-gutter-x, 0.75rem);
+                margin-left: 0;
+                margin-right: 0;
+                width: 100%;
+            }
+            /* Đảm bảo các mục nav có thể xuống dòng nếu cần (mặc dù là list dọc) */
+            .navbar-nav {
+                width: 100%;
+                white-space: normal; 
+            }
+        }
+    </style>
+    </head>
 <body>
 
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-transparent" id="mainNavbar">
@@ -270,5 +300,5 @@
     
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     
-    </body>
+</body>
 </html>
