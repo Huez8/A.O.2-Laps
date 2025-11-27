@@ -1,52 +1,83 @@
-// Utility function for throttling (giảm tần suất gọi hàm)
-const throttle = (func, limit) => {
-    let lastFunc;
-    let lastRan;
-    return function() {
-        const context = this;
-        const args = arguments;
-        if (!lastRan) {
-            func.apply(context, args);
-            lastRan = Date.now();
-        } else {
-            clearTimeout(lastFunc);
-            lastFunc = setTimeout(function() {
-                if ((Date.now() - lastRan) >= limit) {
-                    func.apply(context, args);
-                    lastRan = Date.now();
-                }
-            }, limit - (Date.now() - lastRan));
-        }
-    };
-};
-
 document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.getElementById('mainNavbar');
     const navLinks = document.querySelectorAll('.nav-link');
-    const sections = document.querySelectorAll('section[id]');
     
-    if (!navbar) {
-        console.error("Lỗi: Không tìm thấy phần tử #mainNavbar.");
+    // Kiểm tra xem các phần tử cần thiết có tồn tại không
+    if (!navbar || navLinks.length === 0) {
+        console.warn('Navbar element or navigation links not found. Script might not function correctly.');
         return;
     }
 
+    /**
+     * Hàm xử lý thay đổi giao diện Navbar khi cuộn trang
+     * - Thêm/Xóa class 'navbar-solid'/'navbar-transparent' dựa trên vị trí cuộn.
+     * @param {number} scrollY - Vị trí cuộn hiện tại của cửa sổ.
+     */
+    const handleNavbarOnScroll = () => {
+        const isScrolled = window.scrollY > 100;
+        navbar.classList.toggle('navbar-solid', isScrolled);
+        navbar.classList.toggle('navbar-transparent', !isScrolled);
+    };
+
+    /**
+     * Hàm cập nhật trạng thái Active của NavLink dựa trên vị trí cuộn trang
+     */
+    const updateNavLinkActiveState = () => {
+        let currentSectionId = '';
+        const sections = document.querySelectorAll('section[id]');
+        const navbarHeight = navbar.offsetHeight;
+        const scrollPosition = window.scrollY;
+
+        // Tìm section hiện tại
+        sections.forEach(section => {
+            // Định vị section: top của section trừ đi chiều cao navbar và thêm 50px offset
+            const sectionTop = section.offsetTop - navbarHeight - 50;
+            const sectionHeight = section.offsetHeight;
+            
+            if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+                currentSectionId = section.getAttribute('id');
+            }
+        });
+
+        // Cập nhật class 'active' cho NavLink tương ứng
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            const linkHref = link.getAttribute('href').split('#').pop(); // Lấy ID từ href
+            
+            if (linkHref === currentSectionId) {
+                link.classList.add('active');
+            }
+        });
+    };
+
     // ===========================================
-    // 1. XỬ LÝ CUỘN MƯỢT (SMOOTH SCROLL) VÀ ĐÓNG MENU
+    // 1 & 3. XỬ LÝ THANH ĐIỀU HƯỚNG & CẬP NHẬT ACTIVE KHI CUỘN
+    // ===========================================
+    window.addEventListener('scroll', () => {
+        handleNavbarOnScroll();
+        updateNavLinkActiveState();
+    });
+
+    // Khởi chạy lần đầu để thiết lập trạng thái ban đầu
+    handleNavbarOnScroll();
+    updateNavLinkActiveState();
+
+    // ===========================================
+    // 2. XỬ LÝ CUỘN MƯỢT (SMOOTH SCROLL) VÀ ĐÓNG MENU
     // ===========================================
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
             
-            if (href && href.startsWith('#')) {
+            if (href.startsWith('#')) {
                 e.preventDefault();
                 
                 const targetId = href.substring(1);
                 const targetSection = document.getElementById(targetId);
                 
                 if (targetSection) {
-                    // Lấy chiều cao Navbar động
-                    const navbarHeight = navbar.offsetHeight; 
-                    // Tính toán vị trí cuộn: vị trí mục tiêu - chiều cao navbar
+                    const navbarHeight = navbar.offsetHeight;
+                    // Vị trí cuộn: top của section trừ đi chiều cao navbar
                     const targetPosition = targetSection.offsetTop - navbarHeight;
                     
                     window.scrollTo({
@@ -54,15 +85,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         behavior: 'smooth'
                     });
                     
-                    // Cập nhật trạng thái Active khi click
+                    // Cập nhật trạng thái Active sau khi click
                     navLinks.forEach(l => l.classList.remove('active'));
                     this.classList.add('active');
                     
-                    // Đóng Navbar trên Mobile sau khi click (dành cho Bootstrap 5+)
+                    // Đóng Navbar trên Mobile (Bootstrap)
                     const navbarCollapse = document.querySelector('.navbar-collapse');
                     if (navbarCollapse && navbarCollapse.classList.contains('show')) {
-                        // Kiểm tra sự tồn tại của Bootstrap JS
-                        if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
+                         // Sử dụng check 'bootstrap' và 'bootstrap.Collapse'
+                         if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
+                            // Tận dụng lớp Bootstrap.Collapse để ẩn menu
                             const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
                             bsCollapse.hide();
                         }
@@ -71,65 +103,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
-    // ===========================================
-    // 2. XỬ LÝ SỰ KIỆN CUỘN (SCROLL) TỐI ƯU
-    // Bao gồm: 
-    // - Thay đổi style Navbar (Section 1 cũ)
-    // - Đặt Active Link (ScrollSpy) (Section 3 cũ)
-    // ===========================================
-    const handleScroll = () => {
-        const scrollY = window.scrollY;
-        const navbarHeight = navbar.offsetHeight;
-        
-        // ---- A. Xử lý thanh điều hướng (NAVBAR) khi cuộn ----
-        if (scrollY > 100) {
-            navbar.classList.remove('navbar-transparent');
-            navbar.classList.add('navbar-solid');
-        } else {
-            navbar.classList.remove('navbar-solid');
-            navbar.classList.add('navbar-transparent');
-        }
-
-        // ---- B. Xử lý đặt Active Link (SCROLLSPY) ----
-        let currentSectionId = '';
-        
-        sections.forEach(section => {
-            // Định vị section, offset bằng chiều cao navbar + thêm 1 khoảng đệm (e.g., 50px)
-            const sectionTop = section.offsetTop - navbarHeight - 50; 
-            const sectionHeight = section.offsetHeight;
-            
-            if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                currentSectionId = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            // Lấy ID từ href (ví dụ: '#home' -> 'home')
-            const linkHref = link.getAttribute('href').substring(1); 
-
-            if (linkHref && linkHref === currentSectionId) {
-                link.classList.add('active');
-            }
-        });
-    };
-
-    // Áp dụng throttle (giới hạn) cho sự kiện cuộn để tránh ảnh hưởng hiệu suất
-    // Giới hạn chạy hàm handleScroll khoảng 10 lần mỗi giây (100ms)
-    window.addEventListener('scroll', throttle(handleScroll, 100)); 
-
-    // Gọi lần đầu để xử lý trạng thái ban đầu của navbar và active link
-    handleScroll();
 
     // ===========================================
-    // 3. KHỞI TẠO AOS (Animate On Scroll)
+    // 4. KHỞI TẠO AOS (Animation On Scroll)
     // ===========================================
     if (typeof AOS !== 'undefined') {
         AOS.init({
-            duration: 1200,    
+            duration: 1200,      
             easing: 'ease-out-cubic',
-            once: true,      
+            once: true,          
+            // Đảm bảo không có 'disable: "mobile"'
         });
     }
 });
