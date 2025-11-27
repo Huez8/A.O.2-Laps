@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.O.2 LABS - Gặp Gỡ Đội Ngũ</title>
+
+    <!-- Bootstrap & Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* -------------------------------------- */
+        /* BIẾN VÀ THIẾT LẬP CHUNG */
+        /* -------------------------------------- */
+        :root {
+            --color-primary-ao2: #FFC107; /* Vàng Cam Hiện Đại */
+            --color-secondary-ao2: #0D1328; /* Màu nền Footer/Nền tối */
+            --color-light-bg: #f0f2f5; /* Nền sáng nhạt */
+            --color-dark-text: #212529;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--color-dark-text);
+            overflow-x: hidden;
+        }
+        .bg-dark {
+            background-color: var(--color-secondary-ao2) !important; 
+        }
+
+        /* -------------------------------------- */
+        /* NAVBAR (GLASSMORPHISM) */
+        /* -------------------------------------- */
+        .navbar-transparent {
+            background-color: transparent;
+            transition: all 0.3s ease;
+        }
+        .navbar-dark.bg-dark-scrolled {
+            background-color: rgba(13, 19, 40, 0.95) !important; 
+            backdrop-filter: blur(10px); 
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        .nav-link { font-weight: 600; }
+
+        /* -------------------------------------- */
+        /* HERO SECTION (GLITCH TEXT) */
+        /* -------------------------------------- */
+        .team-hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHwaZ290by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center;
+            background-size: cover;
+            height: 40vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px; 
+            overflow: hidden;
+        }
+        .glitch-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            position: relative;
+            text-shadow: 0 0 5px var(--color-primary-ao2);
+        }
+        /* Hiệu ứng Glitch CSS (giữ nguyên logic) */
+        .glitch-text::before, .glitch-text::after { content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%; text-shadow: -2px 0 var(--color-primary-ao2), 2px 0 #00E676; clip: rect(0, 0, 0, 0); }
+        .glitch-text::before { left: -1px; text-shadow: -2px 0 var(--color-primary-ao2), 2px 0 #00E676; animation: glitch-anim-1 2s infinite linear alternate-reverse; }
+        .glitch-text::after { left: 1px; text-shadow: -2px 0 #00E676, 2px 0 var(--color-primary-ao2); animation: glitch-anim-2 3s infinite linear alternate-reverse; }
+        @keyframes glitch-anim-1 { 0% { clip: rect(20px, 9999px, 85px, 0); } 33% { clip: rect(60px, 9999px, 10px, 0); } 66% { clip: rect(80px, 9999px, 40px, 0); } 100% { clip: rect(20px, 9999px, 85px, 0); } }
+        @keyframes glitch-anim-2 { 0% { clip: rect(10px, 9999px, 70px, 0); } 40% { clip: rect(30px, 9999px, 90px, 0); } 80% { clip: rect(15px, 9999px, 50px, 0); } 100% { clip: rect(10px, 9999px, 70px, 0); } }
+
+        /* -------------------------------------- */
+        /* TEAM DETAILS SECTION (AMBIENT GLOW) */
+        /* -------------------------------------- */
+        .team-details-wrapper {
+            position: relative;
+            background-color: var(--color-secondary-ao2); /* Nền tối để hiệu ứng Glow nổi bật */
+            padding-top: 80px;
+            padding-bottom: 80px;
+            overflow: hidden; /* Cần thiết để chứa ánh sáng */
+        }
+
+        /* Thẻ chứa ánh sáng tương tác */
+        #ambient-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none; /* Rất quan trọng: cho phép click xuyên qua */
+            z-index: 1; 
+            /* Màu nền mặc định khi không có tương tác */
+            background: radial-gradient(circle at 50% 50%, rgba(255, 193, 7, 0.05), transparent 60%);
+            transition: opacity 0.5s ease;
+        }
+
+        /* -------------------------------------- */
+        /* TEAM MEMBER CARDS (3D & SKILL MATRIX) */
+        /* -------------------------------------- */
+        .member-detail-card {
+            position: relative;
+            z-index: 2; /* Cao hơn ánh sáng nền */
+            border: 1px solid rgba(255, 193, 7, 0.3); /* Border mỏng màu vàng */
+            border-radius: 18px;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            padding: 30px;
+            margin-bottom: 30px;
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            transform-style: preserve-3d;
+            height: 100%;
+            /* Hiệu ứng Overlay Holographic nhẹ */
+            overflow: hidden;
+        }
+        
+        .member-detail-card:hover {
+            transform: translateY(-12px) rotateX(2deg) rotateY(2deg) scale(1.03); /* Tăng hiệu ứng 3D */
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4), 0 0 40px var(--color-primary-ao2); /* Tăng glow */
+        }
+        
+        .member-image {
+            width: 130px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid var(--color-primary-ao2); 
+            box-shadow: 0 0 20px rgba(255, 193, 7, 0.8); 
+            margin-bottom: 20px;
+            transition: transform 0.5s ease;
+        }
+        .member-detail-card:hover .member-image {
+             transform: scale(1.08) rotate(7deg);
+        }
+
+        /* Skill Matrix */
+        .skill-matrix-container {
+            margin-top: 20px;
+            border-top: 2px dashed rgba(255, 193, 7, 0.5); /* Thay màu gạch ngang */
+            padding-top: 20px;
+            text-align: left;
+        }
+        .skill-tag {
+            background-color: var(--color-secondary-ao2);
+            color: var(--color-primary-ao2);
+        }
+
+        /* -------------------------------------- */
+        /* TIMELINE (NO DOTS, ENHANCED LINE) */
+        /* -------------------------------------- */
+        .timeline-section {
+            background-color: var(--color-light-bg);
+            /* Bỏ perspective 2000px ở đây để tránh xung đột với hiệu ứng 3D của card team */
+        }
+        .timeline-container {
+            max-width: 1000px;
+        }
+        
+        /* Hiệu ứng Glow cho đường kẻ */
+        @keyframes fluidGlow { 0% { background-position: 0% 0%; } 50% { background-position: 100% 100%; } 100% { background-position: 0% 0%; } }
+        .timeline-container::after {
+            background-size: 100% 300%; 
+            animation: fluidGlow 8s linear infinite; 
+            box-shadow: 0 0 40px rgba(255, 193, 7, 1.0); /* Tăng cường Glow */
+        }
+        
+        /* Hiệu ứng Nâng cao cho Card trên Timeline */
+        .timeline-card {
+             transform-style: preserve-3d;
+             transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s ease;
+        }
+        .left-content .timeline-card:hover {
+            transform: translateX(-30px) translateZ(60px) rotateY(-8deg); /* Tăng xoay và dịch chuyển */
+        }
+        .right-content .timeline-card:hover {
+            transform: translateX(30px) translateZ(60px) rotateY(8deg); /* Tăng xoay và dịch chuyển */
+        }
+        
+        /* Responsive Fixes (Giữ nguyên) */
+        @media (max-width: 768px) {
+            .left-content .timeline-card:hover,
+            .right-content .timeline-card:hover {
+                transform: translateX(0) translateZ(20px) rotateY(0deg); 
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAV BAR (GLASSMORHPISM EFFECT) -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-transparent" id="mainNavbar">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <span class="brand-text" style="color: var(--color-primary-ao2); font-size: 1.5rem;">A.O.2 LABS</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Dịch Vụ</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="projects.html">Dự Án</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="meet_the_team.html">Gặp Gỡ</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section (Glitch Text Effect) -->
+    <header class="team-hero">
+        <div class="container">
+            <h1 class="glitch-text" data-text="Đội Ngũ Sáng Tạo A.O.2 LABS">Đội Ngũ Sáng Tạo A.O.2 LABS</h1>
+            <p class="lead mt-3 fw-bold text-shadow-sm" style="color: var(--color-primary-ao2);">Code, Design, Strategy. We are the Ostrich Squad.</p>
+        </div>
+    </header>
+
+    <!-- -------------------------------------- -->
+    <!-- PHẦN TIMELINE -->
+    <!-- -------------------------------------- -->
+    <section id="timeline" class="timeline-section">
+        <div class="container">
+            <h2 class="text-center fw-bold mb-5" style="color: var(--color-secondary-ao2);" data-aos="fade-down">Hành Trình Khởi Nghiệp</h2>
+            <div class="timeline-container">
+
+                <!-- Giai đoạn 1: THCS -->
+                <div class="timeline-item left-content" data-aos="fade-right">
+                    <div class="timeline-card">
+                        <div class="timeline-date">CUỐI CẤP 2 (THCS)</div>
+                        <h4>Ngọn Lửa Đam Mê Bùng Cháy</h4>
+                        <p>Mọi chuyện bắt đầu vào những ngày cuối <b class="fw-bold">lớp 9</b> (THCS). Leader Đức Huy tình cờ xem được một video về thiết kế đồ họa với sức sáng tạo <b class="fw-bold">"quá đỉnh"</b> và kỹ thuật mãn nhãn. Khoảnh khắc đó đã truyền cảm hứng mạnh mẽ, khiến Huy nhận ra niềm đam mê thật sự với lĩnh vực thị giác. Từ đó, Huy bắt đầu hành trình tự tìm tòi, nghiên cứu sâu về các kiến thức nền tảng của Graphic Design và UI/UX.</p>
+                        <p class="text-muted fst-italic mt-3">— Đức Huy, Leader</p>
+                    </div>
+                </div>
+
+                <!-- Giai đoạn 2: THPT -->
+                <div class="timeline-item right-content" data-aos="fade-left">
+                    <div class="timeline-card">
+                        <div class="timeline-date">CẤP 3 (2022 - Nay)</div>
+                        <h4>Chuyên Nghiệp Hóa và Kết Nối</h4>
+                        <p>Bước vào cấp 3, Huy chính thức theo học tại <b class="fw-bold">Trường TT.GDNN-GDTX Krông Pắk</b> với chuyên ngành <b class="fw-bold">"Tin học ứng dụng"</b>. Hướng đi chủ yếu mà Huy theo đuổi là trở thành một Graphic Designer chuyên nghiệp, nắm vững cả tư duy thiết kế và kỹ năng thực thi.</p>
+                        <p>Cũng trong giai đoạn này, từ <b class="fw-bold">lớp 10</b>, các thành viên còn lại đã kết nối, cùng chung chí hướng xây dựng nên A.O.2 LABS. Chúng tôi cùng học hỏi, thực hiện các dự án cá nhân và bắt đầu nhận những dự án thực tế nhỏ để rèn luyện kỹ năng làm việc nhóm, đặt nền móng cho quy trình chuyên nghiệp hiện tại.</p>
+                        <p class="text-muted fst-italic mt-3">— Tất cả thành viên</p>
+                    </div>
+                </div>
+
+                <!-- Giai đoạn 3: Hiện tại -->
+                <div class="timeline-item left-content" data-aos="fade-right">
+                    <div class="timeline-card">
+                        <div class="timeline-date">HIỆN TẠI (CUỐI LỚP 12)</div>
+                        <h4>Nền Tảng Vững Chắc, Sẵn Sàng Bứt Phá</h4>
+                        <p>Dù còn đang trong quá trình học tập, A.O.2 LABS đã có một nền tảng vững chắc về kỹ năng, quy trình làm việc nhóm, và một portfolio đang dần hoàn thiện. Chúng tôi cam kết mang lại những sản phẩm chất lượng tốt nhất, dùng kinh nghiệm thực tế này làm hành trang cho tương lai học vấn và sự nghiệp chuyên nghiệp sau này.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- -------------------------------------- -->
+    <!-- KẾT THÚC PHẦN TIMELINE -->
+    <!-- -------------------------------------- -->
+
+    <!-- Team Details Section (Unique Feature: Interactive Ambient Glow) -->
+    <section id="team-details" class="team-details-wrapper">
+        <div id="ambient-glow"></div> <!-- Đèn Nền Tương Tác -->
+        <div class="container" style="position: relative; z-index: 5;">
+            <h2 class="text-center fw-bold mb-5 text-white" data-aos="fade-down" style="text-shadow: 0 0 15px rgba(255, 193, 7, 0.8);">Các Thành Viên Chủ Chốt</h2>
+            <div class="row g-5">
+                
+                <!-- Thành viên 1: Đức Huy (Leader) -->
+                <div class="col-lg-6">
+                    <div class="member-detail-card text-center" data-aos="fade-up" data-aos-delay="100">
+                        <img src="https://placehold.co/150x150/FFC107/ffffff?text=DH" alt="Đức Huy" class="member-image">
+                        <h2 class="fw-bold">Đức Huy (Leader)</h2>
+                        <p class="member-role">Giám đốc Sáng tạo (CD), UI/UX Design & Content Creator</p>
+                        
+                        <div class="member-description text-start">
+                            <p><b class="fw-bold text-dark">Về Huy:</b> 3 năm kinh nghiệm thực chiến, chuyên về xây dựng Hệ thống Thiết kế (Design System) và tối ưu hóa chuyển đổi (CRO) qua UI/UX.</p>
+                            <p class="mb-2"><b class="fw-bold text-dark">Thành tựu:</b> Đoạt Giải Nhất cuộc thi STEM Sáng tạo cấp trường.</p>
+                        </div>
+                        <hr>
+                        <!-- Dynamic Skill Matrix -->
+                        <div class="skill-matrix-container">
+                            <h5 class="fw-bold" style="color: var(--color-primary-ao2);">Hồ sơ Kỹ năng (Hard Skills)</h5>
+                            <span class="skill-tag">Figma & Sketch</span>
+                            <span class="skill-tag">Design System</span>
+                            <span class="skill-tag">CRO & A/B Testing</span>
+                            <span class="skill-tag">Adobe Suite</span>
+                        </div>
+                        <div class="member-social mt-4">
+                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" title="Behance"><i class="fab fa-behance"></i></a>
+                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thành viên 2: Quốc Huy -->
+                <div class="col-lg-6">
+                    <div class="member-detail-card text-center" data-aos="fade-up" data-aos-delay="300">
+                        <img src="https://placehold.co/150x150/FFC107/333333?text=QH" alt="Quốc Huy" class="member-image">
+                        <h2 class="fw-bold">Quốc Huy</h2>
+                        <p class="member-role">Chuyên gia Trải nghiệm người dùng (UX) & Thiết kế sản phẩm</p>
+                        
+                        <div class="member-description text-start">
+                            <p><b class="fw-bold text-dark">Về Huy:</b> Chuyên sâu trong việc nghiên cứu hành vi người dùng, A/B Testing và phân tích dữ liệu định tính/định lượng. Đảm bảo mọi giao diện đều đạt hiệu suất tương tác cao nhất.</p>
+                            <p class="mb-2"><b class="fw-bold text-dark">Thành tựu:</b> Thành viên nòng cốt xây dựng quy trình làm việc nhóm Agile/Scrum.</p>
+                        </div>
+                        <hr>
+                        <!-- Dynamic Skill Matrix -->
+                        <div class="skill-matrix-container">
+                            <h5 class="fw-bold" style="color: var(--color-primary-ao2);">Hồ sơ Kỹ năng (Hard Skills)</h5>
+                            <span class="skill-tag">Usability Testing</span>
+                            <span class="skill-tag">Data Analysis</span>
+                            <span class="skill-tag">Information Architecture</span>
+                            <span class="skill-tag">Wireframing</span>
+                        </div>
+                        <div class="member-social mt-4">
+                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thành viên 3: Phương Linh -->
+                <div class="col-lg-6">
+                    <div class="member-detail-card text-center" data-aos="fade-up" data-aos-delay="500">
+                        <img src="https://placehold.co/150x150/FFC107/ffffff?text=PL" alt="Phương Linh" class="member-image">
+                        <h2 class="fw-bold">Phương Linh</h2>
+                        <p class="member-role">Graphic Designer & Motion Graphics Artist</p>
+                        
+                        <div class="member-description text-start">
+                            <p><b class="fw-bold text-dark">Về Linh:</b> Có kinh nghiệm thực hành với các phần mềm thiết kế chuyển động phức tạp. Linh phụ trách mảng đồ họa động (Motion Graphics) cho các chiến dịch marketing và video.</p>
+                            <p class="mb-2"><b class="fw-bold text-dark">Thành tựu:</b> Đóng góp quan trọng vào Dự án Xây dựng Thương hiệu hình ảnh cho A.O.2 LABS.</p>
+                        </div>
+                        <hr>
+                        <!-- Dynamic Skill Matrix -->
+                        <div class="skill-matrix-container">
+                            <h5 class="fw-bold" style="color: var(--color-primary-ao2);">Hồ sơ Kỹ năng (Hard Skills)</h5>
+                            <span class="skill-tag">After Effects</span>
+                            <span class="skill-tag">2D/3D Animation</span>
+                            <span class="skill-tag">Video Editing</span>
+                            <span class="skill-tag">Illustration</span>
+                        </div>
+                        <div class="member-social mt-4">
+                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" title="Behance"><i class="fab fa-behance"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Thành viên 4: Thuý Hường -->
+                <div class="col-lg-6">
+                    <div class="member-detail-card text-center" data-aos="fade-up" data-aos-delay="700">
+                        <img src="https://placehold.co/150x150/FFC107/ffffff?text=TH" alt="Thuý Hường" class="member-image">
+                        <h2 class="fw-bold">Thuý Hường</h2>
+                        <p class="member-role">Chiến lược gia Nội dung (Content Strategist) & Visual Designer</p>
+                        
+                        <div class="member-description text-start">
+                            <p><b class="fw-bold text-dark">Về Hường:</b> Chịu trách nhiệm về chiến lược nội dung tổng thể, đảm bảo sự đồng bộ giữa thiết kế và thông điệp truyền thông. Chuyên gia tạo ấn phẩm Social Media có tính tương tác cao.</p>
+                            <p class="mb-2"><b class="fw-bold text-dark">Thành tựu:</b> Đóng góp chính vào việc tối ưu hóa thiết kế visual content cho các chiến dịch nội bộ.</p>
+                        </div>
+                        <hr>
+                        <!-- Dynamic Skill Matrix -->
+                        <div class="skill-matrix-container">
+                            <h5 class="fw-bold" style="color: var(--color-primary-ao2);">Hồ sơ Kỹ năng (Hard Skills)</h5>
+                            <span class="skill-tag">Content Strategy</span>
+                            <span class="skill-tag">Copywriting</span>
+                            <span class="skill-tag">Social Media Visuals</span>
+                            <span class="skill-tag">Infographics</span>
+                        </div>
+                        <div class="member-social mt-4">
+                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" title="Dribbble"><i class="fab fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer bg-dark">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    <p class="mb-0">&copy; 2025 A.O.2 LABS - Đà Điểu Châu Phi. All Rights Reserved. | <a href="contact.html" class="text-white text-decoration-underline" title="Liên hệ ngay với A.O.2 LABS">Liên Hệ Với Chúng Tôi</a></p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!-- Social Icons --><a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-white"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Script for Bootstrap and AOS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200, // Thời gian animation
+            once: true // Chỉ chạy một lần
+        });
+
+        // ----------------------------------------------------
+        // JAVASCRIPT CHO HIỆU ỨNG INTERACTIVE AMBIENT GLOW
+        // ----------------------------------------------------
+        document.addEventListener('DOMContentLoaded', function() {
+            const teamDetailsSection = document.getElementById('team-details');
+            const ambientGlow = document.getElementById('ambient-glow');
+
+            if (teamDetailsSection && ambientGlow) {
+                // Lắng nghe sự kiện di chuột
+                teamDetailsSection.addEventListener('mousemove', (e) => {
+                    // Lấy vị trí của section so với viewport
+                    const rect = teamDetailsSection.getBoundingClientRect();
+                    
+                    // Tính toán vị trí chuột tương đối trong section
+                    // e.clientX là vị trí X của chuột trong viewport
+                    // rect.left là vị trí X bắt đầu của section
+                    const x = e.clientX - rect.left; 
+                    const y = e.clientY - rect.top; 
+
+                    // Chuyển đổi sang phần trăm để áp dụng cho gradient
+                    const xPercent = (x / rect.width) * 100;
+                    const yPercent = (y / rect.height) * 100;
+                    
+                    // Cập nhật background (tâm của radial-gradient)
+                    ambientGlow.style.background = `
+                        radial-gradient(
+                            circle at ${xPercent}% ${yPercent}%, 
+                            rgba(255, 193, 7, 0.4), /* Màu vàng cam mạnh hơn */
+                            rgba(255, 193, 7, 0.1) 20%, /* Màu nhạt hơn ở gần */
+                            transparent 50%
+                        )
+                    `;
+                });
+
+                // Xử lý khi chuột rời khỏi khu vực section
+                teamDetailsSection.addEventListener('mouseleave', () => {
+                    // Trả lại gradient mặc định hoặc làm cho nó mờ đi
+                    ambientGlow.style.background = `
+                        radial-gradient(
+                            circle at 50% 50%, 
+                            rgba(255, 193, 7, 0.05), 
+                            transparent 60%
+                        )
+                    `;
+                });
+            }
+        });
+
+
+        // JavaScript cho Navbar (Hiệu ứng Glassmorphism khi cuộn)
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('mainNavbar');
+            if (window.scrollY > 50) {
+                navbar.classList.remove('navbar-transparent');
+                navbar.classList.remove('bg-dark');
+                navbar.classList.add('bg-dark-scrolled');
+            } else {
+                navbar.classList.add('navbar-transparent');
+                navbar.classList.remove('bg-dark-scrolled');
+            }
+        });
+    </script>
+
+</body>
+</html>
