@@ -3,18 +3,29 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('.nav-link');
     
     // ===========================================
-    // 1. XỬ LÝ THANH ĐIỀU HƯỚNG (NAVBAR) KHI CUỘN
+    // HÀM XỬ LÝ CHUYỂN ĐỔI NAVBAR (ĐƯỢC GỌI KHI SCROLL VÀ KHI LOAD)
     // ===========================================
-    window.addEventListener('scroll', function() {
+    function handleNavbarScroll() {
         if (window.scrollY > 100) {
+            // Khi cuộn xuống
             navbar.classList.remove('navbar-transparent');
             navbar.classList.add('navbar-solid');
         } else {
+            // Khi ở top
             navbar.classList.remove('navbar-solid');
             navbar.classList.add('navbar-transparent');
         }
-    });
+    }
     
+    // ===========================================
+    // 1. XỬ LÝ THANH ĐIỀU HƯỚNG (NAVBAR) KHI CUỘN
+    // ===========================================
+    window.addEventListener('scroll', handleNavbarScroll);
+    
+    // ** KHẮC PHỤC LỖI TRẠNG THÁI KHỞI TẠO (INITIAL STATE) **
+    // Gọi hàm một lần ngay sau khi load để đặt trạng thái ban đầu
+    handleNavbarScroll();
+
     // ===========================================
     // 2. XỬ LÝ CUỘN MƯỢT (SMOOTH SCROLL) VÀ ĐÓNG MENU
     // ===========================================
@@ -44,9 +55,14 @@ document.addEventListener('DOMContentLoaded', function() {
                     // Đóng Navbar trên Mobile sau khi click (Chỉ chạy nếu 'bootstrap' đã được load)
                     const navbarCollapse = document.querySelector('.navbar-collapse');
                     if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                        // Tên biến 'bootstrap' có thể khác tùy thuộc vào cách bạn load thư viện
                         if (typeof bootstrap !== 'undefined' && bootstrap.Collapse) {
+                            // Tạo instance Bootstrap Collapse và gọi hide()
                             const bsCollapse = new bootstrap.Collapse(navbarCollapse, { toggle: false });
                             bsCollapse.hide();
+                        } else {
+                            // Xử lý thủ công nếu Bootstrap không có sẵn (ví dụ: dùng jQuery hoặc thuần JS)
+                            navbarCollapse.classList.remove('show');
                         }
                     }
                 }
@@ -57,6 +73,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===========================================
     // 3. XỬ LÝ ĐẶT ACTIVE LINK KHI CUỘN
     // ===========================================
+    // Logic này vẫn giữ nguyên và hoạt động tốt
     window.addEventListener('scroll', function() {
         let current = '';
         const sections = document.querySelectorAll('section[id]');
@@ -84,13 +101,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===========================================
     // 4. KHỞI TẠO AOS (ĐỂ KHẮC PHỤC LỖI MOBILE)
     // ===========================================
-    // Đảm bảo thư viện AOS được khởi tạo, không có 'disable: "mobile"'
     if (typeof AOS !== 'undefined') {
         AOS.init({
-            duration: 1200,    
+            duration: 1200,   
             easing: 'ease-out-cubic',
-            once: true,      
-            // Không thêm thuộc tính 'disable: "mobile"'
+            once: true,     
         });
     }
 });
