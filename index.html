@@ -6,408 +6,19 @@
     <meta name="description" content="A.O.2 LAPS - Đà Điểu Châu Phi - Thiết Kế Không Giới Hạn">
     <title>A.O.2 LABS - Đà Điểu Châu Phi</title>
 
-    <!-- Thư viện bên ngoài -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    
     <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     
-    <!-- Bắt đầu: CSS Nhúng (styles.css cũ) -->
-    <style>
-        :root {
-            --primary-color: #2e3192; /* Màu Xanh chủ đạo */
-            --secondary-color: #FFC107; /* MÀU VÀNG NỔI BẬT ĐÃ CẬP NHẬT */
-            --dark-color: #1a1a2e; /* Màu nền tối */
-            --light-color: #f7f7f7;
-            --montserrat: 'Montserrat', sans-serif;
-            --oswald: 'Oswald', sans-serif;
-        }
-
-        body {
-            font-family: var(--montserrat);
-            background-color: var(--light-color);
-            color: #333;
-            padding-top: 70px; /* Offset cho fixed navbar */
-            overflow-x: hidden; /* Ngăn cuộn ngang */
-        }
-
-        /* --- Navbar Styles --- */
-        .navbar {
-            transition: background-color 0.3s ease, padding 0.3s ease;
-            padding-top: 15px;
-            padding-bottom: 15px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Navbar khi ở top trang */
-        .navbar-transparent {
-            background-color: transparent !important;
-            box-shadow: none;
-        }
-
-        /* Navbar khi cuộn xuống (màu tối) */
-        .navbar-scrolled {
-            background-color: var(--dark-color) !important;
-            padding-top: 8px;
-            padding-bottom: 8px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-        }
-
-        .brand-text {
-            font-family: var(--oswald);
-            font-size: 1.5rem;
-            letter-spacing: 2px;
-            color: var(--light-color);
-        }
-
-        .navbar-nav .nav-link {
-            color: var(--light-color) !important;
-            font-weight: 600;
-            margin-left: 15px;
-            transition: color 0.3s ease;
-            position: relative;
-        }
-
-        .navbar-scrolled .navbar-nav .nav-link:hover,
-        .navbar-scrolled .navbar-nav .nav-link.active {
-            color: var(--secondary-color) !important;
-        }
-        
-        /* Underline effect for active/hover */
-        .navbar-nav .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--secondary-color);
-            transition: width 0.3s ease;
-        }
-        .navbar-nav .nav-link:hover::after,
-        .navbar-nav .nav-link.active::after {
-            width: 100%;
-        }
-
-
-        /* --- Hero Section --- */
-        .hero-section {
-            position: relative;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--light-color);
-            background-image: url('https://images.unsplash.com/photo-1542435503-956c469947f6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Thêm ảnh nền chất lượng cao */
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Hiệu ứng parallax nhẹ */
-        }
-
-        .hero-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.6); /* Lớp phủ tối để chữ nổi bật */
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 10;
-            padding: 20px;
-        }
-
-        .hero-title {
-            font-family: var(--oswald);
-            font-size: 3.5rem;
-            font-weight: 700;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
-            animation: fadeInDown 1.5s ease-out;
-        }
-
-        .hero-subtitle {
-            font-size: 1.25rem;
-            font-weight: 400;
-            margin-bottom: 30px;
-            animation: fadeInUp 1.5s ease-out;
-        }
-
-        .btn-hero {
-            background-color: var(--secondary-color);
-            border-color: var(--secondary-color);
-            color: var(--dark-color);
-            padding: 12px 30px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 50px;
-            transition: all 0.3s ease;
-        }
-
-        .btn-hero:hover {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-            color: var(--light-color);
-            transform: translateY(-3px);
-            /* Đã cập nhật màu shadow theo màu vàng mới */
-            box-shadow: 0 10px 20px rgba(255, 193, 7, 0.4); 
-        }
-
-        /* --- Global Section Styles --- */
-        section {
-            padding: 80px 0;
-        }
-        
-        .section-header {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-family: var(--oswald);
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--dark-color);
-            margin-bottom: 10px;
-        }
-
-        .title-underline {
-            width: 80px;
-            height: 4px;
-            background-color: var(--secondary-color);
-            margin: 0 auto;
-            border-radius: 2px;
-        }
-        .title-underline.text-start {
-            margin-left: 0;
-            margin-right: auto;
-        }
-
-        /* --- About Section (Giới Thiệu) --- */
-        .about-section {
-            background-color: #ffffff;
-        }
-        .about-text {
-            line-height: 1.8;
-            font-size: 1.05rem;
-            color: #555;
-        }
-        .about-section img {
-            max-height: 500px;
-            object-fit: cover;
-        }
-
-        /* --- Service Section (Dịch Vụ) --- */
-        .services-section {
-            background-color: var(--light-color);
-        }
-
-        .service-card {
-            background: #ffffff;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            height: 100%;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            border: 1px solid #eee;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(46, 49, 146, 0.1);
-            border-color: var(--primary-color);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            width: 80px;
-            height: 80px;
-            line-height: 80px;
-            background: rgba(46, 49, 146, 0.1);
-            border-radius: 50%;
-            margin: 0 auto 20px auto;
-        }
-
-        .service-title {
-            font-family: var(--oswald);
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--dark-color);
-            margin-bottom: 15px;
-        }
-
-        .service-description {
-            font-size: 0.95rem;
-            color: #666;
-        }
-
-        /* --- Portfolio Section (Dự Án) --- */
-        .portfolio-section {
-            background-color: #f0f0f5;
-        }
-
-        .portfolio-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            cursor: pointer;
-        }
-
-        .portfolio-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-            display: block;
-        }
-
-        .portfolio-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(46, 49, 146, 0.85); /* Overlay màu tối hơn */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .portfolio-card:hover .portfolio-overlay {
-            opacity: 1;
-        }
-
-        .portfolio-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .portfolio-content {
-            color: var(--light-color);
-            text-align: center;
-            padding: 20px;
-            transform: translateY(20px);
-            transition: transform 0.5s ease;
-        }
-        .portfolio-card:hover .portfolio-content {
-            transform: translateY(0);
-        }
-
-        .portfolio-title {
-            font-family: var(--oswald);
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .portfolio-category {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
-
-        /* --- Team Section (Gặp Gỡ) --- */
-        .team-section {
-            background-color: #ffffff;
-        }
-
-        .team-card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            text-align: center;
-            height: 100%;
-            transition: all 0.3s ease;
-        }
-        
-        .team-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-        }
-
-        .team-card img {
-            width: 150px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 50%;
-            margin: 0 auto 20px auto;
-            border: 5px solid var(--secondary-color);
-        }
-
-        .team-name {
-            font-family: var(--oswald);
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin-bottom: 5px;
-        }
-
-        .team-role {
-            font-size: 0.9rem;
-            color: var(--secondary-color);
-            font-weight: 600;
-            margin-bottom: 10px;
-        }
-
-        .team-bio {
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-        /* --- Footer Styles --- */
-        .footer {
-            background-color: var(--dark-color);
-            color: var(--light-color);
-            padding: 30px 0;
-            font-size: 0.9rem;
-        }
-
-        .social-icons a {
-            color: var(--light-color);
-            font-size: 1.2rem;
-            margin-left: 15px;
-            transition: color 0.3s ease;
-        }
-
-        .social-icons a:hover {
-            color: var(--secondary-color);
-        }
-
-        /* --- Responsive Adjustments --- */
-        @media (max-width: 992px) {
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            .navbar-scrolled .navbar-nav .nav-link {
-                /* Đảm bảo màu chữ dễ đọc khi menu mở trên mobile */
-                color: var(--light-color) !important; 
-            }
-            .navbar-collapse {
-                background-color: #2e3192e0; /* Nền mờ cho mobile menu */
-                padding: 10px 20px;
-                border-radius: 5px;
-            }
-            .team-card {
-                margin-bottom: 20px;
-            }
-        }
-    </style>
-    <!-- Kết thúc: CSS Nhúng -->
-
     <link rel="manifest" href="/manifest.json">
-</head>
+    </head>
 <body>
 
-    <!-- KHẮC PHỤC: Thêm class 'navbar-transparent' mặc định để đảm bảo ban đầu là trong suốt -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top navbar-transparent" id="mainNavbar">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html#home">
@@ -422,16 +33,10 @@
                         <a class="nav-link" href="index.html#home">Trang Chủ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html#gioithieu">Về Chúng Tôi</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="services.html">Dịch Vụ</a> 
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="projects.html">Dự Án</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="meet_the_team.html">Đội Ngũ</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="index.html#gapgo">Gặp Gỡ</a>
@@ -440,48 +45,14 @@
             </div>
         </div>
     </nav>
-    
     <section id="home" class="hero-section">
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title" data-aos="fade-down">Chào Mừng Đến Với A.O.2 LABS!</h1>
-            <p class="hero-subtitle" data-aos="fade-down" data-aos-delay="200">Nâng tầm thương hiệu của bạn với thiết kế đột phá và chiến lược số thông minh.</p>
-            <!-- Sử dụng class secondary color mới -->
-            <a href="projects.html" class="btn btn-primary btn-hero" data-aos="fade-up" data-aos-delay="400">Xem Portfolio Dự Án</a>
+            <h1 class="hero-title">Chào Mừng Đến Với A.O.2 LABS!</h1>
+            <p class="hero-subtitle">Nâng tầm thương hiệu của bạn với thiết kế đột phá và chiến lược số thông minh.</p>
+            <a href="projects.html" class="btn btn-primary btn-hero" data-aos="fade-up" data-aos-delay="500">Xem Portfolio Dự Án</a>
         </div>
     </section>
-
-    <!-- START: Section GIỚI THIỆU -->
-    <section id="gioithieu" class="about-section py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 order-lg-2 mb-4 mb-lg-0" data-aos="fade-left">
-                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c7c5?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" 
-                         alt="Team working on creative design" 
-                         class="img-fluid rounded shadow-lg">
-                </div>
-                <div class="col-lg-6 order-lg-1" data-aos="fade-right">
-                    <div class="section-header mb-4 text-start">
-                        <h2 class="section-title text-start">Sứ Mệnh Của Đà Điểu Châu Phi</h2>
-                        <div class="title-underline text-start"></div>
-                    </div>
-                    <p class="about-text">
-                        A.O.2 LABS, với tên gọi thân mật là **Đà Điểu Châu Phi**, là nơi hội tụ của những bạn trẻ đam mê sáng tạo, đặc biệt trong lĩnh vực Thiết Kế Đồ Họa, UI/UX, và Phát Triển Web.
-                    </p>
-                    <p class="about-text">
-                        Sứ mệnh của tụi mình là: **"Thiết Kế Không Giới Hạn"**. Tụi mình không chỉ tạo ra sản phẩm đẹp mắt mà còn tập trung vào tính hiệu quả, trải nghiệm người dùng, và chiến lược phát triển bền vững cho thương hiệu của bạn.
-                    </p>
-                    <p class="about-text fw-bold">
-                        Hãy để A.O.2 LABS biến ý tưởng của bạn thành hiện thực, bay cao như Đà Điểu!
-                    </p>
-                    <!-- Button dùng màu secondary cũ (màu cam), thay bằng màu vàng mới -->
-                    <a href="meet_the_team.html" class="btn btn-secondary mt-3" style="background-color: var(--secondary-color); border-color: var(--secondary-color); color: var(--dark-color); font-weight: 700;">Gặp Gỡ Đội Ngũ Sáng Lập</a>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- END: Section GIỚI THIỆU -->
-
     <section id="dichvu" class="services-section py-5">
         <div class="container">
             <div class="section-header text-center mb-5" data-aos="fade-down">
@@ -534,7 +105,7 @@
                             <div class="portfolio-overlay">
                                 <div class="portfolio-content">
                                     <h3 class="portfolio-title">Xây Dựng & Vận Hành FTP Server</h3>
-                                    <p class="portfolio-category">Computer Networking</p>
+                                    <p class="portfolio-category">MComputer Networking</p>
                                 </div>
                             </div>
                         </a>
@@ -559,6 +130,7 @@
                             <div class="portfolio-overlay">
                                 <div class="portfolio-content">
                                     <h3 class="portfolio-title">Dự Án 3: Phát Triển Wed Cục Bộ</h3>
+                                    <p class="portfolio-category">Wed Devoloment</p>
                                 </div>
                             </div>
                         </a>
@@ -666,7 +238,7 @@
                         <a href="#" class="social-icon" data-aos="flip-up" data-aos-delay="200"><i class="fab fa-twitter"></i></a>
                         <a href="#" class="social-icon" data-aos="flip-up" data-aos-delay="300"><i class="fab fa-behance"></i></a>
                         <a href="#" class="social-icon" data-aos="flip-up" data-aos-delay="400"><i class="fab fa-dribbble"></i></a>
-                </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -674,100 +246,22 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     
-    <!-- Bắt đầu: JavaScript Nhúng (script.js cũ) -->
-    <script>
-        // Lấy thẻ Navbar
-        const navbar = document.getElementById('mainNavbar');
-        const navbarCollapse = document.getElementById('navbarNav');
-
-        // Hàm xử lý cuộn trang để thay đổi Navbar
-        function handleScroll() {
-            // Kiểm tra vị trí cuộn
-            if (window.scrollY > 50) {
-                // Nếu cuộn xuống, chuyển sang màu tối
-                navbar.classList.remove('navbar-transparent');
-                navbar.classList.add('navbar-scrolled');
-            } else {
-                // Nếu ở gần top, chuyển sang trong suốt
-                navbar.classList.remove('navbar-scrolled');
-                navbar.classList.add('navbar-transparent');
-            }
-        }
-
-        // Thêm lắng nghe sự kiện cuộn trang
-        window.addEventListener('scroll', handleScroll);
-
-        // KHẮC PHỤC LỖI NAVBAR TRẮNG KHI MỚI LOAD TRANG
-        // Chạy hàm handleScroll 1 lần khi DOM đã load xong để thiết lập trạng thái ban đầu chính xác
-        document.addEventListener('DOMContentLoaded', () => {
-            handleScroll(); // Gọi để thiết lập màu ban đầu (trong suốt nếu ở top)
-            
-            // Thiết lập link Trang Chủ active khi load lần đầu và ở top
-            if (window.scrollY === 0) {
-                 document.querySelector('.nav-item a[href*="#home"]').classList.add('active');
-            }
-        });
-
-
-        // Lắng nghe sự kiện click trên các nav-link để đóng menu sau khi click (Mobile)
-        const navLinks = document.querySelectorAll('.nav-link');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                if (navbarCollapse.classList.contains('show')) {
-                    const bsCollapse = new bootstrap.Collapse(navbarCollapse, {
-                        toggle: false
-                    });
-                    bsCollapse.hide();
-                }
-            });
-        });
-        
-        // Cập nhật trạng thái active của nav-link dựa trên vị trí cuộn
-        const sections = document.querySelectorAll('section');
-        window.addEventListener('scroll', () => {
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 70; // 70px offset for fixed navbar
-                const sectionHeight = section.clientHeight;
-                if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
-                    current = section.getAttribute('id');
-                }
-            });
-
-            navLinks.forEach(link => {
-                // Xử lý các link không có fragment (ví dụ: services.html, projects.html)
-                if (!link.href.includes('#')) {
-                    // Nếu link đang trỏ đến một trang khác, giữ nguyên active nếu đang ở trang đó (chưa có logic đầy đủ cho multi-page)
-                    return; 
-                }
-                
-                link.classList.remove('active');
-                if (link.href.includes('#' + current)) {
-                    link.classList.add('active');
-                }
-            });
-        });
-        
-    </script>
-    <!-- Kết thúc: JavaScript Nhúng -->
+    <script src="js/script.js"></script>
     
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
     <script>
-        // Khởi tạo AOS cho hiệu ứng cuộn trang
         AOS.init({
             disable: 'mobile', 
-            duration: 1200,   
+            duration: 1200,    
             easing: 'ease-out-cubic',
-            once: true,       
+            once: true,        
         });
     </script>
     
-    <!-- Code Chatbase (không ảnh hưởng đến lỗi hiển thị) -->
     <script>
     (function(){if(!window.chatbase||window.chatbase("getState")!=="initialized"){window.chatbase=(...arguments)=>{if(!window.chatbase.q){window.chatbase.q=[]}window.chatbase.q.push(arguments)};window.chatbase=new Proxy(window.chatbase,{get(target,prop){if(prop==="q"){return target.q}return(...args)=>target(prop,...args)}})}const onLoad=function(){const script=document.createElement("script");script.src="https://www.chatbase.co/embed.min.js";script.id="uRPpYU7vlswt5DQpc86ax";script.domain="www.chatbase.co";document.body.appendChild(script)};if(document.readyState==="complete"){onLoad()}else{window.addEventListener("load",onLoad)}})();
     </script>
     
-    <!-- Service Worker Registration (không ảnh hưởng đến lỗi hiển thị) -->
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
@@ -782,5 +276,5 @@
             });
         }
     </script>
-</body>
+    </body>
 </html>
