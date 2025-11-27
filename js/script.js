@@ -108,4 +108,19 @@ document.addEventListener('DOMContentLoaded', function() {
             once: true,     
         });
     }
+
+    // ===========================================
+    // 5. CHUYỂN HƯỚNG KHI NHẤN VÀO THẺ THÀNH VIÊN (TEAM CARD)
+    // ===========================================
+    const teamCards = document.querySelectorAll('.team-card');
+    teamCards.forEach(card => {
+        // Thêm con trỏ để báo hiệu đây là phần tử có thể tương tác
+        card.style.cursor = 'pointer'; 
+        
+        // Gắn sự kiện click
+        card.addEventListener('click', function() {
+            // Chuyển hướng tới trang chi tiết đội ngũ
+            window.location.href = 'meet_the_team.html';
+        });
+    });
 });
